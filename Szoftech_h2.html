@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2 – Projektterv és Víziódokumentum | No-Life Gamerek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.65;
+            padding: 25px 15px 45px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Felső navigációs sáv */
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #164a2a;
+            background-color: #f2f9f3;
+            border: 1px solid #c5dec9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1b5e36;
+            color: #ffffff;
+            border-color: #1b5e36;
+        }
+
+        .nav-btn.primary {
+            background-color: #164a2a;
+            color: #ffffff;
+            border-color: #164a2a;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: #0f361e;
+        }
+
+        .nav-btn.active {
+            background-color: #d4ebd8;
+            color: #123b22;
+            border-color: #1b5e36;
+            font-weight: 700;
+        }
+
+        /* Fehér kártyák a tartalmaknak */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 34px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        /* Címsorok */
+        h1 {
+            color: #123b22;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #123b22;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(18, 59, 34, 0.12);
+            border-bottom: 2px solid #cbe3cf;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            color: #164a2a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-shadow: 0 1px 1px rgba(22, 74, 42, 0.1);
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul {
+            margin: 8px 0 16px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        li strong, p strong {
+            color: #164a2a;
+        }
+
+        /* Tartalomjegyzék stílus */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+
+        .toc-box {
+            background-color: #f7fbf8;
+            border: 1px solid #d5e8d8;
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        .toc-box h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #d5e8d8;
+            padding-bottom: 6px;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 6px;
+        }
+
+        .toc-list li.sub {
+            padding-left: 18px;
+            font-size: 0.93rem;
+        }
+
+        .toc-list a {
+            color: #164a2a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover {
+            color: #0e331c;
+            text-decoration: underline;
+        }
+
+        /* Kiemelt információs doboz */
+        .highlight-box {
+            background-color: #f3f9f4;
+            border-left: 4px solid #1b5e36;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+        }
+
+        .highlight-box a {
+            color: #123b22;
+        }
+
+        .signature-box {
+            background-color: #f3f9f4;
+            border: 1px solid #cce2d0;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-top: 24px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <!-- Felső navigációs sáv -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <div class="nav-links">
+            <a href="Szoftech_h2.html" class="nav-btn active">H2 – Projektterv &amp; Vízió</a>
+            <a href="Szoftech_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="Szoftech_h4.html" class="nav-btn">H4 – Analízis &amp; Tervezés</a>
+            <a href="Szoftech_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szotar.html" class="nav-btn">Szótár</a>
+            <a href="Munkanaplo.html" class="nav-btn">Munkanapló</a>
+        </div>
+    </nav>
+
+    <!-- Fejléc -->
+    <header class="card">
+        <p class="subtitle">H2 Mérföldkő – A követelményanalízis fázis dokumentációja</p>
+        <h1>Projektterv és Víziódokumentum</h1>
+        <p>
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer<br>
+            <strong>Csapat neve:</strong> No-Life Gamerek &bull; <strong>Gyakorlatvezető:</strong> Sátán Ádám
+        </p>
+    </header>
+
+    <!-- Tartalomjegyzék -->
+    <section class="card" id="tartalomjegyzek">
+        <h2>Tartalomjegyzék</h2>
+        <div class="toc-grid">
+            <div class="toc-box">
+                <h3>I. Projektterv</h3>
+                <ul class="toc-list">
+                    <li><a href="#pt-1">1. A csoport tagjai és felépítése</a></li>
+                    <li><a href="#pt-2">2. Fejlesztési terv: mérföldkövek és eredmények</a></li>
+                    <li><a href="#pt-3">3. Programozási nyelvek és fejlesztőeszközök</a></li>
+                    <li><a href="#pt-4">4. Használni tervezett eszközök és technikák</a></li>
+                    <li><a href="#pt-5">5. Leendő dokumentumok és elkészültük ideje</a></li>
+                    <li><a href="#pt-6">6. Tesztelési követelmények</a></li>
+                    <li><a href="#pt-7">7. Bemutatás (demó) és átadás módja, ideje</a></li>
+                    <li><a href="#pt-8">8. Információforrások</a></li>
+                </ul>
+            </div>
+
+            <div class="toc-box">
+                <h3>II. Víziódokumentum</h3>
+                <ul class="toc-list">
+                    <li><a href="#vizio-1">1. Bevezetés</a></li>
+                    <li><a href="#vizio-2">2. Az alkalmazás helye</a></li>
+                    <li class="sub"><a href="#vizio-2-1">2.1. Üzleti lehetőségek</a></li>
+                    <li class="sub"><a href="#vizio-2-2">2.2. A probléma megfogalmazása</a></li>
+                    <li class="sub"><a href="#vizio-2-3">2.3. Az elkészült termék helye</a></li>
+                    <li><a href="#vizio-3">3. Érintettek és felhasználók</a></li>
+                    <li class="sub"><a href="#vizio-3-1">3.1. Az érintettek összefoglalása</a></li>
+                    <li class="sub"><a href="#vizio-3-2">3.2. A felhasználók összefoglalása</a></li>
+                    <li class="sub"><a href="#vizio-3-3">3.3. Felhasználói környezet</a></li>
+                    <li class="sub"><a href="#vizio-3-4">3.4. Illetékesek adatai (Érintettek profilja)</a></li>
+                    <li class="sub"><a href="#vizio-3-5">3.5. Felhasználók adatai (Felhasználói profilok)</a></li>
+                    <li><a href="#vizio-4">4. A végtermék áttekintése</a></li>
+                    <li class="sub"><a href="#vizio-4-1">4.1. A termék kapcsolatai</a></li>
+                    <li class="sub"><a href="#vizio-4-2">4.2. A termék használatának előnyei</a></li>
+                    <li class="sub"><a href="#vizio-4-3">4.3. Feltételezések és függőségek</a></li>
+                    <li class="sub"><a href="#vizio-4-4">4.4. Költségbecslés</a></li>
+                    <li class="sub"><a href="#vizio-4-5">4.5. Telepítés (Installáció)</a></li>
+                    <li><a href="#vizio-5">5. A végtermék jellemzői és biztosított szolgáltatásai</a></li>
+                    <li><a href="#vizio-6">6. Korlátozások</a></li>
+                    <li><a href="#vizio-7">7. Minőségi elvárások</a></li>
+                    <li><a href="#vizio-8">8. Dokumentációkkal kapcsolatos követelmények</a></li>
+                    <li><a href="#vizio-9">9. Kockázatlista</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- I. PROJEKTTERV -->
+    <section class="card" id="projekt-terv">
+        <h2>I. Projektterv</h2>
+
+        <h3 id="pt-1">1. A csoport tagjai és felépítése</h3>
+        <p>
+            A szoftverfejlesztési projektet a Miskolci Egyetem Gépészmérnöki és Informatikai Karának öt hallgatójából álló csapata (<strong>Lemák Marcell, Németh Donát, Zelei Zsombor, Szepesi János és Zádori Balázs</strong>) valósítja meg. A munkát agilis szemléletben, a Rational Unified Process (RUP) módszertan alapelveit szem előtt tartva végezzük.
+        </p>
+        <p>
+            Ahelyett, hogy mereven elhatárolt szerepköröket osztottunk volna ki egymás között, a csapat rugalmasan és közösen dolgozik. A feladatokat – legyen szó a megrendelői igények felméréséről, a használati esetek (Use Case) leírásáról, az UML-modellezésről, vagy az adatbázis és a felhasználói felületek megtervezéséről – egymást segítve és az aktuális kapacitásainkhoz igazodva oldjuk meg, így minden csapattag aktívan kiveszi a részét a projekt valamennyi fázisából.
+        </p>
+
+        <h3 id="pt-2">2. Fejlesztési terv: mérföldkövek és eredmények</h3>
+        <p>
+            A szoftver életciklusa a hivatalos egyetemi RUP-ütemezéshez igazodik, öt fő mérföldkőre (H1–H5) bontva:
+        </p>
+        <ul>
+            <li><strong>H1 (Inception – Kezdeti fázis):</strong> A csapat hivatalos megalakulása, a munkamegosztás kialakítása és a projekt témájának véglegesítése.</li>
+            <li><strong>H2 (Elaboration – Kidolgozási fázis):</strong> Elkészül a részletes Projektterv, valamint a magas szintű követelményeket és a MoSCoW prioritásokat rögzítő Víziódokumentum.</li>
+            <li><strong>H3 (Specifikáció):</strong> A csapat leszállítja a kiterjesztett Szoftverkövetelmény-specifikációt (SRS), a különálló Szótárt és a Felhasználói dokumentáció első verzióját.</li>
+            <li><strong>H4 (Construction – Analízis és rendszertervezés):</strong> Lezárul az objektumorientált analízis és rendszertervezés: elkészülnek az osztálydiagramok, szekvenciadiagramok és adatbázistervek, amelyeket HTML-formátumban publikálunk.</li>
+            <li><strong>H5 (Transition – Átadás és tesztelés):</strong> A fejlesztők bemutatják az implementált szoftver prototípusát, a tesztelési tervet, és átadják a végső forráskódot.</li>
+        </ul>
+
+        <h3 id="pt-3">3. Programozási nyelvek és fejlesztőeszközök</h3>
+        <p>
+            A projekt célja, hogy a hagyományos, nehezen karbantartható, táblázatkezelőkre épülő manuális adminisztrációt egy modern, objektumorientált (OO) szoftverarchitektúrára cserélje.
+        </p>
+        <ul>
+            <li><strong>Szerveroldali rendszer (Backend) és adatbázis:</strong> A szerveroldali üzleti logika, a naptárszinkronizációs motor és a kommunikációs modul megvalósítása C# vagy Java környezetben, relációs adatbázis-kezelőre építve történik.</li>
+            <li><strong>Kliensoldali felületek:</strong> A rendszer reszponzív, böngészőalapú webalkalmazásként működik, amely asztali számítógépen és mobileszközökön egyaránt használható, külön kliensoldali telepítés nélkül.</li>
+            <li><strong>Fejlesztői környezet:</strong> A fejlesztéshez egységesített integrált fejlesztői környezeteket (IDE-ket: Visual Studio, Android Studio, PyCharm) alkalmazunk. Az operációs rendszer szintű eltérések kiküszöbölése érdekében VMware és VirtualBox alapú virtualizációs technológiákat használunk.</li>
+        </ul>
+
+        <h3 id="pt-4">4. Használni tervezett eszközök és technikák</h3>
+        <p>
+            A párhuzamos munkavégzés és a forráskód épségének biztosítása érdekében a projekt a <strong>Git</strong> verziókövető rendszert használja, a <strong>GitHub</strong> platformjára támaszkodva. A dokumentációs fázisokban a csapat felhőalapú együttműködési eszközöket alkalmaz. A vizuális rendszertervezéshez iparági szabványnak számító <strong>UML 2.0</strong> modellező eszközöket használunk, amelyek támogatják a H4 fázisban előírt dokumentációgenerálást.
+        </p>
+
+        <h3 id="pt-5">5. Leendő dokumentumok és elkészültük ideje</h3>
+        <ul>
+            <li><strong>Október (H2):</strong> A magas szintű követelményeket és költségbecslést rögzítő Víziódokumentum, a pontosított Projektterv és a Munkanapló.</li>
+            <li><strong>November közepe (H3):</strong> Szoftverkövetelmény-specifikáció (SRS), önálló Fogalomtár (Szótár) és Felhasználói kézikönyv.</li>
+            <li><strong>November vége (H4):</strong> Analízis modell és Rendszertervezési dokumentáció HTML-formátumban, bővített Szótárral és Munkanaplóval.</li>
+            <li><strong>December (H5):</strong> A szoftvertermék prototípusa, tesztelési terv és a teljes forráskód átadása.</li>
+        </ul>
+
+        <h3 id="pt-6">6. Tesztelési követelmények</h3>
+        <p>
+            Mivel az alkalmazás kritikus foglalási és pénzügyi adatokat kezel, a tesztelési stratégia kiemelt fontosságú. A fejlesztés során kötelező az egységtesztek (unit tesztek) írása a legfontosabb algoritmusokra, kiemelten a szobák elérhetőségét vizsgáló és a túlfoglalást megakadályozó metódusokra. Ezt követik az integrációs tesztek, amelyek az alrendszerek és a külső szolgáltatások közötti kommunikációt ellenőrzik. A félév végén rendszerteszteket, majd a felhasználói felületen elfogadási teszteket (acceptance testing) végzünk.
+        </p>
+
+        <h3 id="pt-7">7. Bemutatás (demó) és átadás módja, ideje</h3>
+        <p>
+            A projekt dokumentációinak és szoftveres eredményeinek átadása digitális csatornákon történik. A dokumentumok és az UML-tervek HTML-formátumban a GitHub Pages szolgáltatásán keresztül érhetők el a mérföldkövek lejártakor. A szoftver forráskódja a csapat GitHub-tárhelyén (repozitóriumában) lesz elérhető, a végleges rendszer bemutatása (demó) pedig a H5 határidő keretében valósul meg.
+        </p>
+
+        <h3 id="pt-8">8. Információforrások</h3>
+        <p>
+            A követelményanalízis, az UML-modellezés és a dokumentációk formázása során a csapat elsődlegesen a Szoftvertechnológia tantárgyhoz kiadott hivatalos előadásdiáira és sablonjaira támaszkodik, a módszertani hátteret pedig a Rational Unified Process (RUP) szakirodalma adja. A rendszer üzleti logikájának megtervezéséhez a hazai vendégház-üzemeltetési modellek, a foglalási platformok (Booking.com, Airbnb) működése, valamint az iCal naptárkezelési szabvány, az elektronikus számlázórendszerek és az online fizetési szolgáltatók műszaki dokumentációi szolgálnak alapul.
+        </p>
+    </section>
+
+    <!-- II. VÍZÍÓDOKUMENTUM -->
+    <section class="card" id="vizio">
+        <h2>II. Víziódokumentum</h2>
+
+        <h3 id="vizio-1">1. Bevezetés</h3>
+        <p>
+            A jelen dokumentum célja a tervezett alkalmazás általános leírásának, főbb funkcióinak és a fejlesztés mögött meghúzódó üzleti igényeknek az átfogó bemutatása. A fejlesztendő szoftver (<strong>Automatizált vendégház-menedzsment és kommunikációs rendszer</strong>) egy modern, felhőalapú informatikai megoldás, amely a magánszálláshelyek és független vendégházak napi adminisztrációs, naptárszinkronizációs és vendégkommunikációs kihívásaira nyújt egységes választ.
+        </p>
+        <p>
+            A jelenlegi, széttöredezett munkafolyamatok kiváltásával a szoftver célja egy központosított felület létrehozása. A rendszer túlmutat a foglalások puszta adatbázisban történő rögzítésén: egy aszinkron, eseményvezérelt kommunikációs motort is magában foglal, amely a vendég teljes tartózkodási életciklusában minimálisra csökkenti a kézi beavatkozás szükségességét.
+        </p>
+
+        <h3 id="vizio-2">2. Az alkalmazás helye</h3>
+        <p>
+            A szoftver a turisztikai és vendéglátóipari szektor digitális ökoszisztémájában helyezkedik el, kifejezetten a kisebb kapacitású, de magas ügyfélélményre törekvő magánszálláshely-szolgáltatókat célozva. A technológiai cél egy olyan stabil architektúra megtervezése, amely biztonságos kapocsként szolgál a nyilvános webalapú foglalási felület és a zárt adminisztratív háttérrendszer között.
+        </p>
+
+        <h4 id="vizio-2-1">2.1. Üzleti lehetőségek</h4>
+        <p>
+            A hazai szálláshely-piacon a versenyképesség egyik legfőbb akadálya a manuális adminisztrációs túlterheltség. Az alkalmazás bevezetése közvetlen és azonnal mérhető üzleti hasznot teremt a szállásadók számára az emberi erőforrások észszerűsítésén keresztül:
+        </p>
+        <ul>
+            <li>A tranzakciós üzenetek (visszaigazolások, fizetési emlékeztetők, érkezési tudnivalók) automatizált kiküldésével a tulajdonos heti szinten <strong>10–15 munkaórát</strong> takarít meg.</li>
+            <li>A központosított, valós idejű szinkronizációs motor több platformról érkező forgalom esetén is minimálisra csökkenti a túlfoglalás (overbooking) kockázatát.</li>
+        </ul>
+
+        <h4 id="vizio-2-2">2.2. A probléma megfogalmazása</h4>
+        <ul>
+            <li><strong>A probléma leírása:</strong> Jelenleg a független vendégházak foglalásainak beérkezése és feldolgozása egymástól elszigetelt csatornákon (e-mailek, iCal-naptárak, papíralapú vagy Excel-táblázatok) keresztül történik. A naptárakat kézzel kell zárolni a különböző portálokon, ami lassú és hibalehetőségekkel teli folyamat. A 24 órás folyamatos emberi ügyelet fenntarthatatlan, az adatok összehangolásának hiánya pedig súlyos kártérítési kötelezettségekhez vezethet.</li>
+            <li><strong>Érintett résztvevők:</strong> A munkafolyamatok elsődleges résztvevője a szállás tulajdonosa vagy üzemeltetője. Másodlagos, de üzletileg kulcsfontosságú résztvevők az azonnali visszaigazolást elváró vendégek. Harmadlagos résztvevők a takarító személyzet tagjai.</li>
+            <li><strong>A probléma hatása a résztvevőkre:</strong> A kézi folyamatokból fakadó késleltetett visszaigazolások a vendég bizalmának elvesztéséhez és kedvezőtlen értékelésekhez vezetnek, miközben a szállásadó számára folyamatos készenléti terhet jelentenek. A takarító személyzet pontatlan tájékoztatása pedig felkészületlen szobákat eredményez.</li>
+            <li><strong>A sikeres megoldás várható hatásai:</strong> Létrejön egy emberi beavatkozást minimálisan igénylő automatizált foglalási életciklus, egy megbízható e-mail kommunikációs modul, valamint egy központi relációs adatbázis, amely megszünteti a többszörös adatrögzítést (adatredundanciát).</li>
+        </ul>
+
+        <h4 id="vizio-2-3">2.3. Az elkészült termék helye</h4>
+        <ul>
+            <li><strong>Célcsoport:</strong> Bármely 1–10 szobás, állandó 24 órás recepció nélkül működő vendégház és magánszálláshely számára készült.</li>
+            <li><strong>Felhasználói kör:</strong> A zárt adminisztrációs felületet a szállás üzemeltetői használják a napi irányításhoz, a nyilvános foglalási felületet a vendégek, a mobilra optimalizált nézetet pedig a takarító személyzet.</li>
+            <li><strong>Alkalmazáskategória:</strong> Vezetői információs rendszer (MIS), ezen belül a turisztikai szektorra szabott szálláshely-menedzsment rendszer (PMS – Property Management System).</li>
+            <li><strong>Alapvető üzleti haszon:</strong> Központosítja az adatkezelést, megszünteti a manuális hibákat, és professzionálissá teszi a vendégkommunikációt, növelve a jutalékmentes közvetlen foglalások arányát.</li>
+            <li><strong>Alternatív megoldások:</strong> Az egyik lehetőség a manuális adminisztráció (Excel + e-mail) megtartása, amely ingyenes, de rendkívül hibaérzékeny. A másik lehetőség a nagyvállalati szállodai szoftverek bérlése, amelyek egy mikrovállalkozás számára magas havidíjakkal járnak, és sok felesleges funkciót (pl. éttermi kasszarendszert) tartalmaznak.</li>
+            <li><strong>Megkülönböztető előnyök:</strong> A rendszer ideális középutat képez a kézi nyilvántartások és a túlárazott nagyvállalati rendszerek között: kizárólag a kis vendégházak napi működéséhez szükséges funkciókat nyújtja egy letisztult felületen.</li>
+        </ul>
+
+        <h3 id="vizio-3">3. Érintettek és felhasználók</h3>
+
+        <h4 id="vizio-3-1">3.1. Az érintettek összefoglalása</h4>
+        <p>
+            Az érintettek (stakeholderek) mindazok a személyek, csoportok vagy szervezetek, akikre a szobafoglaló rendszer bevezetése közvetlen vagy közvetett hatással van, illetve akiknek üzleti vagy működési érdekük fűződik a rendszer sikeres működéséhez:
+        </p>
+        <ul>
+            <li><strong>Vendégházak és szálláshelyek tulajdonosai / vezetősége:</strong> Érdekük a működési költségek csökkentése, a szobakihasználtság és a bevételek növelése, valamint a vállalkozás átláthatóságának biztosítása.</li>
+            <li><strong>Könyvelők és pénzügyi munkatársak:</strong> Igényük a pontos, nyomon követhető pénzügyi adatok megléte, valamint az egyszerű adatexportálási lehetőség.</li>
+            <li><strong>Operatív dolgozók (adminisztrátorok, recepciósok, takarító személyzet):</strong> Érdekük a napi feladatok egyértelmű ütemezése, a kézi adatrögzítés csökkentése és a szobák tisztasági állapotának átlátható nyilvántartása.</li>
+        </ul>
+        <p>
+            A rendszer célja, hogy kiváltsa a hagyományos Excel-alapú nyilvántartást, ahol minden új foglalásnál kézzel kell ellenőrizni a szabad időpontokat és rögzíteni a vendég adatait (név, dátumok, szobaszám, fizetési státusz). Egy központi, zárt belső felülettel a takarítások megszervezése is átláthatóbbá válik, így a vendégek mindig tiszta, előkészített szobába érkezhetnek.
+        </p>
+
+        <h4 id="vizio-3-2">3.2. A felhasználók összefoglalása</h4>
+        <p>
+            A felhasználók azok a szereplők, akik közvetlen kapcsolatba lépnek a szoftver felületével a mindennapi működés során:
+        </p>
+        <ul>
+            <li><strong>Külső felhasználók (szálláshelyet foglaló vendégek):</strong> Magánszemélyek (családok, párok, baráti társaságok) és jogi személyek (cégek, szervezetek képviselői). Céljuk az egyszerű, gyors és átlátható online foglalási és fizetési folyamat, várakozási idő nélkül.</li>
+            <li><strong>Recepciósok / adminisztrátorok / tulajdonosok:</strong> Foglalások kezelése, vendégek be- és kijelentkeztetése, fizetések és bevételek nyomon követése.</li>
+            <li><strong>Takarító személyzet:</strong> Szobastátuszok valós idejű frissítése mobileszközön keresztül a takarítások elvégzésével, valamint az esetleges hibák jelentése.</li>
+            <li><strong>Rendszeradminisztrátor:</strong> Felhasználói jogosultságok, törzsadatok és rendszerbeállítások karbantartása.</li>
+        </ul>
+
+        <h4 id="vizio-3-3">3.3. Felhasználói környezet</h4>
+        <ul>
+            <li><strong>Vendégek környezete:</strong> Bármilyen korszerű webböngészőből (Google Chrome, Mozilla Firefox, Safari, Microsoft Edge) elérhető reszponzív webes felület, amely asztali számítógépen, táblagépen és okostelefonon egyaránt kényelmesen használható.</li>
+            <li><strong>Recepció és adminisztráció környezete:</strong> Irodai vagy otthoni asztali számítógépek és hordozható számítógépek, állandó internetkapcsolattal a hatékony adatkezelés érdekében.</li>
+            <li><strong>Takarító személyzet környezete:</strong> Hordozható mobileszközök (okostelefonok, táblagépek) vezeték nélküli (Wi-Fi vagy mobilinternet) kapcsolattal, amely lehetővé teszi a szobastátusz azonnali módosítását közvetlenül a helyszínen, illetve kapcsolatkimaradás esetén az adatok ideiglenes helyi mentését.</li>
+        </ul>
+
+        <h4 id="vizio-3-4">3.4. Illetékesek adatai (Érintettek profilja)</h4>
+        <ul>
+            <li><strong>Szállásadó / Tulajdonos:</strong> A vezetésért felelős személy. Célja a szobák magas kihasználtsága, a nyereséges működés és az átlátható bevételi statisztikák elérése.</li>
+            <li><strong>Pénzügy / Könyvelés:</strong> Céljuk a jogszabályoknak megfelelő számlázás és a pontos pénzügyi adatszolgáltatás támogatása.</li>
+            <li><strong>Operatív vezetés:</strong> Célja a zökkenőmentes napi működés, a személyzet hatékony összehangolása és a túlfoglalások teljes elkerülése.</li>
+        </ul>
+
+        <h4 id="vizio-3-5">3.5. Felhasználók adatai (Felhasználói profilok)</h4>
+        <ul>
+            <li><strong>Vendég:</strong> Alkalmilag használja a rendszert foglalások alkalmával. Fő feladatai a szobakeresés, időpontfoglalás, online fizetés és a visszaigazolások megtekintése.</li>
+            <li><strong>Recepciós / Adminisztrátor / Tulajdonos:</strong> Napi rendszerességgel használja az adminisztrációs felületet. Feladatai közé tartozik a foglalások kezelése, a szobaállapotok ellenőrzése, a külső naptárak beállítása és a pénzügyi áttekintés.</li>
+            <li><strong>Takarító személyzet:</strong> Mindennapi használat jellemzi a műszakok ideje alatt. Feladata a napi takarítási lista megtekintése, a szobák státuszának frissítése (

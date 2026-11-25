@@ -175,28 +175,23 @@
             background-color: #f2faf3;
         }
 
-        .milestone-badge {
-            display: inline-block;
+        tr.total-row td {
             background-color: #e2f2e5;
             color: #123b22;
-            border: 1px solid #b8d8be;
-            padding: 2px 9px;
-            border-radius: 5px;
             font-weight: 700;
-            font-size: 0.84rem;
-            white-space: nowrap;
+            border-top: 2px solid #8ec298;
         }
 
-        .status-done {
-            display: inline-block;
-            background-color: #d4ebd8;
-            color: #123b22;
-            border: 1px solid #8ec298;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
+        .hours-cell {
             white-space: nowrap;
+            font-weight: 600;
+            color: #164a2a;
+        }
+
+        .note-text {
+            font-size: 0.9rem;
+            color: #2f593f;
+            margin-bottom: 12px;
         }
 
         .footer-nav {
@@ -216,10 +211,10 @@
     <nav class="navbar">
         <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
         <div class="nav-links">
-            <a href="Adatbazis_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
-            <a href="Adatbazis_h3.html" class="nav-btn">H3 – SRS</a>
-            <a href="Adatbazis_h4.html" class="nav-btn">H4 – Analízis &amp; Tervezés</a>
-            <a href="Adatbazis_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szoftech_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
+            <a href="Szoftech_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="Szoftech_h4.html" class="nav-btn">H4 – Analízis &amp; Tervezés</a>
+            <a href="Szoftech_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
             <a href="Szotar.html" class="nav-btn">Szótár</a>
             <a href="Munkanaplo.html" class="nav-btn active">Munkanapló</a>
         </div>
@@ -235,132 +230,201 @@
         <div class="meta-row">
             <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
             <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
-            <div class="meta-badge"><strong>Időszak:</strong> 2026. szeptember – december</div>
+            <div class="meta-badge"><strong>Időszak:</strong> 2026. szeptember – november</div>
         </div>
     </header>
 
     <section class="card">
-        <h2>Időrendi tevékenységnapló (H1–H5)</h2>
-        <table>
+        <h2>Időrendi tevékenységnapló</h2>
+        <table id="naplo-tabla">
             <thead>
                 <tr>
-                    <th>Dátum</th>
-                    <th>Mérföldkő</th>
-                    <th>Elvégzett feladat leírása</th>
-                    <th>Felelős(ök)</th>
-                    <th>Állapot</th>
+                    <th>Kezdet</th>
+                    <th>Időtartam (óra)</th>
+                    <th>Résztvevők</th>
+                    <th>Tevékenység</th>
+                    <th>Eredmény</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>2026. 09. 14.</td>
-                    <td><span class="milestone-badge">H1</span></td>
+                    <td>2026-09-14</td>
+                    <td class="hours-cell">1</td>
+                    <td>Lemák Marcell, Németh Donát, Zelei Zsombor, Szepesi János, Zádori Balázs</td>
                     <td>A projektcsapat (No-Life Gamerek) megalakulása, a témaválasztás (Ácsingozó Vendégház-menedzsment rendszer) véglegesítése és az agilis munkamegosztás kialakítása.</td>
-                    <td>Teljes csapat</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>Csapatbeosztás és témaválasztás (H1)</td>
                 </tr>
                 <tr>
-                    <td>2026. 09. 21.</td>
-                    <td><span class="milestone-badge">H1</span></td>
-                    <td>Központi GitHub-repozitórium és GitHub Pages webtárhely létrehozása, a főoldal (<code>index.html</code>) alapstruktúrájának és egységes arculatának elkészítése.</td>
-                    <td>Szepesi János, Lemák Marcell</td>
-                    <td><span class="status-done">Kész</span></td>
-                </tr>
-                <tr>
-                    <td>2026. 10. 04.</td>
-                    <td><span class="milestone-badge">H2</span></td>
-                    <td>Üzleti célok, problémamegfogalmazás, érintettek és felhasználói profilok felmérése; a Projektterv fejezeteinek és a RUP-ütemezésnek a kidolgozása.</td>
-                    <td>Németh Donát, Zelei Zsombor</td>
-                    <td><span class="status-done">Kész</span></td>
-                </tr>
-                <tr>
-                    <td>2026. 10. 12.</td>
-                    <td><span class="milestone-badge">H2</span></td>
-                    <td>A Víziódokumentum (MoSCoW prioritások, költségbecslés, minőségi elvárások és kockázatlista) véglegesítése és HTML-formátumban történő publikálása (<code>Adatbazis_h2.html</code>).</td>
-                    <td>Zádori Balázs, Szepesi János</td>
-                    <td><span class="status-done">Kész</span></td>
-                </tr>
-                <tr>
-                    <td>2026. 10. 28.</td>
-                    <td><span class="milestone-badge">H3</span></td>
-                    <td>A rendszer funkcionális és nem-funkcionális követelményeinek részletezése, a használatieset-diagram (Use Case) és a három fő használati eset kidolgozása.</td>
+                    <td>2026-10-08</td>
+                    <td class="hours-cell">3,5</td>
                     <td>Lemák Marcell, Németh Donát</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>Projektterv és Vízió dokumentum alapjainak megfogalmazása, üzleti célok, problémamegfogalmazás és érintettek rögzítése.</td>
+                    <td>Vízió dokumentum (H2) tervezet</td>
                 </tr>
                 <tr>
-                    <td>2026. 11. 05.</td>
-                    <td><span class="milestone-badge">H3</span></td>
-                    <td>A Felhasználói kézikönyv (vendég, tulajdonos és takarító nézetek leírása) elkészítése, valamint a Fogalomtár (<code>Szotar.html</code>) kiemelése önálló dokumentumba (<code>Adatbazis_h3.html</code>).</td>
-                    <td>Zelei Zsombor, Zádori Balázs</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>2026-10-09</td>
+                    <td class="hours-cell">3,0</td>
+                    <td>Németh Donát</td>
+                    <td>Követelményspecifikáció (SRS) struktúrájának kialakítása, funkcionális követelmények kidolgozása.</td>
+                    <td>SRS dokumentum (H3) vázlat</td>
                 </tr>
                 <tr>
-                    <td>2026. 11. 14.</td>
-                    <td><span class="milestone-badge">H4</span></td>
-                    <td>Objektumorientált analízis modell (<code>No-Life_Gamerek_ANAL01.html</code>): kezdeti osztálydiagram elkészítése, a rendszer négy alrendszerre bontása, állapot- és szekvenciadiagramok kidolgozása.</td>
-                    <td>Lemák Marcell, Szepesi János, Németh Donát</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>2026-10-10</td>
+                    <td class="hours-cell">3</td>
+                    <td>Németh Donát</td>
+                    <td>Használati esetek (Use Case) és nem funkcionális követelmények részletezése.</td>
+                    <td>SRS dokumentum 3–12. fejezetek</td>
                 </tr>
                 <tr>
-                    <td>2026. 11. 21.</td>
-                    <td><span class="milestone-badge">H4</span></td>
-                    <td>Rendszertervezési dokumentáció (<code>No-Life_Gamerek_RTERV01.html</code>): négyrétegű szerverarchitektúra, három felhasználói képernyő drótváza, 19 táblás 3NF PostgreSQL adatbázismodell és C# Repository interfészek megtervezése.</td>
-                    <td>Szepesi János, Zelei Zsombor, Zádori Balázs</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>2026-10-11</td>
+                    <td class="hours-cell">2,0</td>
+                    <td>Németh Donát</td>
+                    <td>SRS dokumentum véglegesítése, felhasználói kézikönyv és fogalomtár kiegészítése.</td>
+                    <td>Kész H3 dokumentáció</td>
                 </tr>
                 <tr>
-                    <td>2026. 11. 25.</td>
-                    <td><span class="milestone-badge">H4–H5</span></td>
-                    <td>Az összes HTML-dokumentum nyelvi, helyesírási és hivatkozási felülvizsgálata, a Munkanapló és a Szótár frissítése, felkészülés a H5 kódváz és tesztelési dokumentáció átadására.</td>
-                    <td>Teljes csapat</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>2026-10-12</td>
+                    <td class="hours-cell">3,5</td>
+                    <td>Németh Donát, Lemák Marcell</td>
+                    <td>H1 és H2 mérföldkövek formai és tartalmi felülvizsgálata, javítása.</td>
+                    <td>Ellenőrzött Vízió és Projektterv</td>
                 </tr>
                 <tr>
-                    <td>2026. 12. 04.</td>
-                    <td><span class="milestone-badge">H5</span></td>
-                    <td>C# / ASP.NET Core kódváz (skeleton) implementálása, egység- és integrációs tesztelési terv elkészítése (<code>Adatbazis_h5.html</code>), valamint a végső rendszerbemutató (demó) lebonyolítása.</td>
-                    <td>Teljes csapat</td>
-                    <td><span class="status-done">Kész</span></td>
+                    <td>2026-10-13</td>
+                    <td class="hours-cell">1,0</td>
+                    <td>Németh Donát</td>
+                    <td>H3 követelményspecifikáció módosítása és pontosítása a felülvizsgálat alapján.</td>
+                    <td>Módosított SRS dokumentum</td>
+                </tr>
+                <tr>
+                    <td>2026-10-14</td>
+                    <td class="hours-cell">4,5</td>
+                    <td>Zádori Balázs</td>
+                    <td>Analízis modell és Rendszertervezés (H4) szöveges fejezeteinek megírása, alrendszerek és osztályok leírása.</td>
+                    <td>H4 Analízis és Rendszertervezés szöveges dokumentum</td>
+                </tr>
+                <tr>
+                    <td>2026-10-16</td>
+                    <td class="hours-cell">2</td>
+                    <td>Németh Donát</td>
+                    <td>Módosított H3 dokumentáció ismételt ellenőrzése és a H4 dokumentum előkészítése.</td>
+                    <td>Véglegesített H3 specifikáció</td>
+                </tr>
+                <tr>
+                    <td>2026-10-18</td>
+                    <td class="hours-cell">4,0</td>
+                    <td>Németh Donát, Lemák Marcell</td>
+                    <td>Statikus, dinamikus és adatbázis-modellek (ER, relációs séma) összerakása és egységesítése.</td>
+                    <td>H4 modellek és adatbázis-terv</td>
+                </tr>
+                <tr>
+                    <td>2026-10-19</td>
+                    <td class="hours-cell">1,</td>
+                    <td>Németh Donát</td>
+                    <td>H4 Analízis modell és Rendszertervezés tartalmi ellenőrzése.</td>
+                    <td>Ellenőrzött H4 dokumentáció</td>
+                </tr>
+                <tr>
+                    <td>2026-10-20</td>
+                    <td class="hours-cell">3,5</td>
+                    <td>Németh Donát, Lemák Marcell</td>
+                    <td>UML osztály-, szekvencia- és állapotdiagramok kiegészítése, szöveges dokumentumok kezdeti HTML konvertálása.</td>
+                    <td>Kiegészített UML diagramok és nyers HTML fájlok</td>
+                </tr>
+                <tr>
+                    <td>2026-11-22</td>
+                    <td class="hours-cell">4,0</td>
+                    <td>Zelei Zsombor</td>
+                    <td>H3 SRS dokumentum terjedelmi bővítése, hiányzó fejezetek és részletes használati eset leírások pótlása.</td>
+                    <td>Teljes, terjedelmi előírásoknak megfelelő SRS</td>
+                </tr>
+                <tr>
+                    <td>2026-11-23</td>
+                    <td class="hours-cell">5,0</td>
+                    <td>Szepesi János</td>
+                    <td>Kezdetleges HTML és Word anyagok egységesítése, új webes dokumentációs portál létrehozása GitHub Pages-en, H5 objektumtervezés és kódváz kidolgozásának megkezdése.</td>
+                    <td>GitHub Pages portál alapjai és H5 tervezet</td>
+                </tr>
+                <tr>
+                    <td>2026-11-24</td>
+                    <td class="hours-cell">4,5</td>
+                    <td>Szepesi János</td>
+                    <td>HTML dokumentumok formai szabványosítása, navigáció és arculat fejlesztése, H5 C# / ASP.NET Core kódváz és tesztterv kidolgozása.</td>
+                    <td>Formázott H2–H5 weboldalak és tesztelési terv</td>
+                </tr>
+                <tr>
+                    <td>2026-11-25</td>
+                    <td class="hours-cell">3,5</td>
+                    <td>Zelei Zsombor, Szepesi János</td>
+                    <td>H5 dokumentáció szöveges és szakmai ellenőrzése, észrevételek átvezetése a kész HTML oldalon.</td>
+                    <td>Véglegesített H5 dokumentáció</td>
+                </tr>
+                <tr>
+                    <td>2026-11-26</td>
+                    <td class="hours-cell">2,0</td>
+                    <td>Lemák Marcell, Németh Donát, Zelei Zsombor, Szepesi János, Zádori Balázs</td>
+                    <td>A teljes publikált GitHub Pages dokumentációs portál és az összes hivatkozás végső ellenőrzése.</td>
+                    <td>Beadásra kész projektportál</td>
                 </tr>
             </tbody>
         </table>
     </section>
 
     <section class="card">
-        <h2>Csapattagok összefoglaló szerepvállalása</h2>
-        <table>
+        <h2>Csapattagok összefoglaló szerepvállalása és munkamegosztása</h2>
+        <p class="note-text">
+            A tárgyi követelmények (<code>dokformat.html</code>) szerint az alábbi összesített munkamegosztási táblázatot a H5 részhatáridőre kinyomtatva, valamennyi csapattag által aláírva is le kell adni.
+        </p>
+        <table id="osszesito-tabla">
             <thead>
                 <tr>
-                    <th>Csapattag</th>
+                    <th>Név</th>
                     <th>Neptun-kód</th>
-                    <th>Főbb hozzájárulási területek</th>
+                    <th>Főbb hozzájárárulási területek</th>
+                    <th>Összes óra</th>
+                    <th>Összidőszakra (100%) [%]</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><strong>Lemák Marcell</strong></td>
-                    <td>XLF80Z</td>
-                    <td>Használatieset-modellezés, foglaláskezelési és naptárszinkronizációs analízis, szekvenciadiagramok.</td>
-                </tr>
-                <tr>
+                <tr data-member="Németh Donát">
                     <td><strong>Németh Donát</strong></td>
                     <td>QRKG6U</td>
-                    <td>Projektterv, üzleti folyamatok elemzése, állapotdiagramok és tesztelési forgatókönyvek kidolgozása.</td>
+                    <td>Követelményspecifikáció (SRS) kidolgozása és módosítása, H1–H4 ellenőrzések, statikus és dinamikus modellek egyeztetése.</td>
+                    <td class="hours-cell member-hours">0 óra</td>
+                    <td class="hours-cell member-percent">0%</td>
                 </tr>
-                <tr>
-                    <td><strong>Zelei Zsombor</strong></td>
-                    <td>EFULOO</td>
-                    <td>Víziódokumentum, felhasználói kézikönyv, UI drótvázak és foglalási munkafolyamatok tervezése.</td>
-                </tr>
-                <tr>
+                <tr data-member="Szepesi János">
                     <td><strong>Szepesi János</strong></td>
                     <td>VKH6O2</td>
-                    <td>PostgreSQL relációs adatbázis-tervezés (3NF), C# / ASP.NET Core architektúra, Repository interfészek és HTML-publikáció.</td>
+                    <td>Dokumentumok egységesítése és HTML-publikálása GitHub Pages-en, H5 objektumtervezés, C# / ASP.NET Core kódváz és tesztelési terv.</td>
+                    <td class="hours-cell member-hours">0 óra</td>
+                    <td class="hours-cell member-percent">0%</td>
                 </tr>
-                <tr>
+                <tr data-member="Lemák Marcell">
+                    <td><strong>Lemák Marcell</strong></td>
+                    <td>XLF80Z</td>
+                    <td>Projektterv és Vízió (H2) kidolgozása, H1–H2 és H4 felülvizsgálatok, UML diagramok kiegészítése és kezdeti HTML konvertálás.</td>
+                    <td class="hours-cell member-hours">0 óra</td>
+                    <td class="hours-cell member-percent">0%</td>
+                </tr>
+                <tr data-member="Zelei Zsombor">
+                    <td><strong>Zelei Zsombor</strong></td>
+                    <td>EFULOO</td>
+                    <td>H3 SRS terjedelmi bővítése, hiányosságok pótlása, használati esetek részletezése, H5 tartalmi és szöveges ellenőrzése.</td>
+                    <td class="hours-cell member-hours">0 óra</td>
+                    <td class="hours-cell member-percent">0%</td>
+                </tr>
+                <tr data-member="Zádori Balázs">
                     <td><strong>Zádori Balázs</strong></td>
                     <td>Q16XMD</td>
-                    <td>Követelményspecifikáció (SRS), kockázatelemzés, üzemeltetési és takarítói alrendszer tervezése, fogalomtár.</td>
+                    <td>H4 Analízis modell és Rendszertervezés szöveges fejezeteinek megírása, alrendszerek és osztályok dokumentálása.</td>
+                    <td class="hours-cell member-hours">0 óra</td>
+                    <td class="hours-cell member-percent">0%</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3">Összesen</td>
+                    <td id="total-hours">0 óra</td>
+                    <td id="total-percent">100%</td>
                 </tr>
             </tbody>
         </table>
@@ -372,6 +436,69 @@
     </div>
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logRows = document.querySelectorAll("#naplo-tabla tbody tr");
+        const memberRows = document.querySelectorAll("#osszesito-tabla tbody tr[data-member]");
+        const hoursByMember = {};
+
+        memberRows.forEach(row => {
+            hoursByMember[row.dataset.member] = 0;
+        });
+
+        logRows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            if (cells.length < 3) return;
+
+            const hoursText = cells[1].textContent.replace(",", ".").trim();
+            const hours = parseFloat(hoursText) || 0;
+            const participantsText = cells[2].textContent;
+
+            Object.keys(hoursByMember).forEach(member => {
+                if (participantsText.includes(member)) {
+                    hoursByMember[member] += hours;
+                }
+            });
+        });
+
+        const totalHours = Object.values(hoursByMember).reduce((sum, h) => sum + h, 0);
+
+        // Százalékok kiszámítása Largest Remainder módszerrel (hogy az összeg mindig pontosan 100% legyen)
+        const rawPercentages = [];
+        let flooredSum = 0;
+
+        memberRows.forEach(row => {
+            const member = row.dataset.member;
+            const exact = totalHours > 0 ? (hoursByMember[member] / totalHours) * 100 : 0;
+            const floored = Math.floor(exact);
+            flooredSum += floored;
+            rawPercentages.push({
+                row: row,
+                member: member,
+                hours: hoursByMember[member],
+                floored: floored,
+                remainder: exact - floored
+            });
+        });
+
+        let remainderPoints = totalHours > 0 ? 100 - flooredSum : 0;
+        const sortedByRemainder = [...rawPercentages].sort((a, b) => b.remainder - a.remainder);
+        for (let i = 0; i < remainderPoints; i++) {
+            sortedByRemainder[i].floored += 1;
+        }
+
+        rawPercentages.forEach(item => {
+            const hoursCell = item.row.querySelector(".member-hours");
+            const percentCell = item.row.querySelector(".member-percent");
+            hoursCell.textContent = item.hours.toLocaleString("hu-HU") + " óra";
+            percentCell.textContent = item.floored + "%";
+        });
+
+        document.getElementById("total-hours").textContent = totalHours.toLocaleString("hu-HU") + " óra";
+        document.getElementById("total-percent").textContent = totalHours > 0 ? "100%" : "0%";
+    });
+</script>
 
 </body>
 </html>
