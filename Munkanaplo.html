@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munkanapló | No-Life Gamerek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.65;
+            padding: 25px 15px 45px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #164a2a;
+            background-color: #f2f9f3;
+            border: 1px solid #c5dec9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1b5e36;
+            color: #ffffff;
+            border-color: #1b5e36;
+        }
+
+        .nav-btn.primary {
+            background-color: #164a2a;
+            color: #ffffff;
+            border-color: #164a2a;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: #0f361e;
+        }
+
+        .nav-btn.active {
+            background-color: #d4ebd8;
+            color: #123b22;
+            border-color: #1b5e36;
+            font-weight: 700;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 34px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        h1 {
+            color: #123b22;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #123b22;
+            font-size: 1.45rem;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(18, 59, 34, 0.12);
+            border-bottom: 2px solid #cbe3cf;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        p strong {
+            color: #164a2a;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #e3efe5;
+        }
+
+        .meta-badge {
+            background-color: #f3f9f4;
+            border: 1px solid #cce2d0;
+            padding: 5px 13px;
+            border-radius: 6px;
+            font-size: 0.92rem;
+        }
+
+        .meta-badge strong {
+            color: #164a2a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.94rem;
+        }
+
+        th, td {
+            border: 1px solid #cce2d0;
+            padding: 11px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f1f8f2;
+            color: #123b22;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fafdfb;
+        }
+
+        tr:hover td {
+            background-color: #f2faf3;
+        }
+
+        .milestone-badge {
+            display: inline-block;
+            background-color: #e2f2e5;
+            color: #123b22;
+            border: 1px solid #b8d8be;
+            padding: 2px 9px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.84rem;
+            white-space: nowrap;
+        }
+
+        .status-done {
+            display: inline-block;
+            background-color: #d4ebd8;
+            color: #123b22;
+            border: 1px solid #8ec298;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <div class="nav-links">
+            <a href="Adatbazis_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
+            <a href="Adatbazis_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="Adatbazis_h4.html" class="nav-btn">H4 – Analízis &amp; Tervezés</a>
+            <a href="Adatbazis_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szotar.html" class="nav-btn">Szótár</a>
+            <a href="Munkanaplo.html" class="nav-btn active">Munkanapló</a>
+        </div>
+    </nav>
+
+    <header class="card">
+        <p class="subtitle">Miskolci Egyetem GÉIK &bull; Szoftvertechnológia (Adatbázis-tervezéssel)</p>
+        <h1>Projekt Munkanapló</h1>
+        <p>
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer (Ácsingozó Vendégház)<br>
+            Jelen munkanapló időrendi sorrendben rögzíti a csapattagok által a H1–H5 mérföldkövek során elvégzett tervezési, dokumentációs, adatbázis-modellezési és fejlesztési feladatokat.
+        </p>
+        <div class="meta-row">
+            <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
+            <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
+            <div class="meta-badge"><strong>Időszak:</strong> 2026. szeptember – december</div>
+        </div>
+    </header>
+
+    <section class="card">
+        <h2>Időrendi tevékenységnapló (H1–H5)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dátum</th>
+                    <th>Mérföldkő</th>
+                    <th>Elvégzett feladat leírása</th>
+                    <th>Felelős(ök)</th>
+                    <th>Állapot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026. 09. 14.</td>
+                    <td><span class="milestone-badge">H1</span></td>
+                    <td>A projektcsapat (No-Life Gamerek) megalakulása, a témaválasztás (Ácsingozó Vendégház-menedzsment rendszer) véglegesítése és az agilis munkamegosztás kialakítása.</td>
+                    <td>Teljes csapat</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 09. 21.</td>
+                    <td><span class="milestone-badge">H1</span></td>
+                    <td>Központi GitHub-repozitórium és GitHub Pages webtárhely létrehozása, a főoldal (<code>index.html</code>) alapstruktúrájának és egységes arculatának elkészítése.</td>
+                    <td>Szepesi János, Lemák Marcell</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 10. 04.</td>
+                    <td><span class="milestone-badge">H2</span></td>
+                    <td>Üzleti célok, problémamegfogalmazás, érintettek és felhasználói profilok felmérése; a Projektterv fejezeteinek és a RUP-ütemezésnek a kidolgozása.</td>
+                    <td>Németh Donát, Zelei Zsombor</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 10. 12.</td>
+                    <td><span class="milestone-badge">H2</span></td>
+                    <td>A Víziódokumentum (MoSCoW prioritások, költségbecslés, minőségi elvárások és kockázatlista) véglegesítése és HTML-formátumban történő publikálása (<code>Adatbazis_h2.html</code>).</td>
+                    <td>Zádori Balázs, Szepesi János</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 10. 28.</td>
+                    <td><span class="milestone-badge">H3</span></td>
+                    <td>A rendszer funkcionális és nem-funkcionális követelményeinek részletezése, a használatieset-diagram (Use Case) és a három fő használati eset kidolgozása.</td>
+                    <td>Lemák Marcell, Németh Donát</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 11. 05.</td>
+                    <td><span class="milestone-badge">H3</span></td>
+                    <td>A Felhasználói kézikönyv (vendég, tulajdonos és takarító nézetek leírása) elkészítése, valamint a Fogalomtár (<code>Szotar.html</code>) kiemelése önálló dokumentumba (<code>Adatbazis_h3.html</code>).</td>
+                    <td>Zelei Zsombor, Zádori Balázs</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 11. 14.</td>
+                    <td><span class="milestone-badge">H4</span></td>
+                    <td>Objektumorientált analízis modell (<code>No-Life_Gamerek_ANAL01.html</code>): kezdeti osztálydiagram elkészítése, a rendszer négy alrendszerre bontása, állapot- és szekvenciadiagramok kidolgozása.</td>
+                    <td>Lemák Marcell, Szepesi János, Németh Donát</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 11. 21.</td>
+                    <td><span class="milestone-badge">H4</span></td>
+                    <td>Rendszertervezési dokumentáció (<code>No-Life_Gamerek_RTERV01.html</code>): négyrétegű szerverarchitektúra, három felhasználói képernyő drótváza, 19 táblás 3NF PostgreSQL adatbázismodell és C# Repository interfészek megtervezése.</td>
+                    <td>Szepesi János, Zelei Zsombor, Zádori Balázs</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 11. 25.</td>
+                    <td><span class="milestone-badge">H4–H5</span></td>
+                    <td>Az összes HTML-dokumentum nyelvi, helyesírási és hivatkozási felülvizsgálata, a Munkanapló és a Szótár frissítése, felkészülés a H5 kódváz és tesztelési dokumentáció átadására.</td>
+                    <td>Teljes csapat</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+                <tr>
+                    <td>2026. 12. 04.</td>
+                    <td><span class="milestone-badge">H5</span></td>
+                    <td>C# / ASP.NET Core kódváz (skeleton) implementálása, egység- és integrációs tesztelési terv elkészítése (<code>Adatbazis_h5.html</code>), valamint a végső rendszerbemutató (demó) lebonyolítása.</td>
+                    <td>Teljes csapat</td>
+                    <td><span class="status-done">Kész</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="card">
+        <h2>Csapattagok összefoglaló szerepvállalása</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Csapattag</th>
+                    <th>Neptun-kód</th>
+                    <th>Főbb hozzájárulási területek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lemák Marcell</strong></td>
+                    <td>XLF80Z</td>
+                    <td>Használatieset-modellezés, foglaláskezelési és naptárszinkronizációs analízis, szekvenciadiagramok.</td>
+                </tr>
+                <tr>
+                    <td><strong>Németh Donát</strong></td>
+                    <td>QRKG6U</td>
+                    <td>Projektterv, üzleti folyamatok elemzése, állapotdiagramok és tesztelési forgatókönyvek kidolgozása.</td>
+                </tr>
+                <tr>
+                    <td><strong>Zelei Zsombor</strong></td>
+                    <td>EFULOO</td>
+                    <td>Víziódokumentum, felhasználói kézikönyv, UI drótvázak és foglalási munkafolyamatok tervezése.</td>
+                </tr>
+                <tr>
+                    <td><strong>Szepesi János</strong></td>
+                    <td>VKH6O2</td>
+                    <td>PostgreSQL relációs adatbázis-tervezés (3NF), C# / ASP.NET Core architektúra, Repository interfészek és HTML-publikáció.</td>
+                </tr>
+                <tr>
+                    <td><strong>Zádori Balázs</strong></td>
+                    <td>Q16XMD</td>
+                    <td>Követelményspecifikáció (SRS), kockázatelemzés, üzemeltetési és takarítói alrendszer tervezése, fogalomtár.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="footer-nav">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <a href="#top" class="nav-btn">Ugrás az oldal tetejére &uarr;</a>
+    </div>
+
+</div>
+
+</body>
+</html>

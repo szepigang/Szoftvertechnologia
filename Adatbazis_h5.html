@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H5 – Objektumtervezés, Implementáció és Tesztelési terv | No-Life Gamerek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.65;
+            padding: 25px 15px 45px 15px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* Felső navigációs sáv */
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #164a2a;
+            background-color: #f2f9f3;
+            border: 1px solid #c5dec9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1b5e36;
+            color: #ffffff;
+            border-color: #1b5e36;
+        }
+
+        .nav-btn.primary {
+            background-color: #164a2a;
+            color: #ffffff;
+            border-color: #164a2a;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: #0f361e;
+        }
+
+        .nav-btn.active {
+            background-color: #d4ebd8;
+            color: #123b22;
+            border-color: #1b5e36;
+            font-weight: 700;
+        }
+
+        /* Fehér kártyák */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 34px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        h1 {
+            color: #123b22;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #123b22;
+            font-size: 1.48rem;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(18, 59, 34, 0.12);
+            border-bottom: 2px solid #cbe3cf;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            color: #164a2a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-shadow: 0 1px 1px rgba(22, 74, 42, 0.1);
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 8px 0 16px 24px;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        li strong, p strong {
+            color: #164a2a;
+        }
+
+        /* Tartalomjegyzék */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-box {
+            background-color: #f7fbf8;
+            border: 1px solid #d5e8d8;
+            border-radius: 8px;
+            padding: 15px 18px;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 6px;
+        }
+
+        .toc-list li.sub {
+            padding-left: 16px;
+            font-size: 0.92rem;
+        }
+
+        .toc-list a {
+            color: #164a2a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Táblázatok */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 20px 0;
+            font-size: 0.93rem;
+        }
+
+        th, td {
+            border: 1px solid #cce2d0;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f1f8f2;
+            color: #123b22;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fafdfb;
+        }
+
+        /* Kódblokkok */
+        code {
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            background-color: #eef7f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #123b22;
+            font-size: 0.91em;
+        }
+
+        pre {
+            background-color: #16261c;
+            color: #eaf5ed;
+            padding: 16px 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin: 12px 0 20px 0;
+            border: 1px solid #2b4d37;
+        }
+
+        pre .kw { color: #7ee787; font-weight: bold; }
+        pre .type { color: #79c0ff; }
+        pre .str { color: #a5d6ff; }
+        pre .cmt { color: #8b949e; font-style: italic; }
+
+        /* Csomag kártyák */
+        .pkg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin: 14px 0 20px 0;
+        }
+
+        .pkg-box {
+            background-color: #f7fbf8;
+            border: 1px solid #cce2d0;
+            border-top: 4px solid #164a2a;
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .pkg-box h4 {
+            margin-top: 0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.96rem;
+        }
+
+        .badge-type {
+            display: inline-block;
+            background-color: #e2f2e5;
+            color: #123b22;
+            border: 1px solid #b8d8be;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <!-- Felső navigációs sáv -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <div class="nav-links">
+            <a href="Adatbazis_h2.html" class="nav-btn">H2 – Projekt terv &amp; Vízió</a>
+            <a href="Adatbazis_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="Adatbazis_h4.html" class="nav-btn">H4 – Analízis &amp; Tervezés</a>
+            <a href="Adatbazis_h5.html" class="nav-btn active">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szotar.html" class="nav-btn">Szótár</a>
+            <a href="Munkanaplo.html" class="nav-btn">Munkanapló</a>
+        </div>
+    </nav>
+
+    <!-- Fejléc -->
+    <header class="card">
+        <p class="subtitle">H5 Mérföldkő (Transition) – Objektumtervezés, Kódváz és Tesztelés</p>
+        <h1>Objektumtervezés, Implementációs váz és Tesztelési terv</h1>
+        <p>
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer<br>
+            <strong>Csapat neve:</strong> No-Life Gamerek &bull; <strong>Gyakorlatvezető:</strong> Sátán Ádám &bull; <strong>Technológiai stack:</strong> C# / ASP.NET Core 8, Entity Framework Core, PostgreSQL
+        </p>
+    </header>
+
+    <!-- Tartalomjegyzék -->
+    <section class="card" id="tartalomjegyzek">
+        <h2>Tartalomjegyzék</h2>
+        <div class="toc-grid">
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li><a href="#h5-1">1. Bevezetés</a></li>
+                    <li><a href="#h5-2">2. Objektumtervezési tevékenységek</a></li>
+                    <li class="sub"><a href="#h5-2-1">2.1. A rendszer vezérlésének kidolgozása</a></li>
+                    <li class="sub"><a href="#h5-2-2">2.2. Osztályok közötti kapcsolatok implementációja</a></li>
+                    <li class="sub"><a href="#h5-2-3">2.3. Modulokba és csomagokba (namespace) szervezés</a></li>
+                </ul>
+            </div>
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li><a href="#h5-3">3. Skeleton (kódváz) implementáció</a></li>
+                    <li class="sub"><a href="#h5-3-1">3.1. Projekt könyvtárstruktúra</a></li>
+                    <li class="sub"><a href="#h5-3-2">3.2. Domain entitások és EF Core kapcsolatok</a></li>
+                    <li class="sub"><a href="#h5-3-3">3.3. Foglaláskezelő szolgáltatás és ütközésvédelem</a></li>
+                    <li class="sub"><a href="#h5-3-4">3.4. Ütemezett iCal szinkronizáló háttérfolyamat</a></li>
+                    <li><a href="#h5-4">4. Tesztelési terv</a></li>
+                    <li class="sub"><a href="#h5-4-1">4.1. Tesztelési stratégia és eszközök</a></li>
+                    <li class="sub"><a href="#h5-4-2">4.2. Főbb tesztesetek részletezése</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. BEVEZETÉS -->
+    <section class="card" id="h5-1">
+        <h2>1. Bevezetés</h2>
+        <p>
+            Jelen dokumentum a Szoftvertechnológia projekt <strong>H5 (Transition)</strong> mérföldkövének eredményeit foglalja össze. A H4 mérföldkőben elkészített Analízis modell és Rendszertervezési dokumentáció alapján ebben a fázisban elvégeztük a részletes objektumtervezést, kialakítottuk a C# / ASP.NET Core alapú alkalmazás rétegzett modulstruktúráját és fordítható kódvázát (skeleton), valamint összeállítottuk a kritikus üzleti folyamatokat ellenőrző tesztelési tervet.
+        </p>
+    </section>
+
+    <!-- 2. OBJEKTUMTERVEZÉSI TEVÉKENYSÉGEK -->
+    <section class="card" id="h5-2">
+        <h2>2. Objektumtervezési tevékenységek</h2>
+
+        <h3 id="h5-2-1">2.1. A rendszer vezérlésének kidolgozása</h3>
+        <p>
+            A rendszer vezérlése két egymást kiegészítő mechanizmusra épül: a felhasználói kérésekre reagáló <strong>eseményvezérelt HTTP API vezérlőkre</strong>, valamint az időzített <strong>háttérfolyamatokra (BackgroundService)</strong>.
+        </p>
+        <ul>
+            <li><strong>Kérés-vezérelt folyamatok (Controllers &rarr; Services):</strong> A webes felületekről érkező kéréseket (szobakeresés, foglalás indítása, fizetési webhook, takarítási állapot frissítése) a vékony REST kontrollerek (<code>FoglalasController</code>, <code>TakaritasController</code>, <code>AdminController</code>) fogadják, majd továbbítják az üzleti logikát koordináló szolgáltatásosztályoknak (<code>FoglalasService</code>, <code>TakaritasService</code>).</li>
+            <li><strong>Aszinkron háttérfolyamatok:</strong>
+                <ul>
+                    <li><code>IcalSyncBackgroundService</code>: 5 percenként lefutó időzített szolgáltatás, amely lekérdezi a külső Booking.com és Airbnb naptárakat, frissíti a központi naptárat, és ütközés esetén riasztást hoz létre.</li>
+                    <li><code>ZarolasTakaritoService</code>: 1 percenként ellenőrzi a <code>foglalasi_zarolas</code> táblát, és felszabadítja azokat az ideiglenes zárolásokat, amelyeknél a fizetési időablak (15 perc) sikertelenül lejárt.</li>
+                </ul>
+            </li>
+            <li><strong>Láthatóság és függőségkezelés:</strong> Az üzleti szolgáltatások nem közvetlenül az adatbázis-osztályokat példányosítják, hanem interfészeken (<code>IFoglalasRepository</code>, <code>IPaymentGateway</code>, <code>IEmailSender</code>) keresztül kommunikálnak, amelyeket az ASP.NET Core beépített Dependency Injection (DI) konténere biztosít.</li>
+        </ul>
+
+        <h3 id="h5-2-2">2.2. Osztályok közötti kapcsolatok implementációja</h3>
+        <p>
+            Az analízismodellben meghatározott asszociációkat és számosságokat az alábbi objektumorientált és Entity Framework Core megoldásokkal valósítjuk meg:
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kapcsolat (Analízis modell)</th>
+                    <th>Számosság</th>
+                    <th>Implementációs mód (C# / EF Core)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Vendégház</code> – <code>Szoba</code></td>
+                    <td><code>1 : 1..*</code></td>
+                    <td>A <code>Szoba</code> osztályban kötelező <code>int VendeghazId</code> idegen kulcs és <code>Vendeghaz</code> navigációs tulajdonság; a <code>Vendeghaz</code> osztályban <code>ICollection&lt;Szoba&gt; Szobak</code> gyűjtemény.</td>
+                </tr>
+                <tr>
+                    <td><code>Szoba</code> – <code>Foglalás</code></td>
+                    <td><code>1 : 0..*</code></td>
+                    <td>A <code>Foglalas</code> osztályban <code>int SzobaId</code> és <code>Szoba</code> referencia; a <code>Szoba</code> osztályban <code>ICollection&lt;Foglalas&gt;</code> lista.</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalás</code> – <code>Kupon</code></td>
+                    <td><code>0..* : 0..1</code></td>
+                    <td>Opcionális (nullable) idegen kulcs (<code>int? KuponId</code>) a <code>Foglalas</code> osztályban, mivel kupon megadása nélkül is lehet foglalni.</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalás</code> – <code>Fizetés</code></td>
+                    <td><code>1 : 0..1</code></td>
+                    <td>Egy-az-egyhez (opcionális) kapcsolat a <code>Fizetes</code> táblában lévő egyedi (<code>UNIQUE</code>) <code>int FoglalasId</code> idegen kulccsal.</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalási ütközés</code> – <code>Foglalás</code></td>
+                    <td><code>0..* : 2..*</code></td>
+                    <td>A több-a-többhöz kapcsolatot a köztes <code>UtkozesFoglalas</code> kapcsolóosztály és kompozit kulcs oldja fel.</td>
+                </tr>
+                <tr>
+                    <td><code>Takarítási feladat</code> – <code>Takarítási fotó</code></td>
+                    <td><code>1 : 0..1</code></td>
+                    <td>A <code>TakaritasiFoto</code> osztályban tárolt <code>int FeladatId</code> egyedi idegen kulcs, amely a képfájl elérési útvonalát köti a feladathoz.</td>
+                </tr>
+                <tr>
+                    <td>Külső szolgáltatók (Fizetés, SMTP)</td>
+                    <td>Függőség</td>
+                    <td>Interfész alapú csatolás (<code>IPaymentGateway</code>, <code>IEmailSender</code>), így a külső API-k teszteléskor könnyen helyettesíthetők mock objektumokkal.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="h5-2-3">2.3. Modulokba és csomagokba (namespace) szervezés</h3>
+        <p>
+            A tiszta rétegzett architektúra (Clean Architecture elvek) érdekében a forráskódot négy fő modulba és névtérbe szerveztük:
+        </p>
+        <div class="pkg-grid">
+            <div class="pkg-box">
+                <h4>VendeghazApp.Domain</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Tartalmazza az üzleti entitásokat (<code>Szoba</code>, <code>Foglalas</code>, <code>Kupon</code>, <code>TakaritasiFeladat</code>), a felsorolási típusokat (<code>FoglalasStatusz</code>, <code>SzobaAllapot</code>) és az alapvető üzleti validációkat.</p>
+            </div>
+            <div class="pkg-box">
+                <h4>VendeghazApp.Application</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Tartalmazza az alkalmazás-szolgáltatásokat (<code>FoglalasService</code>, <code>NaptarSyncService</code>, <code>TakaritasService</code>), a DTO adatátviteli objektumokat és a repository/külső API interfészeket.</p>
+            </div>
+            <div class="pkg-box">
+                <h4>VendeghazApp.Infrastructure</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Tartalmazza az EF Core <code>ApplicationDbContext</code> osztályt, a PostgreSQL migrációkat, a Repository implementációkat, valamint a Stripe/Barion, SMTP és iCal klienseket.</p>
+            </div>
+            <div class="pkg-box">
+                <h4>VendeghazApp.Web</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Tartalmazza a REST API kontrollereket, a hitelesítési és RBAC jogosultsági beállításokat, a háttérfolyamatok regisztrációját és a reszponzív kliensoldali felületet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SKELETON IMPLEMENTÁCIÓ -->
+    <section class="card" id="h5-3">
+        <h2>3. Skeleton (kódváz) implementáció</h2>
+
+        <h3 id="h5-3-1">3.1. Projekt könyvtárstruktúra</h3>
+        <pre>VendeghazApp/
+├── src/
+│   ├── VendeghazApp.Domain/
+│   │   ├── Entities/          (Vendeghaz.cs, Szoba.cs, Foglalas.cs, FoglalasiZarolas.cs, TakaritasiFeladat.cs ...)
+│   │   └── Enums/             (FoglalasStatusz.cs, SzobaAllapot.cs, FeladatStatusz.cs, Szerepkor.cs)
+│   ├── VendeghazApp.Application/
+│   │   ├── Interfaces/        (IFoglalasRepository.cs, INaptarRepository.cs, IPaymentGateway.cs, IEmailSender.cs)
+│   │   └── Services/          (FoglalasService.cs, NaptarSyncService.cs, TakaritasService.cs)
+│   ├── VendeghazApp.Infrastructure/
+│   │   ├── Persistence/       (ApplicationDbContext.cs, FoglalasRepository.cs, NaptarRepository.cs)
+│   │   └── External/          (IcalParserClient.cs, SmtpEmailSender.cs, StripePaymentGateway.cs)
+│   └── VendeghazApp.Web/
+│       ├── Controllers/       (FoglalasController.cs, TakaritasController.cs, AdminController.cs)
+│       └── BackgroundJobs/    (IcalSyncBackgroundService.cs, ZarolasTakaritoService.cs)
+└── tests/
+    └── VendeghazApp.Tests/    (FoglalasServiceTests.cs, NaptarSyncTests.cs, TakaritasOfflineTests.cs)</pre>
+
+        <h3 id="h5-3-2">3.2. Domain entitások és EF Core kapcsolatok</h3>
+        <pre><span class="kw">namespace</span> VendeghazApp.Domain.Entities;
+
+<span class="kw">public enum</span> <span class="type">FoglalasStatusz</span> { FizetesreVar, Kifizetve, Torolt }
+<span class="kw">public enum</span> <span class="type">SzobaAllapot</span> { TakaritasraVar, TakaritasAlatt, Tiszta }
+
+<span class="kw">public class</span> <span class="type">Szoba</span>
+{
+    <span class="kw">public int</span> SzobaId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int</span> VendeghazId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public string</span> Szobaszam { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">string</span>.Empty;
+    <span class="kw">public decimal</span> Ar { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int</span> Befogadokepesseg { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="type">SzobaAllapot</span> Allapot { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="type">SzobaAllapot</span>.Tiszta;
+
+    <span class="cmt">// Navigációs tulajdonságok</span>
+    <span class="kw">public</span> <span class="type">Vendeghaz</span> Vendeghaz { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">null</span>!;
+    <span class="kw">public</span> <span class="type">ICollection</span>&lt;<span class="type">Foglalas</span>&gt; Foglalasok { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">new</span> <span class="type">List</span>&lt;<span class="type">Foglalas</span>&gt;();
+}
+
+<span class="kw">public class</span> <span class="type">Foglalas</span>
+{
+    <span class="kw">public int</span> FoglalasId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int</span> SzobaId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int?</span> VendegId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int?</span> KuponId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="type">DateOnly</span> Erkezes { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="type">DateOnly</span> Tavozas { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public int</span> VendegekSzama { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public decimal</span> Vegosszeg { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="type">FoglalasStatusz</span> Statusz { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="type">FoglalasStatusz</span>.FizetesreVar;
+
+    <span class="kw">public</span> <span class="type">Szoba</span> Szoba { <span class="kw">get</span>; <span class="kw">set</span>; } = <span class="kw">null</span>!;
+    <span class="kw">public</span> <span class="type">Vendeg?</span> Vendeg { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="type">Kupon?</span> Kupon { <span class="kw">get</span>; <span class="kw">set</span>; }
+}</pre>
+
+        <h3 id="h5-3-3">3.3. Foglaláskezelő szolgáltatás és ütközésvédelem</h3>
+        <pre><span class="kw">namespace</span> VendeghazApp.Application.Services;
+
+<span class="kw">public class</span> <span class="type">FoglalasService</span>
+{
+    <span class="kw">private readonly</span> <span class="type">IFoglalasRepository</span> _foglalasRepo;
+    <span class="kw">private readonly</span> <span class="type">INaptarRepository</span> _naptarRepo;
+    <span class="kw">private readonly</span> <span class="type">IPaymentGateway</span> _paymentGateway;
+    <span class="kw">private readonly</span> <span class="type">IEmailSender</span> _emailSender;
+
+    <span class="kw">public</span> FoglalasService(
+        <span class="type">IFoglalasRepository</span> foglalasRepo,
+        <span class="type">INaptarRepository</span> naptarRepo,
+        <span class="type">IPaymentGateway</span> paymentGateway,
+        <span class="type">IEmailSender</span> emailSender)
+    {
+        _foglalasRepo = foglalasRepo;
+        _naptarRepo = naptarRepo;
+        _paymentGateway = paymentGateway;
+        _emailSender = emailSender;
+    }
+
+    <span class="kw">public async</span> <span class="type">Task</span>&lt;<span class="kw">string</span>&gt; FoglalasKezdemenyezeseAsync(<span class="type">FoglalasLetrehozasDto</span> dto)
+    {
+        <span class="kw">if</span> (dto.Erkezes &gt;= dto.Tavozas)
+            <span class="kw">throw new</span> <span class="type">ArgumentException</span>(<span class="str">"A távozás dátumának későbbinek kell lennie az érkezésnél."</span>);
+
+        <span class="cmt">// 1. Atomi elérhetőség-ellenőrzés és 15 perces ideiglenes zárolás létrehozása</span>
+        <span class="kw">bool</span> zarolva = <span class="kw">await</span> _naptarRepo.TryIdoszakZarolasaAsync(
+            dto.SzobaId, dto.Erkezes, dto.Tavozas, <span class="type">TimeSpan</span>.FromMinutes(15));
+
+        <span class="kw">if</span> (!zarolva)
+            <span class="kw">throw new</span> <span class="type">InvalidOperationException</span>(<span class="str">"A kiválasztott szoba időközben foglalttá vált."</span>);
+
+        <span class="cmt">// 2. Árkalkuláció (opcionális kuponkedvezménnyel) és foglalás mentése FizetesreVar státusszal</span>
+        <span class="kw">var</span> foglalas = <span class="kw">await</span> _foglalasRepo.CreatePendingFoglalasAsync(dto);
+
+        <span class="cmt">// 3. Külső fizetési munkamenet indítása</span>
+        <span class="kw">return await</span> _paymentGateway.CreateCheckoutSessionAsync(foglalas.FoglalasId, foglalas.Vegosszeg);
+    }
+
+    <span class="kw">public async</span> <span class="type">Task</span> FizetesVisszaigazolasaAsync(<span class="kw">int</span> foglalasId, <span class="kw">string</span> tranzakcioId, <span class="kw">bool</span> sikeres)
+    {
+        <span class="kw">if</span> (!sikeres)
+        {
+            <span class="kw">await</span> _naptarRepo.ZarolasFeloldasaAsync(foglalasId);
+            <span class="kw">return</span>;
+        }
+
+        <span class="kw">var</span> foglalas = <span class="kw">await</span> _foglalasRepo.VeglegesitAsync(foglalasId, tranzakcioId);
+        <span class="kw">await</span> _naptarRepo.ZarolasVeglegesiteseAsync(foglalasId);
+        <span class="kw">await</span> _emailSender.SendVisszaigazolasAsync(foglalas);
+    }
+}</pre>
+
+        <h3 id="h5-3-4">3.4. Ütemezett iCal szinkronizáló háttérfolyamat</h3>
+        <pre><span class="kw">namespace</span> VendeghazApp.Web.BackgroundJobs;
+
+<span class="kw">public class</span> <span class="type">IcalSyncBackgroundService</span> : <span class="type">BackgroundService</span>
+{
+    <span class="kw">private readonly</span> <span class="type">IServiceScopeFactory</span> _scopeFactory;
+
+    <span class="kw">public</span> IcalSyncBackgroundService(<span class="type">IServiceScopeFactory</span> scopeFactory)
+    {
+        _scopeFactory = scopeFactory;
+    }
+
+    <span class="kw">protected override async</span> <span class="type">Task</span> ExecuteAsync(<span class="type">CancellationToken</span> stoppingToken)
+    {
+        <span class="kw">while</span> (!stoppingToken.IsCancellationRequested)
+        {
+            <span class="kw">using var</span> scope = _scopeFactory.CreateScope();
+            <span class="kw">var</span> syncService = scope.ServiceProvider.GetRequiredService&lt;<span class="type">NaptarSyncService</span>&gt;();
+
+            <span class="cmt">// Külső Booking.com és Airbnb naptárak lekérdezése és ütközésvizsgálat</span>
+            <span class="kw">await</span> syncService.SzinkronizalMindenKulsoNaptaratAsync(stoppingToken);
+
+            <span class="kw">await</span> <span class="type">Task</span>.Delay(<span class="type">TimeSpan</span>.FromMinutes(5), stoppingToken);
+        }
+    }
+}</pre>
+    </section>
+
+    <!-- 4. TESZTELÉSI TERV -->
+    <section class="card" id="h5-4">
+        <h2>4. Tesztelési terv</h2>
+
+        <h3 id="h5-4-1">4.1. Tesztelési stratégia és eszközök</h3>
+        <p>
+            A tesztelés célja annak igazolása, hogy a rendszer üzletileg kritikus folyamatai (foglalási ütközések megelőzése, pénzügyi számítások, külső naptárszinkronizáció és offline takarítói adatrögzítés) hibamentesen működnek. A tesztelést három szinten végezzük:
+        </p>
+        <ul>
+            <li><strong>Egységtesztek (Unit Tests – xUnit + Moq):</strong> Az üzleti logika izolált ellenőrzése (árkalkuláció, kuponérvényesség, dátumintervallumok átfedésvizsgálata).</li>
+            <li><strong>Integrációs tesztek (WebApplicationFactory + PostgreSQL):</strong> A vezérlők, szolgáltatások és az EF Core adatbázis-tranzakciók együttes tesztelése valós adatbázis-megszorítások mellett.</li>
+            <li><strong>Rendszer- és elfogadási tesztek (Swagger UI, böngészős mobilnézet):</strong> A három felhasználói felület teljes munkafolyamatainak végigjátszása a H3 Use Case specifikációk alapján.</li>
+        </ul>
+
+        <h3 id="h5-4-2">4.2. Főbb tesztesetek részletezése</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Azonosító</th>
+                    <th>Teszteset megnevezése</th>
+                    <th>Típus</th>
+                    <th>Előfeltétel és bemenet</th>
+                    <th>Elvárt eredmény</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>TC-01</code></td>
+                    <td>Szabad szobák keresése dátum és létszám alapján</td>
+                    <td><span class="badge-type">Integrációs</span></td>
+                    <td>2 szoba (2 fős és 4 fős); a 2 fős foglalt 07.10–07.15 között. Keresés: 07.12–07.14, 2 fő.</td>
+                    <td>Csak a 4 fős szoba jelenik meg a találati listában a pontos éjszakánkénti árral.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-02</code></td>
+                    <td>Párhuzamos foglalások ütközésének blokkolása</td>
+                    <td><span class="badge-type">Integrációs</span></td>
+                    <td>Két vendég ugyanabban a pillanatban indít foglalást ugyanarra a szobára és időszakra.</td>
+                    <td>Az egyik kérés létrehozza a zárolást és továbbjut a fizetésre, a másik elutasításra kerül hibaüzenettel.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-03</code></td>
+                    <td>Érvényes és lejárt kuponkód alkalmazása</td>
+                    <td><span class="badge-type">Egységteszt</span></td>
+                    <td>Alapár: 40 000 Ft. 1. teszt: aktív 10%-os kupon. 2. teszt: lejárt kuponkód.</td>
+                    <td>1. esetben a végösszeg 36 000 Ft; 2. esetben a rendszer elutasítja a kupont, és marad a 40 000 Ft.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-04</code></td>
+                    <td>Sikertelen fizetés utáni zárolás-feloldás</td>
+                    <td><span class="badge-type">Integrációs</span></td>
+                    <td>Létrejött egy <code>FizetesreVar</code> foglalás ideiglenes zárolással; a fizetési kapu sikertelen státuszt küld.</td>
+                    <td>A rendszer törli az ideiglenes zárolást, a szoba újra foglalhatóvá válik a naptárban.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-05</code></td>
+                    <td>Külső iCal naptár szinkronizáció és ütközésjelzés</td>
+                    <td><span class="badge-type">Integrációs</span></td>
+                    <td>A központi naptárban már van egy foglalás 08.01–08.05 között; a külső iCal feed 08.03–08.06-ra tartalmaz új foglalást.</td>
+                    <td>Létrejön egy <code>FoglalasiUtkozes</code> rekord <em>Észlelt</em> státusszal, és figyelmeztető e-mail megy a tulajdonosnak.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-06</code></td>
+                    <td>Offline takarítói feladat lezárása és szinkronizálása</td>
+                    <td><span class="badge-type">Rendszer</span></td>
+                    <td>A takarító hálózat nélkül zárja le a feladatot fotóval, majd visszakapcsolódik az internetre (kétszeri szinkronizációs kísérlettel).</td>
+                    <td>A szoba állapota <em>Tiszta</em> lesz, a fotó mentésre kerül, az idempotencia miatt pedig nem jön létre duplikátum.</td>
+                </tr>
+                <tr>
+                    <td><code>TC-07</code></td>
+                    <td>Szerepkör alapú jogosultságellenőrzés (RBAC)</td>
+                    <td><span class="badge-type">Rendszer</span></td>
+                    <td>Takarító szerepkörű felhasználó megpróbálja megnyitni a tulajdonosi bevételi statisztikák végpontját.</td>
+                    <td>A rendszer <code>403 Forbidden</code> válasszal megtagadja a hozzáférést.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Alsó navigáció -->
+    <div class="footer-nav">
+        <a href="Adatbazis_h4.html" class="nav-btn">&larr; Vissza a H4 dokumentumokhoz</a>
+        <a href="index.html" class="nav-btn primary">Vissza a főoldalra</a>
+        <a href="#top" class="nav-btn">Ugrás az oldal tetejére &uarr;</a>
+    </div>
+
+</div>
+
+</body>
+</html>

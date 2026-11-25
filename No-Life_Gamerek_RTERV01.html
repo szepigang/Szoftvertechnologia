@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTERV01 – Rendszerterv | No-Life Gamerek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.65;
+            padding: 25px 15px 45px 15px;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* Felső navigációs sáv */
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #164a2a;
+            background-color: #f2f9f3;
+            border: 1px solid #c5dec9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1b5e36;
+            color: #ffffff;
+            border-color: #1b5e36;
+        }
+
+        .nav-btn.primary {
+            background-color: #164a2a;
+            color: #ffffff;
+            border-color: #164a2a;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: #0f361e;
+        }
+
+        .nav-btn.active {
+            background-color: #d4ebd8;
+            color: #123b22;
+            border-color: #1b5e36;
+            font-weight: 700;
+        }
+
+        /* Fehér kártyák */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 34px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        h1 {
+            color: #123b22;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #123b22;
+            font-size: 1.48rem;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(18, 59, 34, 0.12);
+            border-bottom: 2px solid #cbe3cf;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            color: #164a2a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 8px 0 16px 24px;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        li strong, p strong {
+            color: #164a2a;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #e3efe5;
+        }
+
+        .meta-badge {
+            background-color: #f3f9f4;
+            border: 1px solid #cce2d0;
+            padding: 5px 13px;
+            border-radius: 6px;
+            font-size: 0.92rem;
+        }
+
+        .meta-badge strong {
+            color: #164a2a;
+        }
+
+        /* Tartalomjegyzék */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-box {
+            background-color: #f7fbf8;
+            border: 1px solid #d5e8d8;
+            border-radius: 8px;
+            padding: 15px 18px;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 6px;
+        }
+
+        .toc-list li.sub {
+            padding-left: 16px;
+            font-size: 0.92rem;
+        }
+
+        .toc-list a {
+            color: #164a2a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Táblázatok */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 22px 0;
+            font-size: 0.92rem;
+        }
+
+        th, td {
+            border: 1px solid #cce2d0;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f1f8f2;
+            color: #123b22;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fafdfb;
+        }
+
+        code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #eef7f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #123b22;
+            font-size: 0.89em;
+        }
+
+        pre {
+            background-color: #f4faf5;
+            border: 1px solid #cbe3cf;
+            border-left: 4px solid #1b5e36;
+            border-radius: 6px;
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: #123b22;
+            margin: 12px 0 18px 0;
+        }
+
+        /* Diagram doboz */
+        .diagram-box {
+            background-color: #f8fcf9;
+            border: 1px solid #cbe3cf;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 18px 0 22px 0;
+            text-align: center;
+        }
+
+        .diagram-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 6px;
+            border: 1px solid #c3dcc8;
+            background-color: #ffffff;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.08);
+        }
+
+        .diagram-caption {
+            margin-top: 12px;
+            margin-bottom: 0;
+            text-align: center;
+            font-weight: 700;
+            color: #164a2a;
+            font-size: 0.95rem;
+        }
+
+        /* Drótvázas képernyőtervek */
+        .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin: 14px 0 10px 0;
+        }
+
+        .wireframe-card {
+            background-color: #f9fcfa;
+            border: 2px dashed #9fc5a6;
+            border-radius: 8px;
+            padding: 16px 18px;
+        }
+
+        .wireframe-header {
+            background-color: #164a2a;
+            color: #ffffff;
+            padding: 7px 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+        }
+
+        .wf-block {
+            background-color: #ffffff;
+            border: 1px solid #cbe3cf;
+            border-radius: 5px;
+            padding: 9px 11px;
+            margin-bottom: 9px;
+            font-size: 0.88rem;
+        }
+
+        .wf-btn {
+            display: inline-block;
+            background-color: #1b5e36;
+            color: #ffffff;
+            padding: 5px 11px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        /* Réteg architektúra kártyák */
+        .layer-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 14px 0 18px 0;
+        }
+
+        .layer-item {
+            background-color: #f6fbf7;
+            border: 1px solid #c5dec9;
+            border-left: 5px solid #164a2a;
+            border-radius: 6px;
+            padding: 12px 16px;
+        }
+
+        .layer-item strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .pk-tag {
+            background-color: #d4ebd8;
+            color: #123b22;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8em;
+        }
+
+        .fk-tag {
+            background-color: #e8f4fa;
+            color: #134663;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8em;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <!-- Felső navigációs sáv -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <div class="nav-links">
+            <a href="Adatbazis_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
+            <a href="Adatbazis_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="No-Life_Gamerek_ANAL01.html" class="nav-btn">ANAL01 – Analízis modell</a>
+            <a href="No-Life_Gamerek_RTERV01.html" class="nav-btn active">RTERV01 – Rendszerterv</a>
+            <a href="Adatbazis_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szotar.html" class="nav-btn">Szótár</a>
+            <a href="Munkanaplo.html" class="nav-btn">Munkanapló</a>
+        </div>
+    </nav>
+
+    <!-- Címlap / Fejléc -->
+    <header class="card">
+        <p class="subtitle">Miskolci Egyetem GÉIK &bull; Szoftvertechnológia (Adatbázis-tervezéssel) &bull; Tervezési fázis (RTERV01)</p>
+        <h1>Rendszerterv – Szoftverarchitektúra, Adatmodell és Részletes Tervezés</h1>
+        <p>
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer (Ácsingozó Vendégház)<br>
+            Jelen dokumentum a <a href="No-Life_Gamerek_ANAL01.html">No-Life_Gamerek_ANAL01.html</a> analízis modellre építve határozza meg a szoftver technológiai architektúráját, a felhasználói felületek drótvázas terveit, a 19 táblás relációs adatbázis-sémát, az adatelérési (Repository) interfészeket, valamint a kivételes folyamatok, a biztonság és az üzemeltetés részletes szabályait.
+        </p>
+        <div class="meta-row">
+            <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
+            <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
+            <div class="meta-badge"><strong>Dokumentum:</strong> No-Life_Gamerek_RTERV01.html (v1.1)</div>
+        </div>
+    </header>
+
+    <!-- Tartalomjegyzék -->
+    <section class="card" id="tartalomjegyzek">
+        <h2>Tartalomjegyzék</h2>
+        <div class="toc-grid">
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li><a href="#rterv-1">1. Rendszerarchitektúra és technológiai stack</a></li>
+                    <li class="sub"><a href="#rterv-1-1">1.1. Négyrétegű szoftverarchitektúra</a></li>
+                    <li class="sub"><a href="#rterv-1-2">1.2. Külső integrációk és háttérszolgáltatások</a></li>
+                    <li><a href="#rterv-2">2. Felhasználói felület és drótvázas képernyőtervek</a></li>
+                    <li class="sub"><a href="#rterv-2-1">2.1. Vendégoldali foglalási nézet</a></li>
+                    <li class="sub"><a href="#rterv-2-2">2.2. Tulajdonosi vezérlőpult</a></li>
+                    <li class="sub"><a href="#rterv-2-3">2.3. Takarítói mobilfelület (PWA)</a></li>
+                    <li><a href="#rterv-3">3. Adatbázis-terv és szemantikai adatmodell</a></li>
+                    <li class="sub"><a href="#rterv-3-1">3.1. Szemantikai ER-diagram</a></li>
+                </ul>
+            </div>
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li class="sub"><a href="#rterv-3-2">3.2. Relációs táblák részletes specifikációja (19 tábla)</a></li>
+                    <li class="sub"><a href="#rterv-3-3">3.3. Adatintegritási szabályok és megszorítások</a></li>
+                    <li><a href="#rterv-4">4. Osztályterv és Repository interfészek</a></li>
+                    <li class="sub"><a href="#rterv-4-1">4.1. Szolgáltatási és Repository réteg</a></li>
+                    <li class="sub"><a href="#rterv-4-2">4.2. Kulcsfontosságú Repository metódusszignatúrák</a></li>
+                    <li><a href="#rterv-5">5. Kivételes folyamatok, biztonság és üzemeltetés</a></li>
+                    <li class="sub"><a href="#rterv-5-1">5.1. Kivételes folyamatok és ütközések feloldása</a></li>
+                    <li class="sub"><a href="#rterv-5-2">5.2. Biztonsági architektúra és üzemeltetés</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. RENDSZERARCHITEKTÚRA -->
+    <section class="card" id="rterv-1">
+        <h2>1. Rendszerarchitektúra és technológiai stack</h2>
+
+        <h3 id="rterv-1-1">1.1. Négyrétegű szoftverarchitektúra</h3>
+        <p>
+            A rendszer <strong>C# / ASP.NET Core (.NET 8)</strong> keretrendszerre és <strong>PostgreSQL 16</strong> relációs adatbázis-kezelőre épülő, tisztán szeparált négyrétegű (N-Tier) architektúrát valósít meg. A rétegek közötti függőségek kizárólag lefelé irányulnak, interfészeken és függőséginjektáláson (Dependency Injection) keresztül.
+        </p>
+
+        <div class="layer-stack">
+            <div class="layer-item">
+                <strong>1. Prezentációs réteg (Presentation Layer – ASP.NET Core Razor / REST API + Reszponzív Frontend)</strong>
+                Kiszolgálja a három elkülönített szerepkör felületét: a nyilvános vendégoldali foglalási varázslót, a tulajdonosi adminisztrációs vezérlőpultot, valamint a takarító személyzet offline-képes mobil webalkalmazását (Service Worker + IndexedDB gyorsítótárral).
+            </div>
+            <div class="layer-item">
+                <strong>2. Üzleti logika réteg (Business Logic / Service Layer – C# Services &amp; Background Workers)</strong>
+                Tartalmazza a tartományi szabályokat: a dupla elérhetőség-ellenőrzést, a 15 perces ideiglenes zárolások kezelését, a kuponkedvezmények számítását, a Stripe/Barion Webhook-feldolgozást, valamint az 5 percenként lefutó <code>IcalSyncHostedService</code> háttérszolgáltatást.
+            </div>
+            <div class="layer-item">
+                <strong>3. Adatelérési réteg (Data Access Layer – Repository Pattern &amp; Entity Framework Core / Npgsql)</strong>
+                Absztrahálja az adatbázis-műveleteket típusbiztos Repository interfészeken keresztül, biztosítva a tranzakciókezelést (<code>Serializable</code> / <code>Repeatable Read</code> izolációs szinten a foglalásoknál) és a lekérdezések optimalizálását.
+            </div>
+            <div class="layer-item">
+                <strong>4. Perzisztencia réteg (Persistence Layer – PostgreSQL 16 + Fájltároló)</strong>
+                3NF normálformára tervezett 19 táblás relációs adatbázis megszorításokkal, indexekkel és kizáró intervallum-ellenőrzéssel (<code>EXCLUDE USING gist</code>), valamint dedikált tárhely a takarítási igazoló fotókhoz.
+            </div>
+        </div>
+
+        <h3 id="rterv-1-2">1.2. Külső integrációk és háttérszolgáltatások</h3>
+        <ul>
+            <li><strong>Fizetési kapu (Stripe Checkout / Barion API):</strong> HTTPS REST hívással indított fizetési munkamenet, amelynek eredményét kriptográfiailag aláírt (HMAC-SHA256) Webhook végpont dolgozza fel idempotens módon.</li>
+            <li><strong>OTA Naptárszinkronizáció (iCal / RFC 5545):</strong> <code>Ical.Net</code> könyvtárral megvalósított kétirányú <code>.ics</code> importáló és exportáló modul a Booking.com és Airbnb naptárakhoz.</li>
+            <li><strong>E-mail-kézbesítés (SMTP / MailKit):</strong> Aszinkron üzenetsorba rendezett visszaigazolások, érkezés előtti emlékeztetők és tulajdonosi ütközésriasztások.</li>
+        </ul>
+    </section>
+
+    <!-- 2. FELHASZNÁLÓI FELÜLET ÉS DRÓTVÁZAS KÉPERNYŐTERVEK -->
+    <section class="card" id="rterv-2">
+        <h2>2. Felhasználói felület és drótvázas képernyőtervek</h2>
+        <p>
+            A felhasználói felületek tervezésekor a szerepkör-specifikus egyszerűséget és a mobilbarát elrendezést tartottuk szem előtt. Az alábbi drótvázak a három fő nézet felépítését rögzítik:
+        </p>
+
+        <div class="wireframe-grid">
+            <!-- Vendég nézet -->
+            <div class="wireframe-card" id="rterv-2-1">
+                <div class="wireframe-header">1. Vendégoldali foglalási nézet</div>
+                <div class="wf-block">
+                    <strong>Keresősáv:</strong> [Érkezés dátuma] &bull; [Távozás dátuma] &bull; [Vendégek száma] &rarr; <span class="wf-btn">Keresés</span>
+                </div>
+                <div class="wf-block">
+                    <strong>Szobaválasztó kártyák:</strong> Szobaszám, férőhely, éjszakánkénti ár, kalkulált végösszeg, elérhetőségi jelvény.
+                </div>
+                <div class="wf-block">
+                    <strong>Vendégadatok és Kupon:</strong> Név, E-mail, Telefonszám, Lakcím + [Kuponkód mező &rarr; <em>Érvényesít</em>].
+                </div>
+                <div class="wf-block" style="margin-bottom: 0;">
+                    <strong>Összesítő és fizetés:</strong> 15 perces zárolási visszaszámláló &rarr; <span class="wf-btn">Bankkártyás fizetés</span>
+                </div>
+            </div>
+
+            <!-- Tulajdonos nézet -->
+            <div class="wireframe-card" id="rterv-2-2">
+                <div class="wireframe-header">2. Tulajdonosi vezérlőpult</div>
+                <div class="wf-block">
+                    <strong>KPI és Riasztási sáv:</strong> Mai érkezők/távozók, Piszkos/Tiszta szobák aránya, Utolsó iCal-szinkron időpontja, <em>Piros ütközésjelző banner</em>.
+                </div>
+                <div class="wf-block">
+                    <strong>Központi foglalási naptár:</strong> Szobák szerinti idővonal (közvetlen, Booking, Airbnb és zárolt sávokkal) + <span class="wf-btn">+ Kézi foglalás</span>
+                </div>
+                <div class="wf-block" style="margin-bottom: 0;">
+                    <strong>Üzemeltetési panel:</strong> Takarítási fotók előnézete, nyitott hibabejelentések lezárása, ütközések feloldása.
+                </div>
+            </div>
+
+            <!-- Takarító nézet -->
+            <div class="wireframe-card" id="rterv-2-3">
+                <div class="wireframe-header">3. Takarítói mobilfelület (PWA)</div>
+                <div class="wf-block">
+                    <strong>Állapotsor:</strong> Bejelentkezett takarító neve + Hálózati jelző (<em>Online</em> / <em>Offline puffer aktív</em>).
+                </div>
+                <div class="wf-block">
+                    <strong>Napi szobalista:</strong> Szobaszám, távozási időpont, feladat státusza (<em>Elvégzésre vár</em> / <em>Folyamatban</em>).
+                </div>
+                <div class="wf-block" style="margin-bottom: 0;">
+                    <strong>Műveleti gombok:</strong> <span class="wf-btn">Takarítás indítása</span> &bull; <span class="wf-btn">Hiba bejelentése</span> &bull; <span class="wf-btn">Fotó &amp; Készre jelentés</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ADATBÁZIS-TERV ÉS SZEMANTIKAI ADATMODELL -->
+    <section class="card" id="rterv-3">
+        <h2>3. Adatbázis-terv és szemantikai adatmodell</h2>
+
+        <h3 id="rterv-3-1">3.1. Szemantikai ER-diagram</h3>
+        <p>
+            A rendszer szemantikai adatmodelljét entitás-kapcsolat (ER) diagram segítségével szemléltetjük, amely a négy üzleti alrendszer (<em>Üzemeltetés és takarítás, Foglaláskezelés, Naptár és szinkronizáció, Fizetés és kommunikáció</em>) és a központi hitelesítési tábla 19 relációs tábláját, elsődleges és idegen kulcsait, valamint számosságait rögzíti.
+        </p>
+
+        <div class="diagram-box">
+            <img src="A rendszer szemantik adatmodelljét ER-diagram segítségével szemléltetjük..png" alt="Vendégház-menedzsment rendszer – Szemantikai ER-diagram">
+            <p class="diagram-caption">1. ábra: A rendszer szemantikai adatmodellje – ER-diagram (19 tábla)</p>
+        </div>
+
+        <h3 id="rterv-3-2">3.2. Relációs táblák részletes specifikációja (19 tábla)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 19%;">Tábla neve</th>
+                    <th style="width: 17%;">Alrendszer</th>
+                    <th style="width: 38%;">Oszlopok és adattípusok</th>
+                    <th style="width: 26%;">Kulcsok és kapcsolatok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Felhasználó</code></td>
+                    <td>Központi hitelesítés</td>
+                    <td><code>felhasznalo_id</code> (BIGINT), <code>email</code> (VARCHAR), <code>jelszo_hash</code> (TEXT), <code>szerepkor</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>felhasznalo_id</code>; <code>UNIQUE(email)</code></td>
+                </tr>
+                <tr>
+                    <td><code>Tulajdonos</code></td>
+                    <td>Üzemeltetés és takarítás</td>
+                    <td><code>tulajdonos_id</code> (BIGINT), <code>felhasznalo_id</code> (BIGINT), <code>nev</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>tulajdonos_id</code>; <span class="fk-tag">FK</span> <code>felhasznalo_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Takarító</code></td>
+                    <td>Üzemeltetés és takarítás</td>
+                    <td><code>takarito_id</code> (BIGINT), <code>felhasznalo_id</code> (BIGINT), <code>nev</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>takarito_id</code>; <span class="fk-tag">FK</span> <code>felhasznalo_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Takarítási feladat</code></td>
+                    <td>Üzemeltetés és takarítás</td>
+                    <td><code>feladat_id</code> (BIGINT), <code>szoba_id</code> (BIGINT), <code>takarito_id</code> (BIGINT), <code>datum</code> (DATE), <code>allapot</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>feladat_id</code>; <span class="fk-tag">FK</span> <code>szoba_id</code>, <code>takarito_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Takarítási fotó</code></td>
+                    <td>Üzemeltetés és takarítás</td>
+                    <td><code>foto_id</code> (BIGINT), <code>feladat_id</code> (BIGINT), <code>kep_hivatkozas</code> (TEXT)</td>
+                    <td><span class="pk-tag">PK</span> <code>foto_id</code>; <span class="fk-tag">FK</span> <code>feladat_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Hibabejelentés</code></td>
+                    <td>Üzemeltetés és takarítás</td>
+                    <td><code>hiba_id</code> (BIGINT), <code>szoba_id</code> (BIGINT), <code>takarito_id</code> (BIGINT), <code>leiras</code> (TEXT), <code>allapot</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>hiba_id</code>; <span class="fk-tag">FK</span> <code>szoba_id</code>, <code>takarito_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Vendégház</code></td>
+                    <td>Foglaláskezelés</td>
+                    <td><code>vendeghaz_id</code> (BIGINT), <code>nev</code> (VARCHAR), <code>cim</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>vendeghaz_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Szoba</code></td>
+                    <td>Foglaláskezelés</td>
+                    <td><code>szoba_id</code> (BIGINT), <code>vendeghaz_id</code> (BIGINT), <code>szobaszam</code> (VARCHAR), <code>ar</code> (DECIMAL), <code>befogadokepesseg</code> (INT), <code>allapot</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>szoba_id</code>; <span class="fk-tag">FK</span> <code>vendeghaz_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Vendég</code></td>
+                    <td>Foglaláskezelés</td>
+                    <td><code>vendeg_id</code> (BIGINT), <code>nev</code> (VARCHAR), <code>email</code> (VARCHAR), <code>telefonszam</code> (VARCHAR), <code>lakcim</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>vendeg_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Foglalás</code></td>
+                    <td>Foglaláskezelés</td>
+                    <td><code>foglalas_id</code> (BIGINT), <code>szoba_id</code> (BIGINT), <code>vendeg_id</code> (BIGINT), <code>kupon_id</code> (BIGINT), <code>erkezes</code> (DATE), <code>tavozas</code> (DATE), <code>statusz</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>foglalas_id</code>; <span class="fk-tag">FK</span> <code>szoba_id</code>, <code>vendeg_id</code>, <code>kupon_id</code> (nullable)</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalási naptár</code></td>
+                    <td>Naptár és szinkronizáció</td>
+                    <td><code>naptar_id</code> (BIGINT), <code>vendeghaz_id</code> (BIGINT), <code>utolso_frissites</code> (TIMESTAMP)</td>
+                    <td><span class="pk-tag">PK</span> <code>naptar_id</code>; <span class="fk-tag">FK</span> <code>vendeghaz_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Külső naptár</code></td>
+                    <td>Naptár és szinkronizáció</td>
+                    <td><code>kulso_naptar_id</code> (BIGINT), <code>naptar_id</code> (BIGINT), <code>platform</code> (VARCHAR), <code>ical_hivatkozas</code> (TEXT)</td>
+                    <td><span class="pk-tag">PK</span> <code>kulso_naptar_id</code>; <span class="fk-tag">FK</span> <code>naptar_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Foglalási zárolás</code></td>
+                    <td>Naptár és szinkronizáció</td>
+                    <td><code>zarolas_id</code> (BIGINT), <code>szoba_id</code> (BIGINT), <code>foglalas_id</code> (BIGINT), <code>erkezes</code> (DATE), <code>tavozas</code> (DATE), <code>allapot</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>zarolas_id</code>; <span class="fk-tag">FK</span> <code>szoba_id</code>, <code>foglalas_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Foglalási ütközés</code></td>
+                    <td>Naptár és szinkronizáció</td>
+                    <td><code>utkozes_id</code> (BIGINT), <code>tulajdonos_id</code> (BIGINT), <code>erintett_idoszak</code> (VARCHAR), <code>statusz</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>utkozes_id</code>; <span class="fk-tag">FK</span> <code>tulajdonos_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Ütközés-Foglalás</code></td>
+                    <td>Naptár és szinkronizáció</td>
+                    <td><code>utkozes_id</code> (BIGINT), <code>foglalas_id</code> (BIGINT)</td>
+                    <td><span class="pk-tag">PK</span> <span class="fk-tag">FK</span> <code>(utkozes_id, foglalas_id)</code> kapcsolótábla</td>
+                </tr>
+                <tr>
+                    <td><code>Fizetés</code></td>
+                    <td>Fizetés és kommunikáció</td>
+                    <td><code>fizetes_id</code> (BIGINT), <code>foglalas_id</code> (BIGINT), <code>osszeg</code> (DECIMAL), <code>statusz</code> (VARCHAR), <code>tranzakcio_azonosito</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>fizetes_id</code>; <span class="fk-tag">FK</span> <code>foglalas_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Számla</code> <em>(tervezett)</em></td>
+                    <td>Fizetés és kommunikáció</td>
+                    <td><code>szamla_id</code> (BIGINT), <code>fizetes_id</code> (BIGINT), <code>szamlaszam</code> (VARCHAR), <code>osszeg</code> (DECIMAL)</td>
+                    <td><span class="pk-tag">PK</span> <code>szamla_id</code>; <span class="fk-tag">FK</span> <code>fizetes_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Értesítés</code></td>
+                    <td>Fizetés és kommunikáció</td>
+                    <td><code>ertesites_id</code> (BIGINT), <code>foglalas_id</code> (BIGINT), <code>tipus</code> (VARCHAR), <code>cimzett</code> (VARCHAR), <code>statusz</code> (VARCHAR)</td>
+                    <td><span class="pk-tag">PK</span> <code>ertesites_id</code>; <span class="fk-tag">FK</span> <code>foglalas_id</code></td>
+                </tr>
+                <tr>
+                    <td><code>Kupon</code></td>
+                    <td>Fizetés és kommunikáció</td>
+                    <td><code>kupon_id</code> (BIGINT), <code>kuponkod</code> (VARCHAR), <code>kedvezmeny_merteke</code> (DECIMAL), <code>aktiv</code> (BOOLEAN)</td>
+                    <td><span class="pk-tag">PK</span> <code>kupon_id</code>; <code>UNIQUE(kuponkod)</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="rterv-3-3">3.3. Adatintegritási szabályok és megszorítások</h3>
+        <ul>
+            <li><strong>Időintervallum-érvényesség:</strong> Minden foglalásnál és zárolásnál <code>CHECK (tavozas &gt; erkezes)</code> megszorítás garantálja a legalább egyéjszakás tartózkodást.</li>
+            <li><strong>Átfedés elleni adatbázis-szintű védelem:</strong> A <code>Foglalási zárolás</code> táblán PostgreSQL <code>btree_gist</code> kiterjesztéssel létrehozott <code>EXCLUDE USING gist (szoba_id WITH =, daterange(erkezes, tavozas) WITH &amp;&amp;) WHERE (allapot IN ('Ideiglenes', 'Vegleges'))</code> megszorítás akadályozza meg a párhuzamos közvetlen túlfoglalást.</li>
+            <li><strong>Pénzügyi és létszámkorlátok:</strong> A <code>Szoba.ar</code> és a <code>Fizetés.osszeg</code> mezőkön <code>CHECK (&gt;= 0)</code>, a <code>Kupon.kedvezmeny_merteke</code> mezőn <code>CHECK (kedvezmeny_merteke &gt; 0 AND kedvezmeny_merteke &lt;= 100)</code> feltétel érvényesül.</li>
+            <li><strong>Hivatkozási épség:</strong> A törzsadatok (<code>Szoba</code>, <code>Vendég</code>, <code>Foglalás</code>) törlése <code>ON DELETE RESTRICT</code> szabállyal védett a pénzügyi és naplózási előzmények megőrzése érdekében.</li>
+        </ul>
+    </section>
+
+    <!-- 4. OSZTÁLYTERV ÉS REPOSITORY INTERFÉSZEK -->
+    <section class="card" id="rterv-4">
+        <h2>4. Osztályterv és Repository interfészek</h2>
+
+        <h3 id="rterv-4-1">4.1. Szolgáltatási és Repository réteg</h3>
+        <p>
+            Az üzleti logika és a PostgreSQL adatbázis közötti kommunikációt aszinkron C# Repository interfészek valósítják meg. Ez lehetővé teszi az egységtesztelést (Mock objektumokkal) és az izolált tranzakciókezelést.
+        </p>
+
+        <h3 id="rterv-4-2">4.2. Kulcsfontosságú Repository metódusszignatúrák</h3>
+<pre>public interface IFoglalasRepository
+{
+    Task&lt;IEnumerable&lt;Szoba&gt;&gt; GetSzabadSzobakAsync(DateOnly erkezes, DateOnly tavozas, int vendegekSzama);
+    Task&lt;bool&gt; VanAtfedoFoglalasVagyZarolasAsync(long szobaId, DateOnly erkezes, DateOnly tavozas);
+    Task&lt;Foglalas&gt; CreateFoglalasIdeiglenesZarolassalAsync(Foglalas foglalas, TimeSpan zarolasIdotartam);
+    Task UpdateStatuszAsync(long foglalasId, string ujStatusz);
+    Task&lt;IEnumerable&lt;Foglalas&gt;&gt; GetFoglalasokIdoszakbanAsync(DateOnly tol, DateOnly ig);
+}
+
+public interface INaptarSzinkronRepository
+{
+    Task&lt;IEnumerable&lt;KulsoNaptar&gt;&gt; GetAktivKulsoNaptarakAsync();
+    Task&lt;FoglalasiUtkozes?&gt; EllenorizEsRogzitUtkozestAsync(long szobaId, DateOnly erkezes, DateOnly tavozas, long kulsoFoglalasId);
+    Task UtkozesFeloldasaAsync(long utkozesId, long megtartottFoglalasId);
+    Task UpdateUtolsoFrissitesAsync(long naptarId, DateTime idopontUtc);
+}
+
+public interface ITakaritasRepository
+{
+    Task&lt;IEnumerable&lt;TakaritasiFeladat&gt;&gt; GetNapiFeladatokAsync(long takaritoId, DateOnly datum);
+    Task InditFeladatotAsync(long feladatId);
+    Task BefejezFeladatotFotovalAsync(long feladatId, string kepHivatkozas, string? kliensMuveletId);
+    Task&lt;Hibabejelentes&gt; RogzitHibabejelentestAsync(Hibabejelentes hiba);
+}
+
+public interface IFizetesRepository
+{
+    Task&lt;Fizetes&gt; CreateFizetesAsync(Fizetes fizetes);
+    Task&lt;bool&gt; FeldolgozWebhookEredmenytAsync(string tranzakcioAzonosito, string ujStatusz);
+    Task&lt;Kupon?&gt; GetErvenyesKuponAsync(string kuponkod);
+}</pre>
+    </section>
+
+    <!-- 5. KIVÉTELES FOLYAMATOK, BIZTONSÁG ÉS ÜZEMELTETÉS -->
+    <section class="card" id="rterv-5">
+        <h2>5. Kivételes folyamatok, biztonság és üzemeltetés</h2>
+
+        <h3 id="rterv-5-1">5.1. Kivételes folyamatok és ütközések feloldása</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kivételes esemény</th>
+                    <th>Észlelés módja</th>
+                    <th>Rendszeroldali reakció és helyreállítás</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>OTA – Közvetlen foglalási ütközés</strong></td>
+                    <td>Az 5 percenkénti iCal-szinkronizáció olyan külső foglalást olvas be, amely átfed egy meglévő foglalással.</td>
+                    <td>A rendszer rekordot hoz létre a <code>Foglalási ütközés</code> és az <code>Ütközés-Foglalás</code> táblákban, zárolja az érintett napokat újabb foglalások elől, és azonnali e-mailt küld a tulajdonosnak. A tulajdonos a vezérlőpulton választja ki a megtartandó foglalást, a másik pedig lemondásra/áthelyezésre kerül.</td>
+                </tr>
+                <tr>
+                    <td><strong>Fizetési időtúllépés (15 perc)</strong></td>
+                    <td>Háttérfeladat 1 percenként ellenőrzi a lejárt <code>Ideiglenes</code> zárolásokat.</td>
+                    <td>A lejárt zárolás állapota <code>Lejárt</code> értékre vált, a kapcsolódó fizetetlen foglalás törlődik, így a szoba azonnal újra elérhetővé válik más vendégek számára.</td>
+                </tr>
+                <tr>
+                    <td><strong>Offline takarítói beküldés és duplikáció</strong></td>
+                    <td>A takarító mobilján nincs hálózat a készre jelentés pillanatában.</td>
+                    <td>A PWA kliens IndexedDB-ben tárolja a fényképet és egy egyedi UUID műveletazonosítót (<code>kliensMuveletId</code>). Hálózat visszatérésekor a háttérszinkron elküldi az adatokat; a szerver idempotencia-ellenőrzéssel kiszűri az esetleges ismételt kéréseket.</td>
+                </tr>
+                <tr>
+                    <td><strong>Külső iCal-végpont elérhetetlensége</strong></td>
+                    <td>HTTP időtúllépés vagy hibakód a Booking.com / Airbnb szerveréről.</td>
+                    <td>A rendszer megtartja az utolsó sikeres szinkronizáció állapotát, exponenciális visszalépéssel újrapróbálkozik, és 3 egymást követő hiba után figyelmezteti a tulajdonost.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="rterv-5-2">5.2. Biztonsági architektúra és üzemeltetés</h3>
+        <ul>
+            <li><strong>Hitelesítés és jogosultságkezelés (RBAC):</strong> A <code>Felhasználó</code> táblában tárolt jelszavak <strong>Argon2id</strong> / <strong>BCrypt</strong> algoritmussal hashelve kerülnek mentésre. A munkamenetek <code>HttpOnly</code>, <code>Secure</code> és <code>SameSite=Strict</code> sütikkel védettek, szerepkör-alapú (<code>Tulajdonos</code>, <code>Takarito</code>) végpontvédelemmel.</li>
+            <li><strong>Bemenet-validáció és SQL-injekció elleni védelem:</strong> Minden adatbázis-művelet paraméterezett lekérdezésekkel (EF Core / Npgsql) fut, a feltöltött takarítási fotók pedig MIME-típus és fájlméret (max. 10 MB) ellenőrzésen esnek át.</li>
+            <li><strong>Üzemeltetés és mentési stratégia:</strong> Konténerizált (Docker Compose) futtatási környezet Nginx reverse proxy és automatikus Let's Encrypt TLS tanúsítvány mögött. A PostgreSQL adatbázisról naponta automatikus <code>pg_dump</code> biztonsági mentés készül titkosított tárolóra, 30 napos megőrzési idővel.</li>
+        </ul>
+    </section>
+
+    <!-- Alsó navigáció -->
+    <div class="footer-nav">
+        <a href="No-Life_Gamerek_ANAL01.html" class="nav-btn">&larr; Előző: ANAL01 – Analízis modell</a>
+        <a href="index.html" class="nav-btn primary">Vissza a főoldalra</a>
+        <a href="Adatbazis_h5.html" class="nav-btn">Következő: H5 – Implementáció &amp; Teszt &rarr;</a>
+    </div>
+
+</div>
+
+</body>
+</html>

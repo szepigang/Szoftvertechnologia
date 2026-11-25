@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No-Life Gamerek – Automatizált vendégház-menedzsment rendszer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        h1 {
+            color: #123b22;
+            font-size: 2rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #164a2a;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 0 1px 1px rgba(22, 74, 42, 0.12);
+            border-bottom: 2px solid #d4e8d7;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #e3efe5;
+            font-size: 0.95rem;
+        }
+
+        .meta-badge {
+            background-color: #f3f9f4;
+            border: 1px solid #cce2d0;
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        .meta-badge strong {
+            color: #164a2a;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .doc-link {
+            display: block;
+            background-color: #ffffff;
+            border: 2px solid #b8d8be;
+            border-left: 6px solid #1b5e36;
+            border-radius: 8px;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #111111;
+            transition: all 0.2s ease;
+        }
+
+        .doc-link:hover {
+            background-color: #f2faf3;
+            border-color: #1b5e36;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(27, 94, 54, 0.12);
+        }
+
+        .doc-title {
+            display: block;
+            color: #123b22;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .doc-desc {
+            display: block;
+            font-size: 0.9rem;
+            color: #222222;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid #dcebdd;
+        }
+
+        th {
+            background-color: #f1f8f2;
+            color: #123b22;
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background-color: #f8fcf9;
+        }
+
+        td a {
+            color: #1b5e36;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #164a2a;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="card">
+        <p class="subtitle">Miskolci Egyetem – Gépészmérnöki és Informatikai Kar (GÉIK)</p>
+        <h1>Automatizált vendégház-menedzsment és kommunikációs rendszer</h1>
+        <p>
+            Felhőalapú szálláshely-kezelő és automatizált kommunikációs rendszer tervezési és fejlesztési dokumentációja.
+            A szoftver célja a magánszálláshelyek foglalásainak, a külső naptárak szinkronizációjának és a takarítói feladatok nyomon követésének központosítása.
+        </p>
+        <div class="meta-info">
+            <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
+            <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
+            <div class="meta-badge"><strong>Tantárgy:</strong> Szoftvertechnológia (Adatbázis-tervezéssel)</div>
+        </div>
+    </header>
+
+    <section class="card">
+        <h2>Projekt dokumentációk és mérföldkövek</h2>
+        <div class="doc-grid">
+            <a href="Adatbazis_h2.html" class="doc-link">
+                <span class="doc-title">H2 – Projektterv és Vízió</span>
+                <span class="doc-desc">Projektütemezés, üzleti célok, érintettek, funkcionális és minőségi elvárások.</span>
+            </a>
+
+            <a href="Adatbazis_h3.html" class="doc-link">
+                <span class="doc-title">H3 – Követelményspecifikáció (SRS)</span>
+                <span class="doc-desc">Rendszerfunkciók, használatieset-diagram (Use Case), részletes használati esetek és felhasználói kézikönyv.</span>
+            </a>
+
+            <a href="Adatbazis_h4.html" class="doc-link">
+                <span class="doc-title">H4 – Analízis és Rendszertervezés</span>
+                <span class="doc-desc">Alrendszerek, UML osztály- és szekvenciadiagramok, egyed-kapcsolat (ER) és relációs adatmodell.</span>
+            </a>
+
+            <a href="Adatbazis_h5.html" class="doc-link">
+                <span class="doc-title">H5 – Objektumtervezés, Kódváz és Tesztelés</span>
+                <span class="doc-desc">Vezérlési architektúra, C# / ASP.NET Core kódváz (skeleton) és részletes tesztelési terv.</span>
+            </a>
+
+            <a href="Szotar.html" class="doc-link">
+                <span class="doc-title">Fogalomtár (Szótár)</span>
+                <span class="doc-desc">A projekt során használt informatikai, módszertani és szakmai fogalmak gyűjteménye.</span>
+            </a>
+
+            <a href="Munkanaplo.html" class="doc-link">
+                <span class="doc-title">Munkanapló</span>
+                <span class="doc-desc">A csapattagok által elvégzett feladatok, egyeztetések és mérföldkövek időrendi naplója.</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Csapattagok – No-Life Gamerek</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Név</th>
+                    <th>Kar</th>
+                    <th>Neptun-kód</th>
+                    <th>E-mail-cím</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lemák Marcell</strong></td>
+                    <td>GÉIK</td>
+                    <td>XLF80Z</td>
+                    <td><a href="mailto:lemak.marcell1@gmail.com">lemak.marcell1@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Németh Donát</strong></td>
+                    <td>GÉIK</td>
+                    <td>QRKG6U</td>
+                    <td><a href="mailto:ndonat2004@gmail.com">ndonat2004@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zelei Zsombor</strong></td>
+                    <td>GÉIK</td>
+                    <td>EFULOO</td>
+                    <td><a href="mailto:zelei.zsombor89@gmail.com">zelei.zsombor89@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Szepesi János</strong></td>
+                    <td>GÉIK</td>
+                    <td>VKH6O2</td>
+                    <td><a href="mailto:szepesijanos2@gmail.com">szepesijanos2@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zádori Balázs</strong></td>
+                    <td>GÉIK</td>
+                    <td>Q16XMD</td>
+                    <td><a href="mailto:balazszadori38@gmail.com">balazszadori38@gmail.com</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer class="footer">
+        No-Life Gamerek &bull; Miskolci Egyetem GÉIK &bull; 2026
+    </footer>
+
+</div>
+
+</body>
+</html>

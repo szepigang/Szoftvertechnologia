@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANAL01 – Analízis modell | No-Life Gamerek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f3ea;
+            color: #111111;
+            line-height: 1.65;
+            padding: 25px 15px 45px 15px;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* Felső navigációs sáv */
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.06);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #164a2a;
+            background-color: #f2f9f3;
+            border: 1px solid #c5dec9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1b5e36;
+            color: #ffffff;
+            border-color: #1b5e36;
+        }
+
+        .nav-btn.primary {
+            background-color: #164a2a;
+            color: #ffffff;
+            border-color: #164a2a;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: #0f361e;
+        }
+
+        .nav-btn.active {
+            background-color: #d4ebd8;
+            color: #123b22;
+            border-color: #1b5e36;
+            font-weight: 700;
+        }
+
+        /* Fehér kártyák */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #c5dec9;
+            border-radius: 10px;
+            padding: 28px 34px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(20, 61, 36, 0.07);
+        }
+
+        h1 {
+            color: #123b22;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(18, 59, 34, 0.15);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #123b22;
+            font-size: 1.48rem;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(18, 59, 34, 0.12);
+            border-bottom: 2px solid #cbe3cf;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            color: #164a2a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #1f6339;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 8px 0 16px 24px;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        li strong, p strong {
+            color: #164a2a;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #e3efe5;
+        }
+
+        .meta-badge {
+            background-color: #f3f9f4;
+            border: 1px solid #cce2d0;
+            padding: 5px 13px;
+            border-radius: 6px;
+            font-size: 0.92rem;
+        }
+
+        .meta-badge strong {
+            color: #164a2a;
+        }
+
+        /* Tartalomjegyzék */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-box {
+            background-color: #f7fbf8;
+            border: 1px solid #d5e8d8;
+            border-radius: 8px;
+            padding: 15px 18px;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 6px;
+        }
+
+        .toc-list li.sub {
+            padding-left: 16px;
+            font-size: 0.92rem;
+        }
+
+        .toc-list a {
+            color: #164a2a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Táblázatok */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 22px 0;
+            font-size: 0.93rem;
+        }
+
+        th, td {
+            border: 1px solid #cce2d0;
+            padding: 10px 13px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f1f8f2;
+            color: #123b22;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fafdfb;
+        }
+
+        code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #eef7f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #123b22;
+            font-size: 0.89em;
+        }
+
+        /* Diagram dobozok */
+        .diagram-box {
+            background-color: #f8fcf9;
+            border: 1px solid #cbe3cf;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 18px 0 22px 0;
+            text-align: center;
+        }
+
+        .diagram-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 6px;
+            border: 1px solid #c3dcc8;
+            background-color: #ffffff;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.08);
+        }
+
+        .diagram-box img.portrait-diagram {
+            max-height: 780px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .diagram-caption {
+            margin-top: 12px;
+            margin-bottom: 0;
+            text-align: center;
+            font-weight: 700;
+            color: #164a2a;
+            font-size: 0.95rem;
+        }
+
+        /* Alrendszer kiemelő blokkok */
+        .subsystem-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .badge-f {
+            background-color: #e6f0fa;
+            color: #174978;
+            border: 1px solid #b5d1ed;
+        }
+
+        .badge-p {
+            background-color: #e5f5ec;
+            color: #155732;
+            border: 1px solid #b3dec5;
+        }
+
+        .badge-n {
+            background-color: #f2eaf8;
+            color: #4f2673;
+            border: 1px solid #d4bfe6;
+        }
+
+        .badge-u {
+            background-color: #fcf3e3;
+            color: #784f12;
+            border: 1px solid #e8cfa3;
+        }
+
+        .note-box {
+            background-color: #f4faf5;
+            border-left: 4px solid #1b5e36;
+            border-top: 1px solid #d5e8d8;
+            border-right: 1px solid #d5e8d8;
+            border-bottom: 1px solid #d5e8d8;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin: 14px 0 18px 0;
+            font-size: 0.94rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <!-- Felső navigációs sáv -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn primary">&larr; Vissza a főoldalra</a>
+        <div class="nav-links">
+            <a href="Adatbazis_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
+            <a href="Adatbazis_h3.html" class="nav-btn">H3 – SRS</a>
+            <a href="No-Life_Gamerek_ANAL01.html" class="nav-btn active">ANAL01 – Analízis modell</a>
+            <a href="Adatbazis_h4.html" class="nav-btn">H4 – Tervezés</a>
+            <a href="Adatbazis_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
+            <a href="Szotar.html" class="nav-btn">Szótár</a>
+            <a href="Munkanaplo.html" class="nav-btn">Munkanapló</a>
+        </div>
+    </nav>
+
+    <!-- Címlap / Fejléc -->
+    <header class="card">
+        <p class="subtitle">Miskolci Egyetem GÉIK &bull; Szoftvertechnológia (Adatbázis-tervezéssel) &bull; Analízis fázis (ANAL01)</p>
+        <h1>Analízis modell – Objektumorientált szerkezeti és viselkedési specifikáció</h1>
+        <p>
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer (Ácsingozó Vendégház)<br>
+            Jelen dokumentum a <a href="Adatbazis_h3.html">Szoftverkövetelmény-specifikációban (SRS)</a> rögzített követelmények objektumorientált elemzését tartalmazza. Bemutatja a rendszer négy logikai alrendszerre bontását, az alrendszerek közötti adatáramlást, a részletes analízis osztálydiagramokat, a fő üzleti folyamatok szekvenciadiagramjait, valamint a kulcsfontosságú üzleti entitások állapotdiagramjait.
+        </p>
+        <div class="meta-row">
+            <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
+            <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
+            <div class="meta-badge"><strong>Dokumentum:</strong> No-Life_Gamerek_ANAL01.html (v1.0)</div>
+        </div>
+    </header>
+
+    <!-- Tartalomjegyzék -->
+    <section class="card" id="tartalomjegyzek">
+        <h2>Tartalomjegyzék</h2>
+        <div class="toc-grid">
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li><a href="#anal-1">1. Az analízis modell felépítése</a></li>
+                    <li><a href="#anal-2">2. Rendszerszintű struktúra és alrendszerek</a></li>
+                    <li class="sub"><a href="#anal-2-1">2.1. Áttekintő analízis osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-2-2">2.2. Alrendszerek kapcsolatai és információáramlás</a></li>
+                    <li><a href="#anal-3">3. Foglaláskezelés alrendszer (F)</a></li>
+                    <li class="sub"><a href="#anal-3-1">3.1. Részletes analízis osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-3-2">3.2. Osztályok specifikációja</a></li>
+                    <li class="sub"><a href="#anal-3-3">3.3. Szobafoglalás szekvenciadiagramja</a></li>
+                    <li class="sub"><a href="#anal-3-4">3.4. Foglalás osztály állapotdiagramja</a></li>
+                </ul>
+            </div>
+            <div class="toc-box">
+                <ul class="toc-list">
+                    <li><a href="#anal-4">4. Fizetés és kommunikáció alrendszer (P)</a></li>
+                    <li class="sub"><a href="#anal-4-1">4.1. Részletes analízis osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-4-2">4.2. Osztályok specifikációja</a></li>
+                    <li class="sub"><a href="#anal-4-3">4.3. Bankkártyás fizetés szekvenciadiagramja</a></li>
+                    <li class="sub"><a href="#anal-4-4">4.4. Fizetés osztály állapotdiagramja</a></li>
+                    <li><a href="#anal-5">5. Naptár és szinkronizáció alrendszer (N)</a></li>
+                    <li class="sub"><a href="#anal-5-1">5.1. Részletes analízis osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-5-2">5.2. Osztályok specifikációja</a></li>
+                    <li class="sub"><a href="#anal-5-3">5.3. Naptárszinkronizáció szekvenciadiagramja</a></li>
+                    <li><a href="#anal-6">6. Üzemeltetés és takarítás alrendszer (U)</a></li>
+                    <li class="sub"><a href="#anal-6-1">6.1. Részletes analízis osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-6-2">6.2. Osztályok specifikációja</a></li>
+                    <li class="sub"><a href="#anal-6-3">6.3. Szobastátusz frissítésének szekvenciadiagramja</a></li>
+                    <li class="sub"><a href="#anal-6-4">6.4. Takarítási feladat állapotdiagramja</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. BEVEZETÉS -->
+    <section class="card" id="anal-1">
+        <h2>1. Az analízis modell felépítése</h2>
+        <p>
+            Az analízis modell célja, hogy az üzleti problémateret technológiafüggetlen, objektumorientált fogalmakkal írja le, hidat képezve a felhasználói követelmények és a későbbi adatbázis-, illetve szoftvertervezési fázis között. A modellt három egymást kiegészítő UML nézőpontból építettük fel:
+        </p>
+        <ul>
+            <li><strong>Statikus szerkezeti nézet (Osztálydiagramok és csomagkapcsolatok):</strong> rögzíti a tartományi osztályokat, azok attribútumait, felelősségi köreit (metódusait), az asszociációk multiplicitását, valamint a négy funkcionális alrendszer határait.</li>
+            <li><strong>Dinamikus interakciós nézet (Szekvenciadiagramok):</strong> időrendi sorrendben szemlélteti az aktorok, határfelületek, vezérlők és entitásosztályok közötti üzenetváltásokat a négy kiemelt üzleti folyamat során.</li>
+            <li><strong>Állapotviselkedési nézet (Állapotdiagramok):</strong> meghatározza a kritikus életciklusú objektumok (<code>Foglalás</code>, <code>Fizetés</code>, <code>Takarítási feladat</code>) lehetséges állapotait, állapotátmeneteit és kiváltó eseményeit.</li>
+        </ul>
+    </section>
+
+    <!-- 2. RENDSZERSZINTŰ STRUKTÚRA ÉS ALRENDSZEREK -->
+    <section class="card" id="anal-2">
+        <h2>2. Rendszerszintű struktúra és alrendszerek</h2>
+
+        <h3 id="anal-2-1">2.1. Áttekintő analízis osztálydiagram</h3>
+        <p>
+            A vendégház-menedzsment rendszer teljes tartományi modelljét négy jól elkülöníthető logikai csomagra (alrendszerre) tagoltuk: <strong>Foglaláskezelés</strong>, <strong>Üzemeltetés és takarítás</strong>, <strong>Fizetés és kommunikáció</strong>, valamint <strong>Naptár és szinkronizáció</strong>. Az áttekintő osztálydiagram bemutatja az összes kulcsosztályt és az alrendszereken átívelő főbb kapcsolatokat.
+        </p>
+
+        <div class="diagram-box">
+            <img src="Osztálydiagram.png" alt="Rendszerszintű analízis osztálydiagram">
+            <p class="diagram-caption">1. ábra: Rendszerszintű analízis osztálydiagram a négy logikai alrendszerrel</p>
+        </div>
+
+        <h3 id="anal-2-2">2.2. Alrendszerek kapcsolatai és információáramlás</h3>
+        <p>
+            Az alrendszerek közötti csatolás minimalizálása érdekében pontosan definiáltuk a csomagok közötti függőségeket és az átadott információk irányát:
+        </p>
+
+        <div class="diagram-box">
+            <img src="Alrendszerek kapcsolatai.png" alt="Alrendszerek kapcsolatai és információáramlás">
+            <p class="diagram-caption">2. ábra: Alrendszerek kapcsolatai és a csomagok közötti információáramlás</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Forrás &rarr; Cél</th>
+                    <th>Kapcsolat iránya</th>
+                    <th>Átadott információk és üzleti szerep</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>F &rarr; P</strong> / <strong>P &rarr; F</strong></td>
+                    <td>Foglaláskezelés &harr; Fizetés és kommunikáció</td>
+                    <td>A Foglaláskezelés átadja a fizetési adatokat és értesítési igényeket (<code>F &rarr; P</code>), a Fizetés és kommunikáció pedig visszaküldi a tranzakció eredményét / fizetési státuszt (<code>P &rarr; F</code>).</td>
+                </tr>
+                <tr>
+                    <td><strong>F &rarr; N</strong> / <strong>N &rarr; F</strong></td>
+                    <td>Foglaláskezelés &harr; Naptár és szinkronizáció</td>
+                    <td>A Foglaláskezelés továbbítja az új vagy módosított foglalási adatokat (<code>F &rarr; N</code>), míg a Naptár alrendszer szolgáltatja a szabad időpontokat és az észlelt ütközéseket (<code>N &rarr; F</code>).</td>
+                </tr>
+                <tr>
+                    <td><strong>F &rarr; U</strong> / <strong>U &rarr; F</strong></td>
+                    <td>Foglaláskezelés &harr; Üzemeltetés és takarítás</td>
+                    <td>A Foglaláskezelés átadja a foglalásokat és érkezési/távozási adatokat a takarítás ütemezéséhez (<code>F &rarr; U</code>), az Üzemeltetés pedig jelzi az aktuális szobaállapotokat (<code>U &rarr; F</code>).</td>
+                </tr>
+                <tr>
+                    <td><strong>N &rarr; U</strong> / <strong>U &rarr; N</strong></td>
+                    <td>Naptár és szinkronizáció &harr; Üzemeltetés és takarítás</td>
+                    <td>A Naptár alrendszer ütközési figyelmeztetéseket küld a tulajdonosnak (<code>N &rarr; U</code>), aki kezeli a naptárbeállításokat és feloldja a túlfoglalásokat (<code>U &rarr; N</code>).</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 3. FOGLALÁSKEZELÉS ALRENDSZER -->
+    <section class="card" id="anal-3">
+        <span class="subsystem-badge badge-f">F Alrendszer</span>
+        <h2>3. Foglaláskezelés alrendszer</h2>
+        <p>
+            A <strong>Foglaláskezelés alrendszer</strong> felel a vendégház szobakapacitásának nyilvántartásáért, a vendégek adatainak kezeléséért, a foglalási igények rögzítéséért és az üzleti szabályok (pl. átfedő foglalások tilalma) érvényesítéséért.
+        </p>
+
+        <h3 id="anal-3-1">3.1. Részletes analízis osztálydiagram</h3>
+        <div class="diagram-box">
+            <img src="Foglaláskezelés alrendszer - Analizis osztálydiagram.png" alt="Foglaláskezelés alrendszer – Analízis osztálydiagram">
+            <p class="diagram-caption">3. ábra: Foglaláskezelés alrendszer – Részletes analízis osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-3-2">3.2. Osztályok specifikációja</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Osztály neve</th>
+                    <th>Attribútumok</th>
+                    <th>Operációk (Metódusok)</th>
+                    <th>Szerepkör és kapcsolatok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Vendégház</code></td>
+                    <td><code>vendégházAzonosító</code>, <code>név</code>, <code>cím</code></td>
+                    <td><code>szobákLekérdezése()</code>, <code>szobaKeresése(szobaszám)</code>, <code>szobákSzűrése(vendégekSzáma)</code></td>
+                    <td>A szálláshely alapadatait tárolja; egy vendégházhoz <code>1..*</code> szoba tartozik.</td>
+                </tr>
+                <tr>
+                    <td><code>Szoba</code></td>
+                    <td><code>szobaAzonosító</code>, <code>szobaszám</code>, <code>ár</code>, <code>befogadóképesség</code>, <code>állapot</code></td>
+                    <td><code>befogadóképességEllenőrzése(vendégekSzáma)</code>, <code>elérhetőségEllenőrzése(érkezés, távozás)</code>, <code>foglalásiÁrSzámítása(érkezés, távozás)</code></td>
+                    <td>Egyedi lakóegység; <code>0..*</code> foglalás kapcsolódhat hozzá, de aktív időszakaik nem fedhetik át egymást.</td>
+                </tr>
+                <tr>
+                    <td><code>Vendég</code></td>
+                    <td><code>vendégAzonosító</code>, <code>név</code>, <code>e-mail</code>, <code>telefonszám</code>, <code>lakcím</code></td>
+                    <td><code>adatokEllenőrzése()</code>, <code>foglalásKezdeményezése(szoba, érkezés, távozás)</code>, <code>foglalásokLekérdezése()</code></td>
+                    <td>A foglalást leadó személy; egy vendég <code>0..*</code> foglalást hozhat létre.</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalás</code></td>
+                    <td><code>foglalásAzonosító</code>, <code>érkezés</code>, <code>távozás</code>, <code>vendégekSzáma</code>, <code>státusz</code></td>
+                    <td><code>foglalásiAdatokEllenőrzése()</code>, <code>végösszegKiszámítása()</code>, <code>foglalásRögzítése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>foglalásMódosítása(újAdatok)</code>, <code>foglalásTörlése()</code></td>
+                    <td>A rendszer központi üzleti tranzakciója; kapcsolódik a <code>Fizetés</code>, <code>Értesítés</code> és <code>Foglalási naptár</code> osztályokhoz.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="anal-3-3">3.3. Szobafoglalás szekvenciadiagramja</h3>
+        <p>
+            A szekvenciadiagram a vendégoldali szobakereséstől a kuponkód opcionális érvényesítésén és a dupla elérhetőség-ellenőrzésen át a fizetési kapu hívásáig és a visszaigazoló e-mail kiküldéséig követi végig a folyamatot. Külön elágazás kezeli a versenyhelyzetből adódó foglalatlanságot, illetve a sikertelen fizetés utáni zárolásfeloldást.
+        </p>
+        <div class="diagram-box">
+            <img src="Szobafoglalás szekvenciadiagramja.png" class="portrait-diagram" alt="Szobafoglalás leadása és automatikus visszaigazolás – Szekvenciadiagram">
+            <p class="diagram-caption">4. ábra: Szobafoglalás leadása és automatikus visszaigazolás – Szekvenciadiagram</p>
+        </div>
+
+        <h3 id="anal-3-4">3.4. Foglalás osztály állapotdiagramja</h3>
+        <p>
+            A <code>Foglalás</code> objektum kezdeményezéskor a <strong>Fizetésre vár</strong> átmeneti állapotba kerül. Sikeres tranzakció esetén <strong>Kifizetve</strong> állapotba lép (ahol adatai módosíthatók, vagy lemondás esetén <strong>Törölt</strong> állapotba kerül), sikertelen vagy időtúllépéses fizetésnél pedig a foglalás megszűnik.
+        </p>
+        <div class="diagram-box">
+            <img src="Foglalás osztály állapotdiagramja.png" class="portrait-diagram" alt="Foglalás osztály állapotdiagramja">
+            <p class="diagram-caption">5. ábra: Foglalás osztály állapotdiagramja</p>
+        </div>
+    </section>
+
+    <!-- 4. FIZETÉS ÉS KOMMUNIKÁCIÓ ALRENDSZER -->
+    <section class="card" id="anal-4">
+        <span class="subsystem-badge badge-p">P Alrendszer</span>
+        <h2>4. Fizetés és kommunikáció alrendszer</h2>
+        <p>
+            A <strong>Fizetés és kommunikáció alrendszer</strong> végzi a kedvezménykuponok érvényesítését, a külső pénzügyi szolgáltatóval történő tranzakciókezelést, az automatikus e-mail-értesítések összeállítását, valamint előkészíti a későbbi elektronikus számlázási modult.
+        </p>
+
+        <h3 id="anal-4-1">4.1. Részletes analízis osztálydiagram</h3>
+        <div class="diagram-box">
+            <img src="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram.png" alt="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">6. ábra: Fizetés és kommunikáció alrendszer – Részletes analízis osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-4-2">4.2. Osztályok specifikációja</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Osztály neve</th>
+                    <th>Attribútumok</th>
+                    <th>Operációk (Metódusok)</th>
+                    <th>Szerepkör és kapcsolatok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Fizetés</code></td>
+                    <td><code>fizetésAzonosító</code>, <code>összeg</code>, <code>fizetésiStátusz</code>, <code>tranzakcióAzonosító</code>, <code>fizetésIdőpontja</code></td>
+                    <td><code>fizetésIndítása(összeg)</code>, <code>fizetésiEredményFeldolgozása(eredmény)</code>, <code>státuszMódosítása(újStátusz)</code>, <code>fizetésiAdatokLekérdezése()</code></td>
+                    <td>Egy foglaláshoz legfeljebb egy sikeres fizetés tartozik (<code>1</code> &harr; <code>0..1</code>).</td>
+                </tr>
+                <tr>
+                    <td><code>Kupon</code></td>
+                    <td><code>kuponkód</code>, <code>kedvezményMértéke</code>, <code>érvényességVége</code>, <code>aktív</code></td>
+                    <td><code>érvényességEllenőrzése()</code>, <code>kedvezménySzámítása(eredetiÖsszeg)</code>, <code>kedvezményAlkalmazása(eredetiÖsszeg)</code></td>
+                    <td>Kedvezmények érvényesítése; egy foglalás <code>0..1</code> kupont használhat fel, egy kupon <code>0..*</code> foglaláshoz kapcsolódhat.</td>
+                </tr>
+                <tr>
+                    <td><code>Értesítés</code></td>
+                    <td><code>értesítésAzonosító</code>, <code>típus</code>, <code>címzett</code>, <code>küldésIdőpontja</code>, <code>küldésiStátusz</code></td>
+                    <td><code>értesítésLétrehozása(típus, címzett)</code>, <code>üzenetÖsszeállítása(foglalásiAdatok)</code>, <code>értesítésKüldése()</code>, <code>küldésiStátuszMódosítása(újStátusz)</code></td>
+                    <td>Visszaigazoló, emlékeztető és ütközésjelző üzenetek kezelése (<code>1</code> foglaláshoz <code>0..*</code> értesítés).</td>
+                </tr>
+                <tr>
+                    <td><code>Számla</code> <em>(&laquo;tervezett&raquo;)</em></td>
+                    <td><code>számlaAzonosító</code>, <code>számlaszám</code>, <code>kiállításDátuma</code>, <code>összeg</code>, <code>bizonylatAdatok</code></td>
+                    <td><code>számlaLétrehozása(fizetésiAdatok, számlázásiAdatok)</code>, <code>számlaAdatokLekérdezése()</code>, <code>bizonylatMentése(bizonylatAdatok)</code></td>
+                    <td>Későbbi fejlesztési elem (Could have); egy sikeres fizetéshez <code>0..1</code> számla kapcsolódik.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="anal-4-3">4.3. Bankkártyás fizetés szekvenciadiagramja</h3>
+        <p>
+            A szekvenciadiagram részletezi a kuponkedvezmény kiszámítását, a külső fizetési szolgáltató felé indított tranzakciót, valamint a fizetési eredmény visszacsatolását a <code>Foglaláskezelés</code> és az <code>Értesítés</code> osztályok felé.
+        </p>
+        <div class="diagram-box">
+            <img src="Fizetés és kommunikáció alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Bankkártyás fizetés és automatikus visszaigazolás – Szekvenciadiagram">
+            <p class="diagram-caption">7. ábra: Bankkártyás fizetés és automatikus visszaigazolás – Szekvenciadiagram</p>
+        </div>
+
+        <h3 id="anal-4-4">4.4. Fizetés osztály állapotdiagramja</h3>
+        <p>
+            A <code>Fizetés</code> példány létrehozásakor <strong>Fizetés indítva</strong> állapotba kerül, a fizetési kapu felé továbbításkor <strong>Feldolgozás alatt</strong> státuszba lép, majd a tranzakció kimenetelétől függően <strong>Sikeres</strong> vagy <strong>Sikertelen</strong> végállapotot vesz fel.
+        </p>
+        <div class="diagram-box">
+            <img src="Fizetés osztály állapotdiagramja.png" class="portrait-diagram" alt="Fizetés osztály állapotdiagramja">
+            <p class="diagram-caption">8. ábra: Fizetés osztály állapotdiagramja</p>
+        </div>
+    </section>
+
+    <!-- 5. NAPTÁR ÉS SZINKRONIZÁCIÓ ALRENDSZER -->
+    <section class="card" id="anal-5">
+        <span class="subsystem-badge badge-n">N Alrendszer</span>
+        <h2>5. Naptár és szinkronizáció alrendszer</h2>
+        <p>
+            A <strong>Naptár és szinkronizáció alrendszer</strong> biztosítja az egységes foglaltsági nyilvántartást, az 5 percenkénti kétirányú iCal-adatcserét a külső szállásportálokkal (Booking.com, Airbnb), valamint a párhuzamos foglalásokból eredő túlfoglalások azonnali blokkolását és riasztását.
+        </p>
+
+        <h3 id="anal-5-1">5.1. Részletes analízis osztálydiagram</h3>
+        <div class="diagram-box">
+            <img src="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram.png" alt="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">9. ábra: Naptár és szinkronizáció alrendszer – Részletes analízis osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-5-2">5.2. Osztályok specifikációja</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Osztály neve</th>
+                    <th>Attribútumok</th>
+                    <th>Operációk (Metódusok)</th>
+                    <th>Szerepkör és kapcsolatok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Foglalási naptár</code></td>
+                    <td><code>naptárAzonosító</code>, <code>foglaltIdőszakok</code>, <code>utolsóFrissítés</code></td>
+                    <td><code>elérhetőségEllenőrzése(szoba, érkezés, távozás)</code>, <code>időszakZárolása(szoba, érkezés, távozás)</code>, <code>zárolásFeloldása(szoba, érkezés, távozás)</code>, <code>foglalásRögzítése(foglalás)</code>, <code>foglaltságiAdatokLekérdezése()</code>, <code>foglaltságiAdatokFrissítése(foglalásiAdatok)</code>, <code>ütközésEllenőrzése(foglalás)</code></td>
+                    <td>A vendégház központi foglaltsági naptára; <code>0..*</code> külső naptárral szinkronizál, és nyilvántartja a foglalásokat.</td>
+                </tr>
+                <tr>
+                    <td><code>Külső naptár</code></td>
+                    <td><code>külsőNaptárAzonosító</code>, <code>platform</code>, <code>iCalHivatkozás</code>, <code>utolsóSzinkronizáció</code>, <code>szinkronizációsStátusz</code></td>
+                    <td><code>szinkronizációIndítása()</code>, <code>külsőAdatokLekérdezése()</code>, <code>foglalásokÖsszehasonlítása(központiAdatok)</code>, <code>foglaltságiAdatokTovábbítása(foglaltságiAdatok)</code>, <code>szinkronizációsStátuszMódosítása(újStátusz)</code>, <code>utolsóSzinkronizációRögzítése(időpont)</code></td>
+                    <td>Egy adott OTA csatorna (Booking.com, Airbnb) iCal-végpontját és szinkronizációs állapotát reprezentálja.</td>
+                </tr>
+                <tr>
+                    <td><code>Foglalási ütközés</code></td>
+                    <td><code>ütközésAzonosító</code>, <code>érintettIdőszak</code>, <code>észlelésIdőpontja</code>, <code>státusz</code></td>
+                    <td><code>ütközésLétrehozása(érintettFoglalások, érintettIdőszak)</code>, <code>érintettFoglalásokLekérdezése()</code>, <code>értesítésKezdeményezése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>ütközésRendezése()</code></td>
+                    <td>Átfedő foglalások észlelésekor létrejövő riasztási rekord, amely értesíti a tulajdonost és nyomon követi a rendezést.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="anal-5-3">5.3. Naptárszinkronizáció szekvenciadiagramja</h3>
+        <p>
+            A szekvenciadiagram bemutatja az időzítő által 5 percenként indított szinkronizációs ciklust, az ütközésmentes foglalásimportálást, valamint az ütközésészleléskor lefutó riasztási és tulajdonosi rendezési folyamatot.
+        </p>
+        <div class="diagram-box">
+            <img src="Naptár és szinkronizáció alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Naptár-szinkronizáció és túlfoglalás blokkolása – Szekvenciadiagram">
+            <p class="diagram-caption">10. ábra: Naptár-szinkronizáció és túlfoglalás blokkolása – Szekvenciadiagram</p>
+        </div>
+    </section>
+
+    <!-- 6. ÜZEMELTETÉS ÉS TAKARÍTÁS ALRENDSZER -->
+    <section class="card" id="anal-6">
+        <span class="subsystem-badge badge-u">U Alrendszer</span>
+        <h2>6. Üzemeltetés és takarítás alrendszer</h2>
+        <p>
+            Az <strong>Üzemeltetés és takarítás alrendszer</strong> támogatja a tulajdonosi felügyeletet és a takarító személyzet mobilalapú napi munkavégzését, beleértve a fotóval igazolt készre jelentést, a szobastátuszok automatikus frissítését, a műszaki hibabejelentést és az offline gyorsítótárazást.
+        </p>
+
+        <h3 id="anal-6-1">6.1. Részletes analízis osztálydiagram</h3>
+        <div class="diagram-box">
+            <img src="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram.png" class="portrait-diagram" alt="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">11. ábra: Üzemeltetés és takarítás alrendszer – Részletes analízis osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-6-2">6.2. Osztályok specifikációja</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Osztály neve</th>
+                    <th>Attribútumok</th>
+                    <th>Operációk (Metódusok)</th>
+                    <th>Szerepkör és kapcsolatok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Tulajdonos</code></td>
+                    <td><code>tulajdonosAzonosító</code>, <code>név</code>, <code>e-mail</code>, <code>telefonszám</code></td>
+                    <td><code>takarításiFeladatokLekérdezése()</code>, <code>szobaÁllapotLekérdezése(szoba)</code>, <code>takarításiFotóMegtekintése(feladat)</code>, <code>hibabejelentésekLekérdezése()</code></td>
+                    <td>A vendégház üzemeltetője; lekérdezi a szobák tisztasági állapotát, az igazoló fotókat és a hibabejelentéseket.</td>
+                </tr>
+                <tr>
+                    <td><code>Takarító</code></td>
+                    <td><code>takarítóAzonosító</code>, <code>név</code>, <code>felhasználónév</code>, <code>e-mail</code></td>
+                    <td><code>napiFeladatokLekérdezése(dátum)</code>, <code>takarításMegkezdése(feladat)</code>, <code>takarításBefejezése(feladat, fénykép)</code>, <code>hibaBejelentése(szoba, leírás)</code></td>
+                    <td>A takarító személyzet tagja; <code>0..*</code> takarítási feladatot végez el és <code>0..*</code> hibabejelentést rögzíthet.</td>
+                </tr>
+                <tr>
+                    <td><code>Takarítási feladat</code></td>
+                    <td><code>feladatAzonosító</code>, <code>dátum</code>, <code>állapot</code>, <code>kezdésIdőpontja</code>, <code>befejezésIdőpontja</code></td>
+                    <td><code>állapotLekérdezése()</code>, <code>takarításIndítása(időpont)</code>, <code>takarításBefejezése(időpont)</code>, <code>állapotMódosítása(újÁllapot)</code>, <code>szobaÁllapotFrissítése()</code></td>
+                    <td>Egy adott szoba napi takarítási munkája; befejezésekor <code>0..1</code> igazoló fotó kapcsolódik hozzá, és <em>Tiszta</em> állapotba állítja a szobát.</td>
+                </tr>
+                <tr>
+                    <td><code>Takarítási fotó</code></td>
+                    <td><code>fotóAzonosító</code>, <code>képHivatkozás</code>, <code>feltöltésIdőpontja</code></td>
+                    <td><code>fényképMentése(kép)</code>, <code>fényképLekérdezése()</code>, <code>feltöltésRögzítése(időpont)</code></td>
+                    <td>A takarítás elvégzését dokumentáló fénykép metaadatai és elérési hivatkozása.</td>
+                </tr>
+                <tr>
+                    <td><code>Hibabejelentés</code></td>
+                    <td><code>hibabejelentésAzonosító</code>, <code>leírás</code>, <code>állapot</code>, <code>bejelentésIdőpontja</code></td>
+                    <td><code>hibabejelentésLétrehozása(szoba, takarító, leírás)</code>, <code>hibabejelentésLekérdezése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>hibabejelentésLezárása()</code></td>
+                    <td>A szobában észlelt műszaki meghibásodás nyilvántartása a tulajdonos felé.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="anal-6-3">6.3. Szobastátusz frissítésének szekvenciadiagramja</h3>
+        <p>
+            A szekvenciadiagram végigköveti a takarító mobilfelületen végzett műveleteit: a napi lista lekérdezését, a munka indítását, az opcionális hibabejelentést, valamint az online és offline (helyi gyorsítótáras, majd hálózat-helyreálláskor automatikusan szinkronizáló) készre jelentést.
+        </p>
+        <div class="diagram-box">
+            <img src="Üzemeltetés és takarítás alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Szoba státuszának frissítése mobilról – Szekvenciadiagram">
+            <p class="diagram-caption">12. ábra: Szoba státuszának frissítése mobilról – Szekvenciadiagram</p>
+        </div>
+
+        <h3 id="anal-6-4">6.4. Takarítási feladat állapotdiagramja</h3>
+        <p>
+            A <code>Takarítási feladat</code> az <strong>Elvégzésre vár</strong> állapotból indul, a munka megkezdésekor <strong>Folyamatban</strong> állapotba lép (ahol hibabejelentés is rögzíthető), majd internetkapcsolattól függően közvetlenül vagy a <strong>Feltöltésre vár</strong> offline pufferszakaszon keresztül jut el a <strong>Befejezett</strong> állapotba.
+        </p>
+        <div class="diagram-box">
+            <img src="Takarítási feladat osztály állapotdiagramja.png" class="portrait-diagram" alt="Takarítási feladat osztály állapotdiagramja">
+            <p class="diagram-caption">13. ábra: Takarítási feladat osztály állapotdiagramja</p>
+        </div>
+    </section>
+
+    <!-- Alsó navigáció -->
+    <div class="footer-nav">
+        <a href="Adatbazis_h3.html" class="nav-btn">&larr; Előző: H3 – SRS</a>
+        <a href="index.html" class="nav-btn primary">Vissza a főoldalra</a>
+        <a href="Adatbazis_h4.html" class="nav-btn">Következő: H4 – Tervezés &rarr;</a>
+    </div>
+
+</div>
+
+</body>
+</html>
