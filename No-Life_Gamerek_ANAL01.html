@@ -117,16 +117,24 @@
             color: #164a2a;
             font-size: 1.2rem;
             font-weight: 700;
-            margin-top: 24px;
+            margin-top: 26px;
             margin-bottom: 10px;
         }
 
         h4 {
             color: #1f6339;
-            font-size: 1.05rem;
+            font-size: 1.06rem;
             font-weight: 700;
-            margin-top: 16px;
+            margin-top: 18px;
             margin-bottom: 8px;
+        }
+
+        h5 {
+            color: #164a2a;
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-top: 14px;
+            margin-bottom: 6px;
         }
 
         .subtitle {
@@ -318,16 +326,19 @@
             border: 1px solid #e8cfa3;
         }
 
-        .note-box {
-            background-color: #f4faf5;
-            border-left: 4px solid #1b5e36;
-            border-top: 1px solid #d5e8d8;
-            border-right: 1px solid #d5e8d8;
+        .class-doc-card {
+            background-color: #fafdfb;
+            border: 1px solid #d5e8d8;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-top: 18px;
+            margin-bottom: 20px;
+        }
+
+        .class-doc-card h4 {
+            margin-top: 0;
             border-bottom: 1px solid #d5e8d8;
-            border-radius: 6px;
-            padding: 14px 18px;
-            margin: 14px 0 18px 0;
-            font-size: 0.94rem;
+            padding-bottom: 6px;
         }
 
         .footer-nav {
@@ -350,8 +361,8 @@
         <div class="nav-links">
             <a href="Szoftech_h2.html" class="nav-btn">H2 – Projektterv &amp; Vízió</a>
             <a href="Szoftech_h3.html" class="nav-btn">H3 – SRS</a>
-            <a href="No-Life_Gamerek_ANAL01.html" class="nav-btn active">ANAL01 – Analízis modell</a>
-            <a href="Szoftech_h4.html" class="nav-btn">H4 – Tervezés</a>
+            <a href="Szoftech_h4.html" class="nav-btn">&larr; H4 – Tervezés</a>
+            <a href="No-Life_Gamerek_ANAL01.html" class="nav-btn active">H4 – Analízis modell</a>
             <a href="Szoftech_h5.html" class="nav-btn">H5 – Implementáció &amp; Teszt</a>
             <a href="Szotar.html" class="nav-btn">Szótár</a>
             <a href="Munkanaplo.html" class="nav-btn">Munkanapló</a>
@@ -361,10 +372,10 @@
     <!-- Címlap / Fejléc -->
     <header class="card">
         <p class="subtitle">Miskolci Egyetem GÉIK &bull; Szoftvertechnológia (Adatbázis-tervezéssel) &bull; Analízis fázis (ANAL01)</p>
-        <h1>Analízis modell – Objektumorientált szerkezeti és viselkedési specifikáció</h1>
+        <h1>H4: Analízis modell</h1>
         <p>
             <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer (Ácsingozó Vendégház)<br>
-            Jelen dokumentum a <a href="Szoftech_h3.html">Szoftverkövetelmény-specifikációban (SRS)</a> rögzített követelmények objektumorientált elemzését tartalmazza. Bemutatja a rendszer négy logikai alrendszerre bontását, az alrendszerek közötti adatáramlást, a részletes analízis osztálydiagramokat, a fő üzleti folyamatok szekvenciadiagramjait, valamint a kulcsfontosságú üzleti entitások állapotdiagramjait.
+            Kapcsolódó dokumentum: <a href="Szoftech_h3.html">Szoftverkövetelmény-specifikáció (SRS)</a>
         </p>
         <div class="meta-row">
             <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
@@ -379,33 +390,43 @@
         <div class="toc-grid">
             <div class="toc-box">
                 <ul class="toc-list">
-                    <li><a href="#anal-1">1. Az analízis modell felépítése</a></li>
-                    <li><a href="#anal-2">2. Rendszerszintű struktúra és alrendszerek</a></li>
-                    <li class="sub"><a href="#anal-2-1">2.1. Áttekintő analízis osztálydiagram</a></li>
-                    <li class="sub"><a href="#anal-2-2">2.2. Alrendszerek kapcsolatai és információáramlás</a></li>
-                    <li><a href="#anal-3">3. Foglaláskezelés alrendszer (F)</a></li>
-                    <li class="sub"><a href="#anal-3-1">3.1. Részletes analízis osztálydiagram</a></li>
-                    <li class="sub"><a href="#anal-3-2">3.2. Osztályok specifikációja</a></li>
-                    <li class="sub"><a href="#anal-3-3">3.3. Szobafoglalás szekvenciadiagramja</a></li>
-                    <li class="sub"><a href="#anal-3-4">3.4. Foglalás osztály állapotdiagramja</a></li>
+                    <li><a href="#anal-1">1. Bevezetés</a></li>
+                    <li><a href="#anal-2">2. Kezdeti osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-2-1">2.1. Osztálydiagram</a></li>
+                    <li class="sub"><a href="#anal-2-2">2.2. Osztályok felsorolása</a></li>
+                    <li class="sub"><a href="#anal-2-3">2.3. Alrendszerek</a></li>
+                    <li><a href="#anal-3">3. Foglaláskezelés alrendszer modellje</a></li>
+                    <li class="sub"><a href="#anal-3-1">3.1. Statikus modell</a></li>
+                    <li class="sub"><a href="#anal-3-2">3.2. Dinamikus modell</a></li>
+                    <li class="sub"><a href="#anal-3-3">3.3. Funkcionális modell</a></li>
+                    <li class="sub"><a href="#anal-3-4">3.4. Operációk azonosítása</a></li>
+                    <li class="sub"><a href="#anal-3-5">3.5. Az analízis modell osztálydiagramja</a></li>
+                    <li class="sub"><a href="#anal-3-6">3.6. Az analízis modell osztályainak listája</a></li>
                 </ul>
             </div>
             <div class="toc-box">
                 <ul class="toc-list">
-                    <li><a href="#anal-4">4. Fizetés és kommunikáció alrendszer (P)</a></li>
-                    <li class="sub"><a href="#anal-4-1">4.1. Részletes analízis osztálydiagram</a></li>
-                    <li class="sub"><a href="#anal-4-2">4.2. Osztályok specifikációja</a></li>
-                    <li class="sub"><a href="#anal-4-3">4.3. Bankkártyás fizetés szekvenciadiagramja</a></li>
-                    <li class="sub"><a href="#anal-4-4">4.4. Fizetés osztály állapotdiagramja</a></li>
-                    <li><a href="#anal-5">5. Naptár és szinkronizáció alrendszer (N)</a></li>
-                    <li class="sub"><a href="#anal-5-1">5.1. Részletes analízis osztálydiagram</a></li>
-                    <li class="sub"><a href="#anal-5-2">5.2. Osztályok specifikációja</a></li>
-                    <li class="sub"><a href="#anal-5-3">5.3. Naptárszinkronizáció szekvenciadiagramja</a></li>
-                    <li><a href="#anal-6">6. Üzemeltetés és takarítás alrendszer (U)</a></li>
-                    <li class="sub"><a href="#anal-6-1">6.1. Részletes analízis osztálydiagram</a></li>
-                    <li class="sub"><a href="#anal-6-2">6.2. Osztályok specifikációja</a></li>
-                    <li class="sub"><a href="#anal-6-3">6.3. Szobastátusz frissítésének szekvenciadiagramja</a></li>
-                    <li class="sub"><a href="#anal-6-4">6.4. Takarítási feladat állapotdiagramja</a></li>
+                    <li><a href="#anal-4">4. Fizetés és kommunikáció alrendszer modellje</a></li>
+                    <li class="sub"><a href="#anal-4-1">4.1. Statikus modell</a></li>
+                    <li class="sub"><a href="#anal-4-2">4.2. Dinamikus modell</a></li>
+                    <li class="sub"><a href="#anal-4-3">4.3. Funkcionális modell</a></li>
+                    <li class="sub"><a href="#anal-4-4">4.4. Operációk azonosítása</a></li>
+                    <li class="sub"><a href="#anal-4-5">4.5. Az analízis modell osztálydiagramja</a></li>
+                    <li class="sub"><a href="#anal-4-6">4.6. Az analízis modell osztályainak listája</a></li>
+                    <li><a href="#anal-5">5. Naptár és szinkronizáció alrendszer modellje</a></li>
+                    <li class="sub"><a href="#anal-5-1">5.1. Statikus modell</a></li>
+                    <li class="sub"><a href="#anal-5-2">5.2. Dinamikus modell</a></li>
+                    <li class="sub"><a href="#anal-5-3">5.3. Funkcionális modell</a></li>
+                    <li class="sub"><a href="#anal-5-4">5.4. Operációk azonosítása</a></li>
+                    <li class="sub"><a href="#anal-5-5">5.5. Az analízis modell osztálydiagramja</a></li>
+                    <li class="sub"><a href="#anal-5-6">5.6. Az analízis modell osztályainak listája</a></li>
+                    <li><a href="#anal-6">6. Üzemeltetés és takarítás alrendszer modellje</a></li>
+                    <li class="sub"><a href="#anal-6-1">6.1. Statikus modell</a></li>
+                    <li class="sub"><a href="#anal-6-2">6.2. Dinamikus modell</a></li>
+                    <li class="sub"><a href="#anal-6-3">6.3. Funkcionális modell</a></li>
+                    <li class="sub"><a href="#anal-6-4">6.4. Operációk azonosítása</a></li>
+                    <li class="sub"><a href="#anal-6-5">6.5. Az analízis modell osztálydiagramja</a></li>
+                    <li class="sub"><a href="#anal-6-6">6.6. Az analízis modell osztályainak listája</a></li>
                 </ul>
             </div>
         </div>
@@ -413,354 +434,2333 @@
 
     <!-- 1. BEVEZETÉS -->
     <section class="card" id="anal-1">
-        <h2>1. Az analízis modell felépítése</h2>
+        <h2>1. Bevezetés</h2>
         <p>
-            Az analízis modell célja, hogy az üzleti problémateret technológiafüggetlen, objektumorientált fogalmakkal írja le, hidat képezve a felhasználói követelmények és a későbbi adatbázis-, illetve szoftvertervezési fázis között. A modellt három egymást kiegészítő UML nézőpontból építettük fel:
+            Az analízis dokumentumunkban szeretnénk betekintést nyújtani a tervezendő szoftverünk objektumorientált analízisébe. Ennek az eredménye az analízis dokumentumunk. Elsőként szeretnénk készíteni egy kezdeti (elemzési szintű) osztálydiagramot, asszociációkkal és az osztályok rövid definícióival.
         </p>
-        <ul>
-            <li><strong>Statikus szerkezeti nézet (Osztálydiagramok és csomagkapcsolatok):</strong> rögzíti a tartományi osztályokat, azok attribútumait, felelősségi köreit (metódusait), az asszociációk multiplicitását, valamint a négy funkcionális alrendszer határait.</li>
-            <li><strong>Dinamikus interakciós nézet (Szekvenciadiagramok):</strong> időrendi sorrendben szemlélteti az aktorok, határfelületek, vezérlők és entitásosztályok közötti üzenetváltásokat a négy kiemelt üzleti folyamat során.</li>
-            <li><strong>Állapotviselkedési nézet (Állapotdiagramok):</strong> meghatározza a kritikus életciklusú objektumok (<code>Foglalás</code>, <code>Fizetés</code>, <code>Takarítási feladat</code>) lehetséges állapotait, állapotátmeneteit és kiváltó eseményeit.</li>
-        </ul>
     </section>
 
-    <!-- 2. RENDSZERSZINTŰ STRUKTÚRA ÉS ALRENDSZEREK -->
+    <!-- 2. KEZDETI OSZTÁLYDIAGRAM -->
     <section class="card" id="anal-2">
-        <h2>2. Rendszerszintű struktúra és alrendszerek</h2>
+        <h2>2. Kezdeti osztálydiagram</h2>
 
-        <h3 id="anal-2-1">2.1. Áttekintő analízis osztálydiagram</h3>
+        <h3 id="anal-2-1">2.1. Osztálydiagram</h3>
+        <div class="diagram-box">
+            <img src="Osztálydiagram.png" alt="Kezdeti osztálydiagram">
+            <p class="diagram-caption">1. ábra: Kezdeti (elemzési szintű) osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-2-2">2.2. Osztályok felsorolása</h3>
+
+        <h4>Vendégház</h4>
+        <p>A rendszerben kezelt szálláshelyet reprezentálja, amelyhez a különböző szobák és foglalások tartoznak. Tárolja a vendégház alapvető adatait, például a nevét és címét.</p>
+
+        <h4>Szoba</h4>
+        <p>A vendégházhoz tartozó szobákat reprezentálja. Tartalmazza a szobaszámot, az árat és a szoba aktuális állapotát, amely alapján a rendszer nyomon követheti a szobák foglaltságát és tisztaságát.</p>
+
+        <h4>Vendég</h4>
+        <p>A szálláshely szolgáltatásait igénybe vevő személyeket reprezentálja. Tárolja a foglaláshoz szükséges személyes adatokat, például a vendég nevét, e-mail-címét és telefonszámát.</p>
+
+        <h4>Foglalás</h4>
+        <p>A vendégek által leadott szobafoglalásokat kezeli. Tartalmazza az érkezés és távozás időpontját, valamint a foglalás aktuális státuszát, és kapcsolatot biztosít a vendégek és a lefoglalt szobák között.</p>
+
+        <h4>Fizetés</h4>
+        <p>A foglalásokhoz kapcsolódó pénzügyi tranzakciókat reprezentálja. Nyilvántartja a fizetendő összeget és a fizetés aktuális státuszát, így a rendszer ellenőrizni tudja a foglalások kifizetését.</p>
+
+        <h4>Kupon</h4>
+        <p>A foglalások során felhasználható kedvezményeket kezeli. A vendégek a kuponkód megadásával kedvezményt vehetnek igénybe, amelynek hatására a rendszer újraszámolja a fizetendő összeget.</p>
+
+        <h4>Értesítés</h4>
+        <p>A rendszer által automatikusan kiküldött üzeneteket reprezentálja. Feladata a foglalási visszaigazolások, fizetési emlékeztetők és egyéb tájékoztatások továbbítása a megfelelő címzetteknek.</p>
+
+        <h4>Számla (tervezett)</h4>
+        <p>A foglalásokhoz és fizetésekhez kapcsolódó számlázási adatokat reprezentálja. A későbbiekben lehetőséget biztosíthat a külső számlázórendszerekkel való összekapcsolásra és az automatikus bizonylatkiállításra.</p>
+
+        <h4>Foglalási naptár</h4>
+        <p>A vendégház szobáinak foglaltságát és szabad időszakait tartja nyilván. Segítségével a rendszer ellenőrizheti a szobák elérhetőségét, és megakadályozhatja az azonos időszakra történő párhuzamos foglalásokat.</p>
+
+        <h4>Külső naptár</h4>
+        <p>A külső szállásfoglaló platformokhoz kapcsolódó naptárakat reprezentálja. Tárolja a platform nevét és az iCal-hivatkozást, amelyek segítségével a rendszer szinkronizálhatja a foglalási adatokat.</p>
+
+        <h4>Foglalási ütközés</h4>
+        <p>A különböző foglalási felületeken egyszerre létrejövő, egymással ütköző foglalásokat reprezentálja. Feladata az érintett időszak nyilvántartása és a tulajdonos figyelmeztetésének elősegítése.</p>
+
+        <h4>Tulajdonos</h4>
+        <p>A vendégház üzemeltetéséért és adminisztrációjáért felelős felhasználót reprezentálja. A rendszer segítségével kezelheti a foglalásokat, ellenőrizheti a bevételeket, valamint nyomon követheti a szobák és a takarítási feladatok állapotát.</p>
+
+        <h4>Takarító</h4>
+        <p>A vendégház szobáinak tisztán tartásáért felelős személyzetet reprezentálja. A mobilos felületen megtekintheti a napi feladatait, frissítheti a takarítások állapotát és hibabejelentéseket készíthet.</p>
+
+        <h4>Takarítási feladat</h4>
+        <p>A szobák takarításához kapcsolódó elvégzendő teendőket reprezentálja. Tartalmazza a feladat dátumát és aktuális állapotát, így a tulajdonos és a takarító is nyomon követheti a munkálatok előrehaladását.</p>
+
+        <h4>Takarítási fotó</h4>
+        <p>A takarítás befejezése után készített fényképeket reprezentálja. Segítségével a takarító igazolhatja az elvégzett munkát, a tulajdonos pedig ellenőrizheti a szoba tisztaságát.</p>
+
+        <h4>Hibabejelentés</h4>
+        <p>A vendégház szobáiban észlelt problémák és meghibásodások nyilvántartására szolgál. Tartalmazza a hiba leírását és aktuális állapotát, lehetővé téve a tulajdonos számára a problémák követését és kezelését.</p>
+
+        <h3 id="anal-2-3">2.3. Alrendszerek</h3>
         <p>
-            A vendégház-menedzsment rendszer teljes tartományi modelljét négy jól elkülöníthető logikai csomagra (alrendszerre) tagoltuk: <strong>Foglaláskezelés</strong>, <strong>Üzemeltetés és takarítás</strong>, <strong>Fizetés és kommunikáció</strong>, valamint <strong>Naptár és szinkronizáció</strong>. Az áttekintő osztálydiagram bemutatja az összes kulcsosztályt és az alrendszereken átívelő főbb kapcsolatokat.
+            A fejlesztendő automatizált vendégház-menedzsment és kommunikációs rendszerünket a könnyebb átláthatóság és fejleszthetőség érdekében négy fő alrendszerre bontjuk. Az egyes alrendszerek a hozzájuk tartozó funkciók megvalósításáért felelősek, és egymással együttműködve biztosítják a vendégház mindennapi működését.
+        </p>
+        <p>
+            Az alrendszerek kialakításánál a korábban elkészített kezdeti osztálydiagramot vettük alapul. A rendszerünk négy fő alrendszere a Foglaláskezelés, a Fizetés és kommunikáció, a Naptár és szinkronizáció, valamint az Üzemeltetés és takarítás.
+        </p>
+
+        <h4>2.3.1. Foglaláskezelés alrendszer</h4>
+        <p>
+            A foglaláskezelés alrendszer feladata a vendégház szobáinak és a hozzájuk tartozó foglalásoknak a kezelése. Lehetővé teszi a vendégek számára a szabad szobák megtekintését, a megfelelő időpont kiválasztását és a foglalások leadását. Az alrendszer kapcsolatban áll a fizetési és a naptárkezelési funkciókkal is, így biztosítható a foglalások megfelelő nyilvántartása.
+        </p>
+        <p><strong>Az alrendszerhez tartozó osztályok:</strong></p>
+        <ul>
+            <li>Vendégház</li>
+            <li>Szoba</li>
+            <li>Vendég</li>
+            <li>Foglalás</li>
+        </ul>
+
+        <h4>2.3.2. Fizetés és kommunikáció alrendszer</h4>
+        <p>
+            Ez az alrendszer a foglalásokhoz kapcsolódó fizetési folyamatok és az automatikus vendégkommunikáció kezeléséért felelős. A vendégek bankkártyás fizetést kezdeményezhetnek, valamint lehetőségük van kedvezményre jogosító kuponkódok felhasználására. A rendszer sikeres foglalás esetén automatikus visszaigazoló e-mailt küld, illetve további tájékoztatásokat is továbbíthat a vendégek számára. A későbbiekben a számlázási funkciók bevezetését is tervezzük.
+        </p>
+        <p><strong>Az alrendszerhez tartozó osztályok:</strong></p>
+        <ul>
+            <li>Fizetés</li>
+            <li>Kupon</li>
+            <li>Értesítés</li>
+            <li>Számla (tervezett)</li>
+        </ul>
+
+        <h4>2.3.3. Naptár és szinkronizáció alrendszer</h4>
+        <p>
+            A naptár és szinkronizáció alrendszer feladata a szobák foglaltságának nyilvántartása és a külső szállásfoglaló platformokkal történő adatcsere biztosítása. A rendszer a Booking és Airbnb oldalakról származó foglalási adatokat iCal-hivatkozások segítségével szinkronizálja a saját naptárával. Ennek célja a párhuzamos foglalások elkerülése és a szabad időpontok naprakészen tartása. Amennyiben két foglalás között ütközés keletkezik, a rendszer figyelmezteti a tulajdonost.
+        </p>
+        <p><strong>Az alrendszerhez tartozó osztályok:</strong></p>
+        <ul>
+            <li>Foglalási naptár</li>
+            <li>Külső naptár</li>
+            <li>Foglalási ütközés</li>
+        </ul>
+
+        <h4>2.3.4. Üzemeltetés és takarítás alrendszer</h4>
+        <p>
+            Az üzemeltetés és takarítás alrendszer a vendégház napi működésének megszervezését és a takarítási feladatok nyomon követését segíti. A tulajdonos a saját kezelőfelületén ellenőrizheti a szobák állapotát, míg a takarító személyzet mobiltelefonon tekintheti meg az elvégzendő feladatokat. A takarítás befejezését követően a dolgozók frissíthetik a szoba állapotát, fényképet tölthetnek fel, illetve jelezhetik az esetleges meghibásodásokat. Ezáltal a tulajdonos folyamatosan tájékozódhat a szobák aktuális állapotáról.
+        </p>
+        <p><strong>Az alrendszerhez tartozó osztályok:</strong></p>
+        <ul>
+            <li>Tulajdonos</li>
+            <li>Takarító</li>
+            <li>Takarítási feladat</li>
+            <li>Takarítási fotó</li>
+            <li>Hibabejelentés</li>
+        </ul>
+
+        <h4>Az alrendszerek együttműködése</h4>
+        <p>
+            A négy alrendszer egymással kapcsolatban áll, és különböző adatokat továbbít egymás között. A foglaláskezelés a fizetési és kommunikációs alrendszerrel együttműködve biztosítja a foglalások kifizetését és visszaigazolását. A naptár és szinkronizáció alrendszer gondoskodik a foglaltsági adatok naprakészen tartásáról, míg az üzemeltetés és takarítás alrendszer a szobák megfelelő előkészítését és állapotuk követését teszi lehetővé. Az alrendszerek közötti kapcsolatokat és információáramlást UML csomagdiagram segítségével szemléltetjük.
         </p>
 
         <div class="diagram-box">
-            <img src="Osztálydiagram.png" alt="Rendszerszintű analízis osztálydiagram">
-            <p class="diagram-caption">1. ábra: Rendszerszintű analízis osztálydiagram a négy logikai alrendszerrel</p>
+            <img src="Alrendszerek kapcsolatai.png" alt="Alrendszerek kapcsolatai">
+            <p class="diagram-caption">2. ábra: Alrendszerek kapcsolatai és információáramlás</p>
         </div>
-
-        <h3 id="anal-2-2">2.2. Alrendszerek kapcsolatai és információáramlás</h3>
-        <p>
-            Az alrendszerek közötti csatolás minimalizálása érdekében pontosan definiáltuk a csomagok közötti függőségeket és az átadott információk irányát:
-        </p>
-
-        <div class="diagram-box">
-            <img src="Alrendszerek kapcsolatai.png" alt="Alrendszerek kapcsolatai és információáramlás">
-            <p class="diagram-caption">2. ábra: Alrendszerek kapcsolatai és a csomagok közötti információáramlás</p>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Forrás &rarr; Cél</th>
-                    <th>Kapcsolat iránya</th>
-                    <th>Átadott információk és üzleti szerep</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>F &rarr; P</strong> / <strong>P &rarr; F</strong></td>
-                    <td>Foglaláskezelés &harr; Fizetés és kommunikáció</td>
-                    <td>A Foglaláskezelés átadja a fizetési adatokat és értesítési igényeket (<code>F &rarr; P</code>), a Fizetés és kommunikáció pedig visszaküldi a tranzakció eredményét / fizetési státuszt (<code>P &rarr; F</code>).</td>
-                </tr>
-                <tr>
-                    <td><strong>F &rarr; N</strong> / <strong>N &rarr; F</strong></td>
-                    <td>Foglaláskezelés &harr; Naptár és szinkronizáció</td>
-                    <td>A Foglaláskezelés továbbítja az új vagy módosított foglalási adatokat (<code>F &rarr; N</code>), míg a Naptár alrendszer szolgáltatja a szabad időpontokat és az észlelt ütközéseket (<code>N &rarr; F</code>).</td>
-                </tr>
-                <tr>
-                    <td><strong>F &rarr; U</strong> / <strong>U &rarr; F</strong></td>
-                    <td>Foglaláskezelés &harr; Üzemeltetés és takarítás</td>
-                    <td>A Foglaláskezelés átadja a foglalásokat és érkezési/távozási adatokat a takarítás ütemezéséhez (<code>F &rarr; U</code>), az Üzemeltetés pedig jelzi az aktuális szobaállapotokat (<code>U &rarr; F</code>).</td>
-                </tr>
-                <tr>
-                    <td><strong>N &rarr; U</strong> / <strong>U &rarr; N</strong></td>
-                    <td>Naptár és szinkronizáció &harr; Üzemeltetés és takarítás</td>
-                    <td>A Naptár alrendszer ütközési figyelmeztetéseket küld a tulajdonosnak (<code>N &rarr; U</code>), aki kezeli a naptárbeállításokat és feloldja a túlfoglalásokat (<code>U &rarr; N</code>).</td>
-                </tr>
-            </tbody>
-        </table>
     </section>
 
-    <!-- 3. FOGLALÁSKEZELÉS ALRENDSZER -->
+    <!-- 3. FOGLALÁSKEZELÉS ALRENDSZER MODELLJE -->
     <section class="card" id="anal-3">
         <span class="subsystem-badge badge-f">F Alrendszer</span>
-        <h2>3. Foglaláskezelés alrendszer</h2>
+        <h2>3. Foglaláskezelés alrendszer modellje</h2>
+
+        <h3 id="anal-3-1">3.1. Statikus modell</h3>
         <p>
-            A <strong>Foglaláskezelés alrendszer</strong> felel a vendégház szobakapacitásának nyilvántartásáért, a vendégek adatainak kezeléséért, a foglalási igények rögzítéséért és az üzleti szabályok (pl. átfedő foglalások tilalma) érvényesítéséért.
+            A Foglaláskezelés alrendszer statikus modelljének elkészítése során részletesebben megvizsgáljuk a korábban meghatározott osztályokat, azok tulajdonságait és a közöttük fennálló kapcsolatokat. Az alrendszer négy fő osztályból áll: Vendégház, Szoba, Vendég és Foglalás.
+        </p>
+        <p>
+            A célunk, hogy a kezdeti osztálydiagramot pontosítva egy olyan modellt alakítsunk ki, amely megfelelően szemlélteti a szobafoglalási folyamatban részt vevő objektumokat és azok együttműködését.
         </p>
 
-        <h3 id="anal-3-1">3.1. Részletes analízis osztálydiagram</h3>
-        <div class="diagram-box">
-            <img src="Foglaláskezelés alrendszer - Analizis osztálydiagram.png" alt="Foglaláskezelés alrendszer – Analízis osztálydiagram">
-            <p class="diagram-caption">3. ábra: Foglaláskezelés alrendszer – Részletes analízis osztálydiagram</p>
-        </div>
-
-        <h3 id="anal-3-2">3.2. Osztályok specifikációja</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Osztály neve</th>
-                    <th>Attribútumok</th>
-                    <th>Operációk (Metódusok)</th>
-                    <th>Szerepkör és kapcsolatok</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>Vendégház</code></td>
-                    <td><code>vendégházAzonosító</code>, <code>név</code>, <code>cím</code></td>
-                    <td><code>szobákLekérdezése()</code>, <code>szobaKeresése(szobaszám)</code>, <code>szobákSzűrése(vendégekSzáma)</code></td>
-                    <td>A szálláshely alapadatait tárolja; egy vendégházhoz <code>1..*</code> szoba tartozik.</td>
-                </tr>
-                <tr>
-                    <td><code>Szoba</code></td>
-                    <td><code>szobaAzonosító</code>, <code>szobaszám</code>, <code>ár</code>, <code>befogadóképesség</code>, <code>állapot</code></td>
-                    <td><code>befogadóképességEllenőrzése(vendégekSzáma)</code>, <code>elérhetőségEllenőrzése(érkezés, távozás)</code>, <code>foglalásiÁrSzámítása(érkezés, távozás)</code></td>
-                    <td>Egyedi lakóegység; <code>0..*</code> foglalás kapcsolódhat hozzá, de aktív időszakaik nem fedhetik át egymást.</td>
-                </tr>
-                <tr>
-                    <td><code>Vendég</code></td>
-                    <td><code>vendégAzonosító</code>, <code>név</code>, <code>e-mail</code>, <code>telefonszám</code>, <code>lakcím</code></td>
-                    <td><code>adatokEllenőrzése()</code>, <code>foglalásKezdeményezése(szoba, érkezés, távozás)</code>, <code>foglalásokLekérdezése()</code></td>
-                    <td>A foglalást leadó személy; egy vendég <code>0..*</code> foglalást hozhat létre.</td>
-                </tr>
-                <tr>
-                    <td><code>Foglalás</code></td>
-                    <td><code>foglalásAzonosító</code>, <code>érkezés</code>, <code>távozás</code>, <code>vendégekSzáma</code>, <code>státusz</code></td>
-                    <td><code>foglalásiAdatokEllenőrzése()</code>, <code>végösszegKiszámítása()</code>, <code>foglalásRögzítése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>foglalásMódosítása(újAdatok)</code>, <code>foglalásTörlése()</code></td>
-                    <td>A rendszer központi üzleti tranzakciója; kapcsolódik a <code>Fizetés</code>, <code>Értesítés</code> és <code>Foglalási naptár</code> osztályokhoz.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="anal-3-3">3.3. Szobafoglalás szekvenciadiagramja</h3>
+        <h4>3.1.1. Kapcsolatok pontosítása</h4>
         <p>
-            A szekvenciadiagram a vendégoldali szobakereséstől a kuponkód opcionális érvényesítésén és a dupla elérhetőség-ellenőrzésen át a fizetési kapu hívásáig és a visszaigazoló e-mail kiküldéséig követi végig a folyamatot. Külön elágazás kezeli a versenyhelyzetből adódó foglalatlanságot, illetve a sikertelen fizetés utáni zárolásfeloldást.
+            A kezdeti osztálydiagram elkészítése során meghatároztuk az osztályok közötti legfontosabb kapcsolatokat. Ebben a fázisban ezeket részletesebben megvizsgáljuk, elnevezzük, valamint meghatározzuk a hozzájuk tartozó szerepköröket és számosságokat.
         </p>
+
+        <h5>Vendégház – Szoba kapcsolat</h5>
+        <p>
+            Egy vendégházhoz több szoba is tartozhat, azonban egy adott szoba kizárólag egy vendégházhoz kapcsolódik. A kapcsolatot „tartalmazza” névvel jelöljük. A kapcsolat számossága a Vendégház oldalán 1, a Szoba oldalán pedig 1..*, mivel egy vendégház legalább egy szobával rendelkezik, de több szobát is kezelhet.
+        </p>
+
+        <h5>Vendég – Foglalás kapcsolat</h5>
+        <p>
+            Egy vendég több foglalást is leadhat, azonban egy adott foglaláshoz egy foglalást kezdeményező vendéget rendelünk. A kapcsolatot „leadja” névvel jelöljük. A Vendég oldalán 1, a Foglalás oldalán pedig 0..* számosságot alkalmazunk. Ez lehetővé teszi, hogy a rendszerben olyan vendég is szerepeljen, aki korábban még nem adott le foglalást.
+        </p>
+
+        <h5>Szoba – Foglalás kapcsolat</h5>
+        <p>
+            Egy szobához különböző időszakokban több foglalás is tartozhat, azonban egy foglalás a jelenlegi követelményspecifikáció alapján egy kiválasztott szobára vonatkozik. A kapcsolatot „lefoglalja” névvel jelöljük, a számosság pedig a Szoba oldalán 1, a Foglalás oldalán 0..*.
+        </p>
+        <p>
+            Ennél a kapcsolatnál különösen fontos figyelembe vennünk a túlfoglalások elkerülését. A rendszernek biztosítania kell, hogy ugyanazt a szobát ne lehessen egymást átfedő időszakokra lefoglalni. Ezt a korlátozást a foglalások érkezési és távozási dátumainak ellenőrzésével kívánjuk megvalósítani.
+        </p>
+
+        <h5>Kapcsolatok más alrendszerekkel</h5>
+        <p>
+            A Foglaláskezelés alrendszer a rendszer többi részével is kapcsolatban áll. A Foglalás osztály a Fizetés, Értesítés és Foglalási naptár osztályokkal működik együtt, míg a Szoba osztály a takarítási feladatok nyilvántartásához kapcsolódik. A kapcsolódó külső osztályokat az adott alrendszerek részletes elemzése során pontosítjuk.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest tehát meghatároztuk a kapcsolatok elnevezését és számosságát, valamint pontosítottuk az egyes osztályok szerepét a foglalási folyamatban. Új osztály bevezetését ebben a lépésben nem tartottuk szükségesnek.
+        </p>
+
+        <h4>3.1.2. Attribútumok azonosítása</h4>
+        <p>
+            Ebben a fázisban meghatározzuk a Foglaláskezelés alrendszer osztályainak legfontosabb attribútumait. A korábban elkészített kezdeti osztálydiagram már tartalmazta az alapvető tulajdonságokat, azonban a követelményspecifikáció alapján szükségesnek tartjuk ezek pontosítását és kiegészítését.
+        </p>
+
+        <h5>Vendégház osztály</h5>
+        <p>
+            A Vendégház osztály a rendszerben kezelt szálláshely alapvető adatainak tárolásáért felelős. A kezdeti diagramon szereplő név és cím attribútumok mellett bevezetünk egy egyedi azonosítót is, amely megkönnyíti a vendégházak egyértelmű megkülönböztetését.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>vendégházAzonosító</li>
+            <li>név</li>
+            <li>cím</li>
+        </ul>
+
+        <h5>Szoba osztály</h5>
+        <p>
+            A Szoba osztály a vendégházhoz tartozó szobák tulajdonságait tartalmazza. A szobaszám, ár és állapot mellett szükségesnek tartjuk a szoba befogadóképességének és egyedi azonosítójának nyilvántartását is.
+        </p>
+        <p>
+            A befogadóképesség segítségével a rendszer ellenőrizheti, hogy a vendégek által megadott létszámnak mely szobák felelnek meg.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>szobaAzonosító</li>
+            <li>szobaszám</li>
+            <li>ár</li>
+            <li>befogadóképesség</li>
+            <li>állapot</li>
+        </ul>
+
+        <h5>Vendég osztály</h5>
+        <p>
+            A Vendég osztály a foglalást kezdeményező személyek adatainak kezelésére szolgál. A korábban meghatározott név, e-mail-cím és telefonszám mellett szükséges a lakcím tárolása is, mivel a követelményspecifikációban szereplő foglalási folyamat során a vendég ezt az adatot is megadja.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>vendégAzonosító</li>
+            <li>név</li>
+            <li>e-mail</li>
+            <li>telefonszám</li>
+            <li>lakcím</li>
+        </ul>
+
+        <h5>Foglalás osztály</h5>
+        <p>
+            A Foglalás osztály a rendszer egyik legfontosabb eleme, mivel a vendégek által leadott foglalások adatait kezeli. A kezdeti diagramon szereplő érkezési és távozási dátum, valamint a foglalási státusz mellett szükségesnek tartjuk a vendégek számának és a foglalás egyedi azonosítójának tárolását is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>foglalásAzonosító</li>
+            <li>érkezés</li>
+            <li>távozás</li>
+            <li>vendégekSzáma</li>
+            <li>státusz</li>
+        </ul>
+        <p>
+            A Foglalás osztályban tárolt dátumok alapján a rendszer ellenőrizheti a szobák elérhetőségét. A foglalási státusz segítségével pedig nyomon követhető, hogy az adott foglalás milyen állapotban van.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest tehát az osztályokat egyedi azonosítókkal, valamint a foglalási folyamat működéséhez szükséges további attribútumokkal egészítettük ki. Az attribútumok pontos típusait és részletes leírásait a későbbi osztálydokumentációban határozzuk meg.
+        </p>
+
+        <h4>3.1.3. Bázisosztályok keresése</h4>
+        <p>
+            A Foglaláskezelés alrendszer osztályainak vizsgálata során azt is ellenőrizzük, hogy találhatók-e olyan közös tulajdonságok vagy feladatok, amelyek indokolttá tennék egy közös bázisosztály létrehozását.
+        </p>
+        <p>
+            A Vendégház, Szoba, Vendég és Foglalás osztályok eltérő szerepet töltenek be a rendszerben. A Vendégház és a Szoba a szálláshelyhez tartozó adatokat reprezentálja, a Vendég a foglalást kezdeményező személyt, míg a Foglalás a szobafoglalási folyamat során létrejövő adatokat tartalmazza.
+        </p>
+        <p>
+            Az osztályok között nem találtunk olyan jelentős közös tulajdonságokat vagy viselkedéseket, amelyek miatt az alrendszeren belül indokolt lenne egy új bázisosztály bevezetése.
+        </p>
+        <p>
+            Felmerülhet egy közös Felhasználó bázisosztály kialakítása, amely a Vendég, Tulajdonos és Takarító osztályok közös tulajdonságait tartalmazná. Mivel azonban ezek az osztályok különböző alrendszerekhez tartoznak, és a vendégek számára nem feltétlenül szükséges felhasználói fiók létrehozása, ennek bevezetéséről a jelenlegi elemzési fázisban nem döntünk.
+        </p>
+        <p>
+            Ennek megfelelően a Foglaláskezelés alrendszer négy fő osztályát önálló osztályként kezeljük, közöttük jelenleg nem alkalmazunk általánosítási vagy öröklődési kapcsolatokat.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest ebben a lépésben nem történt változtatás az osztályok öröklődési viszonyait illetően.
+        </p>
+
+        <h3 id="anal-3-2">3.2. Dinamikus modell</h3>
+        <p>
+            A Foglaláskezelés alrendszer dinamikus modelljének elkészítése során a szobafoglalási folyamat működését és az egyes objektumok közötti együttműködést vizsgáljuk. A modell alapját a korábban elkészített Szoftver Követelmény Specifikációban szereplő „Szobafoglalás leadása és automatikus visszaigazolás” használati eset képezi.
+        </p>
+        <p>
+            A dinamikus modell segítségével bemutatjuk, hogyan történik a szabad szobák keresése, a foglalás leadása, a fizetés feldolgozása és a visszaigazolás kiküldése. Emellett megvizsgáljuk a foglalások állapotváltozásait is, különös figyelmet fordítva a sikertelen fizetések és a foglalások törlésének kezelésére.
+        </p>
+
+        <h4>3.2.1. Szobafoglalás leadása és automatikus visszaigazolás</h4>
+        <p>
+            A szobafoglalási folyamat a vendég által megadott érkezési és távozási dátumok, valamint a vendégek számának ellenőrzésével kezdődik. A rendszer ezek alapján megkeresi az adott időszakban elérhető szobákat, majd megjeleníti azok árait.
+        </p>
+        <p>
+            A vendég kiválasztja a megfelelő szobát, és megadja a foglaláshoz szükséges személyes adatait. Amennyiben rendelkezik kuponkóddal, azt is felhasználhatja, amelynek hatására a rendszer újraszámolja a fizetendő összeget.
+        </p>
+        <p>
+            A foglalás véglegesítése előtt a rendszer ismételten ellenőrzi a kiválasztott szoba elérhetőségét. Amennyiben a szoba továbbra is szabad, a rendszer kezdeményezi a bankkártyás fizetést, és a fizetés idejére ideiglenesen zárolja az adott időszakot.
+        </p>
+        <p>
+            Sikeres fizetés esetén a foglalás bekerül az adatbázisba, „Kifizetve” státuszt kap, a rendszer frissíti a foglalási naptárat, majd automatikus visszaigazoló e-mailt küld a vendégnek.
+        </p>
+        <p>
+            Sikertelen fizetés esetén a foglalás nem kerül véglegesítésre, a rendszer hibaüzenetet jelenít meg, és feloldja az ideiglenes zárolást, így a szoba ismét foglalhatóvá válik.
+        </p>
+        <p>
+            A szobafoglalás folyamatát és az egyes szereplők közötti üzenetváltásokat bemutató UML szekvenciadiagram az 1. számú mellékletben található.
+        </p>
+
         <div class="diagram-box">
             <img src="Szobafoglalás szekvenciadiagramja.png" class="portrait-diagram" alt="Szobafoglalás leadása és automatikus visszaigazolás – Szekvenciadiagram">
-            <p class="diagram-caption">4. ábra: Szobafoglalás leadása és automatikus visszaigazolás – Szekvenciadiagram</p>
+            <p class="diagram-caption">3. ábra: Szobafoglalás leadása és automatikus visszaigazolás – Szekvenciadiagram</p>
         </div>
 
-        <h3 id="anal-3-4">3.4. Foglalás osztály állapotdiagramja</h3>
+        <h4>3.2.2. A Foglalás osztály állapotdiagramja</h4>
         <p>
-            A <code>Foglalás</code> objektum kezdeményezéskor a <strong>Fizetésre vár</strong> átmeneti állapotba kerül. Sikeres tranzakció esetén <strong>Kifizetve</strong> állapotba lép (ahol adatai módosíthatók, vagy lemondás esetén <strong>Törölt</strong> állapotba kerül), sikertelen vagy időtúllépéses fizetésnél pedig a foglalás megszűnik.
+            A Foglalás osztály állapotdiagramjának segítségével bemutatjuk, hogyan változik egy foglalás állapota a foglalási folyamat során.
         </p>
+        <p>
+            A foglalás kezdeményezése után a folyamat először „Fizetésre vár” állapotba kerül. Ez egy átmeneti, elemzési szinten bevezetett állapot, amely alatt a rendszer a fizetési művelet befejezésére vár. A követelményspecifikáció alapján a foglalás végleges adatbázisba történő rögzítése csak sikeres fizetést követően történik meg.
+        </p>
+        <p>
+            Sikeres fizetés esetén a foglalás „Kifizetve” állapotba kerül. Amennyiben a fizetés sikertelen, a foglalási folyamat megszakad, és a rendszer felszabadítja a korábban ideiglenesen zárolt időszakot.
+        </p>
+        <p>
+            A tulajdonos a kezelőfelületen keresztül szükség esetén törölheti a korábban rögzített foglalásokat. Ilyenkor a foglalás „Törölt” állapotba kerül, és az érintett időszak ismét elérhetővé válhat a foglalási naptárban.
+        </p>
+        <p>
+            Az állapotdiagram elkészítésével pontosabban meghatározhatjuk a foglalások életciklusát, és biztosíthatjuk, hogy a különböző műveletek megfelelő állapotváltozásokat eredményezzenek.
+        </p>
+
         <div class="diagram-box">
             <img src="Foglalás osztály állapotdiagramja.png" class="portrait-diagram" alt="Foglalás osztály állapotdiagramja">
-            <p class="diagram-caption">5. ábra: Foglalás osztály állapotdiagramja</p>
+            <p class="diagram-caption">4. ábra: Foglalás osztály állapotdiagramja</p>
+        </div>
+
+        <h3 id="anal-3-3">3.3. Funkcionális modell</h3>
+        <p>
+            A Foglaláskezelés alrendszer funkcionális modelljének elkészítése során bemutatjuk a szobafoglalási folyamat legfontosabb feldolgozási lépéseit, valamint az egyes műveletek között történő adatáramlást.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata, hogy a vendégek egyszerűen és gyorsan tudjanak szabad szobákat keresni, foglalásokat leadni, valamint a foglalásaikhoz kapcsolódó információkat megkapni. A folyamat során a rendszer együttműködik a Fizetés és kommunikáció, illetve a Naptár és szinkronizáció alrendszerekkel.
+        </p>
+
+        <h4>3.3.1. Szabad szobák keresése</h4>
+        <p>
+            A folyamat első lépéseként a vendég megadja az érkezés és távozás dátumát, valamint a vendégek számát. A rendszer ellenőrzi a megadott adatokat, majd a foglalási naptár segítségével megvizsgálja, hogy az adott időszakban mely szobák érhetők el.
+        </p>
+        <p>
+            A keresés során figyelembe vesszük a szobák befogadóképességét és a már meglévő foglalásokat is. A rendszer ezt követően összeállítja a megfelelő szobák listáját, amelyet a hozzájuk tartozó árakkal együtt jelenít meg a vendég számára.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai az érkezési és távozási dátumok, valamint a vendégek száma. A kimeneti adatok az elérhető szobák és azok árai.
+        </p>
+
+        <h4>3.3.2. Foglalási adatok feldolgozása</h4>
+        <p>
+            Miután a vendég kiválasztotta a számára megfelelő szobát, megadja a foglaláshoz szükséges személyes adatait. Ide tartozik a neve, e-mail-címe, telefonszáma és lakcíme.
+        </p>
+        <p>
+            A rendszer ellenőrzi a megadott adatok megfelelőségét, majd meghatározza a foglalás teljes árát a kiválasztott szoba és a tartózkodási idő alapján.
+        </p>
+        <p>
+            Amennyiben a vendég kuponkódot is megad, a rendszer a Fizetés és kommunikáció alrendszerrel együttműködve ellenőrzi annak érvényességét, és szükség esetén újraszámolja a fizetendő összeget.
+        </p>
+        <p>
+            A foglalási adatok véglegesítése előtt a rendszer ismételten ellenőrzi a kiválasztott szoba elérhetőségét, hogy elkerülhetővé váljanak a párhuzamos foglalások.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a kiválasztott szoba, a vendég személyes adatai, a tartózkodási időszak és az esetleges kuponkód. A kimeneti adatok az ellenőrzött foglalási adatok és a kiszámított fizetendő összeg.
+        </p>
+
+        <h4>3.3.3. Foglalás rögzítése és visszaigazolása</h4>
+        <p>
+            A foglalási adatok ellenőrzését követően a rendszer ideiglenesen zárolja a kiválasztott szobát az adott időszakra, majd kezdeményezi a bankkártyás fizetést a külső fizetési szolgáltatón keresztül.
+        </p>
+        <p>
+            Sikeres fizetés esetén a rendszer létrehozza a Foglalás objektumot, amely tartalmazza a vendéghez, a szobához és a kiválasztott időszakhoz kapcsolódó adatokat. A foglalás „Kifizetve” státuszt kap, majd bekerül a központi adatbázisba.
+        </p>
+        <p>
+            Ezt követően a rendszer továbbítja a foglalási adatokat a Naptár és szinkronizáció alrendszer számára, amely véglegesen foglaltnak jelöli az adott időszakot.
+        </p>
+        <p>
+            A sikeresen rögzített foglalásról a Fizetés és kommunikáció alrendszer automatikus visszaigazoló e-mailt küld a vendégnek.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai az ellenőrzött foglalási adatok és a fizetési szolgáltató által visszaküldött fizetési eredmény. A kimeneti adatok a rögzített foglalás, a frissített foglalási naptár és a visszaigazoló értesítés.
+        </p>
+
+        <h4>3.3.4. Sikertelen foglalások kezelése</h4>
+        <p>
+            A foglalási folyamat során különböző hibák is előfordulhatnak, amelyeket a rendszernek megfelelően kezelnie kell.
+        </p>
+        <p>
+            Amennyiben a kiválasztott szoba a foglalás véglegesítése előtt már nem elérhető, a rendszer elutasítja a foglalási kérelmet, és erről hibaüzenetben tájékoztatja a vendéget.
+        </p>
+        <p>
+            Sikertelen bankkártyás fizetés esetén a foglalás nem kerül véglegesítésre, a rendszer pedig feloldja az ideiglenesen zárolt időszakot. Ennek köszönhetően a szoba ismét elérhetővé válik más vendégek számára.
+        </p>
+        <p>
+            A hibakezelés során a rendszer célja, hogy megakadályozza a hibás foglalások rögzítését és biztosítsa a foglaltsági adatok megfelelő állapotát.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai az elérhetőségi ellenőrzés és a fizetési folyamat eredményei. A kimeneti adatok a megfelelő hibaüzenetek, valamint szükség esetén a felszabadított foglalási időszak.
+        </p>
+
+        <h3 id="anal-3-4">3.4. Operációk azonosítása</h3>
+        <p>
+            A Foglaláskezelés alrendszer operációinak azonosítása során a korábban elkészített dinamikus és funkcionális modellekből indulunk ki. A célunk, hogy meghatározzuk az egyes osztályokhoz tartozó legfontosabb műveleteket, amelyek segítségével megvalósítható a szobák keresése, a foglalások létrehozása, módosítása és kezelése.
+        </p>
+        <p>
+            Az alrendszer négy fő osztályát vizsgáljuk meg: Vendégház, Szoba, Vendég és Foglalás. Az operációkat az osztályok feladatai és a közöttük fennálló kapcsolatok alapján határozzuk meg.
+        </p>
+
+        <h4>Vendégház osztály</h4>
+        <p>A Vendégház osztály feladata a szálláshelyhez tartozó szobák nyilvántartásának és elérésének biztosítása.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>szobákLekérdezése()</code>: A vendégházhoz tartozó szobák listájának lekérdezése.</li>
+            <li><code>szobaKeresése(szobaszám)</code>: Egy adott szoba megkeresése a szobaszáma alapján.</li>
+            <li><code>szobákSzűrése(vendégekSzáma)</code>: A megadott létszám befogadására alkalmas szobák kiválasztása.</li>
+        </ul>
+
+        <h4>Szoba osztály</h4>
+        <p>A Szoba osztály a szobák tulajdonságainak és foglalhatóságának vizsgálatához szükséges műveleteket biztosítja.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>befogadóképességEllenőrzése(vendégekSzáma)</code>: Megvizsgálja, hogy a szoba alkalmas-e a megadott számú vendég elhelyezésére.</li>
+            <li><code>elérhetőségEllenőrzése(érkezés, távozás)</code>: A Foglalási naptár adatai alapján ellenőrzi, hogy a szoba szabad-e a megadott időszakban.</li>
+            <li><code>foglalásiÁrSzámítása(érkezés, távozás)</code>: Meghatározza a kiválasztott időszakra vonatkozó szobaárat.</li>
+        </ul>
+
+        <h4>Vendég osztály</h4>
+        <p>A Vendég osztály a szobafoglalást kezdeményező személyhez kapcsolódó műveleteket tartalmazza.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>adatokEllenőrzése()</code>: Ellenőrzi a foglaláshoz szükséges személyes adatok meglétét és megfelelő formátumát.</li>
+            <li><code>foglalásKezdeményezése(szoba, érkezés, távozás)</code>: A kiválasztott szoba és időszak alapján foglalási folyamatot kezdeményez.</li>
+            <li><code>foglalásokLekérdezése()</code>: Lekérdezi a vendéghez tartozó korábbi és aktuális foglalásokat.</li>
+        </ul>
+
+        <h4>Foglalás osztály</h4>
+        <p>A Foglalás osztály a foglalási folyamat egyik legfontosabb eleme, ezért több operációval is rendelkezik. Feladata a foglalási adatok kezelése és a foglalások állapotának nyomon követése.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>foglalásiAdatokEllenőrzése()</code>: Ellenőrzi a foglaláshoz tartozó adatok megfelelőségét.</li>
+            <li><code>végösszegKiszámítása()</code>: Meghatározza a foglalás fizetendő összegét, figyelembe véve az esetleges kedvezményeket.</li>
+            <li><code>foglalásRögzítése()</code>: Sikeres fizetést követően véglegesíti és rögzíti a foglalást.</li>
+            <li><code>státuszMódosítása(újStátusz)</code>: Módosítja a foglalás aktuális állapotát.</li>
+            <li><code>foglalásMódosítása(újAdatok)</code>: Lehetővé teszi a korábban rögzített foglalási adatok módosítását.</li>
+            <li><code>foglalásTörlése()</code>: Kezeli a foglalás törlését, és kezdeményezi az érintett időszak felszabadítását.</li>
+        </ul>
+
+        <h3 id="anal-3-5">3.5. Az analízis modell osztálydiagramja</h3>
+        <p>
+            A Foglaláskezelés alrendszer részletes osztálydiagramját a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze. A kezdeti osztálydiagramhoz képest pontosítottuk az osztályok közötti kapcsolatokat, meghatároztuk azok számosságát, valamint kiegészítettük az osztályokat a szükséges attribútumokkal és operációkkal.
+        </p>
+        <p>
+            Az alrendszer négy fő osztálya továbbra is a Vendégház, Szoba, Vendég és Foglalás. A diagramon megjelenítjük a más alrendszerekhez tartozó, de a foglalási folyamatban részt vevő osztályokat is, mint például a Fizetés, Értesítés, Foglalási naptár és Takarítási feladat.
+        </p>
+        <p>
+            A pontosított osztálydiagram segítségével áttekinthetővé válik az egyes osztályok feladata, azok együttműködése, valamint a szobafoglalási folyamat működéséhez szükséges műveletek. A más alrendszerekhez tartozó osztályok részletes leírását a saját alrendszerük elemzése során végezzük el.
+        </p>
+
+        <div class="diagram-box">
+            <img src="Foglaláskezelés alrendszer - Analizis osztálydiagram.png" alt="Foglaláskezelés alrendszer - Analízis osztálydiagram">
+            <p class="diagram-caption">5. ábra: Foglaláskezelés alrendszer – Analízis osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-3-6">3.6. Az analízis modell osztályainak listája</h3>
+        <p>
+            Ebben a fejezetben részletesebben bemutatjuk a Foglaláskezelés alrendszerhez tartozó osztályokat. Az osztályok dokumentálása során meghatározzuk azok feladatait, a velük együttműködő további osztályokat, valamint a legfontosabb attribútumokat és operációkat.
+        </p>
+        <p>
+            Az alrendszer négy fő osztálya a Vendégház, Szoba, Vendég és Foglalás. A leírásokat a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze.
+        </p>
+
+        <div class="class-doc-card">
+            <h4>3.6.1. Vendégház</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Vendégház osztály a rendszerben kezelt szálláshely alapvető adatainak nyilvántartásáért felelős. Feladata a vendégházhoz tartozó szobák összefogása, valamint a szobák kereséséhez és lekérdezéséhez szükséges műveletek biztosítása.</p>
+            <p><strong>Együttműködők:</strong> Szoba</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>vendégházAzonosító</code></td><td>Egész szám</td><td>A vendégház egyedi azonosítója.</td></tr>
+                    <tr><td><code>név</code></td><td>Szöveg</td><td>A vendégház megnevezése.</td></tr>
+                    <tr><td><code>cím</code></td><td>Szöveg</td><td>A vendégház pontos címe.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>szobákLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a vendégházhoz tartozó szobákat.</td></tr>
+                    <tr><td><code>szobaKeresése()</code></td><td><code>szobaszám</code></td><td>Megkeresi a megadott számú szobát.</td></tr>
+                    <tr><td><code>szobákSzűrése()</code></td><td><code>vendégekSzáma</code></td><td>Kiválasztja a megadott létszám befogadására alkalmas szobákat.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>3.6.2. Szoba</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Szoba osztály a vendégházhoz tartozó szobák adatainak kezeléséért felelős. Feladata a szobák tulajdonságainak nyilvántartása, a befogadóképesség ellenőrzése, valamint a foglalhatóság és a foglalási ár meghatározásának támogatása.</p>
+            <p><strong>Együttműködők:</strong> Vendégház, Foglalás, Foglalási naptár, Takarítási feladat</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>szobaAzonosító</code></td><td>Egész szám</td><td>A szoba egyedi azonosítója.</td></tr>
+                    <tr><td><code>szobaszám</code></td><td>Szöveg</td><td>A szoba megkülönböztetésére szolgáló szám vagy jelölés.</td></tr>
+                    <tr><td><code>ár</code></td><td>Decimális szám</td><td>A szoba egy éjszakára vonatkozó alapára.</td></tr>
+                    <tr><td><code>befogadóképesség</code></td><td>Egész szám</td><td>A szobában maximálisan elszállásolható vendégek száma.</td></tr>
+                    <tr><td><code>állapot</code></td><td>Felsorolás</td><td>A szoba aktuális állapota, például Szennyes, Takarítás alatt vagy Tiszta.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>befogadóképességEllenőrzése()</code></td><td><code>vendégekSzáma</code></td><td>Ellenőrzi, hogy a szoba megfelelő-e a megadott létszám számára.</td></tr>
+                    <tr><td><code>elérhetőségEllenőrzése()</code></td><td><code>érkezés, távozás</code></td><td>Megvizsgálja a foglalási naptár alapján, hogy a szoba szabad-e a kiválasztott időszakban.</td></tr>
+                    <tr><td><code>foglalásiÁrSzámítása()</code></td><td><code>érkezés, távozás</code></td><td>Kiszámítja a szoba árát a tartózkodás időtartama alapján.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>3.6.3. Vendég</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Vendég osztály a szálláshely szolgáltatásait igénybe vevő személyeket reprezentálja. Feladata a foglaláshoz szükséges személyes adatok nyilvántartása és ellenőrzése, valamint a vendéghez tartozó foglalások kezelésének támogatása.</p>
+            <p><strong>Együttműködők:</strong> Foglalás</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>vendégAzonosító</code></td><td>Egész szám</td><td>A vendég egyedi azonosítója.</td></tr>
+                    <tr><td><code>név</code></td><td>Szöveg</td><td>A vendég teljes neve.</td></tr>
+                    <tr><td><code>e-mail</code></td><td>Szöveg</td><td>A vendég e-mail-címe, amelyre a visszaigazolás érkezik.</td></tr>
+                    <tr><td><code>telefonszám</code></td><td>Szöveg</td><td>A vendég kapcsolattartáshoz szükséges telefonszáma.</td></tr>
+                    <tr><td><code>lakcím</code></td><td>Szöveg</td><td>A vendég által a foglalás során megadott lakcím.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>adatokEllenőrzése()</code></td><td>Nincs</td><td>Ellenőrzi a személyes adatok meglétét és megfelelő formátumát.</td></tr>
+                    <tr><td><code>foglalásKezdeményezése()</code></td><td><code>szoba, érkezés, távozás</code></td><td>Elindítja a kiválasztott szobára és időszakra vonatkozó foglalási folyamatot.</td></tr>
+                    <tr><td><code>foglalásokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a vendéghez tartozó korábbi és aktuális foglalásokat.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>3.6.4. Foglalás</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Foglalás osztály a szobafoglalási folyamat során létrejövő foglalási adatok kezeléséért felelős. Feladata a kiválasztott szoba, az érkezési és távozási időpontok, a vendégek száma és a foglalás aktuális státuszának nyilvántartása. Emellett biztosítja a foglalások rögzítéséhez, módosításához és törléséhez szükséges műveleteket.</p>
+            <p><strong>Együttműködők:</strong> Vendég, Szoba, Fizetés, Értesítés, Foglalási naptár</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>foglalásAzonosító</code></td><td>Egész szám</td><td>A foglalás egyedi azonosítója.</td></tr>
+                    <tr><td><code>érkezés</code></td><td>Dátum</td><td>A vendég érkezésének dátuma.</td></tr>
+                    <tr><td><code>távozás</code></td><td>Dátum</td><td>A vendég távozásának dátuma.</td></tr>
+                    <tr><td><code>vendégekSzáma</code></td><td>Egész szám</td><td>A foglalásban részt vevő vendégek száma.</td></tr>
+                    <tr><td><code>státusz</code></td><td>Felsorolás</td><td>A foglalás aktuális állapota, például Kifizetve vagy Törölt.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>foglalásiAdatokEllenőrzése()</code></td><td>Nincs</td><td>Ellenőrzi a foglaláshoz szükséges adatok megfelelőségét.</td></tr>
+                    <tr><td><code>végösszegKiszámítása()</code></td><td>Nincs</td><td>Meghatározza a foglalás teljes árát, figyelembe véve az esetleges kedvezményeket.</td></tr>
+                    <tr><td><code>foglalásRögzítése()</code></td><td>Nincs</td><td>Sikeres fizetést követően véglegesíti és rögzíti a foglalást.</td></tr>
+                    <tr><td><code>státuszMódosítása()</code></td><td><code>újStátusz</code></td><td>Módosítja a foglalás aktuális állapotát.</td></tr>
+                    <tr><td><code>foglalásMódosítása()</code></td><td><code>újAdatok</code></td><td>Lehetővé teszi a korábban rögzített foglalási adatok módosítását.</td></tr>
+                    <tr><td><code>foglalásTörlése()</code></td><td>Nincs</td><td>Törölt állapotba helyezi a foglalást, és kezdeményezi az érintett időszak felszabadítását.</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- 4. FIZETÉS ÉS KOMMUNIKÁCIÓ ALRENDSZER -->
+    <!-- 4. FIZETÉS ÉS KOMMUNIKÁCIÓ ALRENDSZER MODELLJE -->
     <section class="card" id="anal-4">
         <span class="subsystem-badge badge-p">P Alrendszer</span>
-        <h2>4. Fizetés és kommunikáció alrendszer</h2>
+        <h2>4. Fizetés és kommunikáció alrendszer modellje</h2>
+
+        <h3 id="anal-4-1">4.1. Statikus modell</h3>
         <p>
-            A <strong>Fizetés és kommunikáció alrendszer</strong> végzi a kedvezménykuponok érvényesítését, a külső pénzügyi szolgáltatóval történő tranzakciókezelést, az automatikus e-mail-értesítések összeállítását, valamint előkészíti a későbbi elektronikus számlázási modult.
+            A Fizetés és kommunikáció alrendszer statikus modelljének elkészítése során részletesebben megvizsgáljuk a korábban meghatározott osztályokat, azok tulajdonságait és a közöttük fennálló kapcsolatokat. Az alrendszer négy fő osztályból áll: Fizetés, Kupon, Értesítés és Számla.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a szobafoglalásokhoz kapcsolódó fizetési folyamatok kezelése, a kedvezmények alkalmazása, valamint az automatikus vendégkommunikáció biztosítása. A későbbiekben a rendszer számlázási funkciókkal is kiegészülhet.
+        </p>
+        <p>
+            A célunk, hogy a kezdeti osztálydiagramot pontosítva egy olyan modellt alakítsunk ki, amely megfelelően szemlélteti a pénzügyi tranzakciók és az automatikus értesítések kezelésében részt vevő objektumokat és azok együttműködését.
         </p>
 
-        <h3 id="anal-4-1">4.1. Részletes analízis osztálydiagram</h3>
-        <div class="diagram-box">
-            <img src="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram.png" alt="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram">
-            <p class="diagram-caption">6. ábra: Fizetés és kommunikáció alrendszer – Részletes analízis osztálydiagram</p>
-        </div>
-
-        <h3 id="anal-4-2">4.2. Osztályok specifikációja</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Osztály neve</th>
-                    <th>Attribútumok</th>
-                    <th>Operációk (Metódusok)</th>
-                    <th>Szerepkör és kapcsolatok</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>Fizetés</code></td>
-                    <td><code>fizetésAzonosító</code>, <code>összeg</code>, <code>fizetésiStátusz</code>, <code>tranzakcióAzonosító</code>, <code>fizetésIdőpontja</code></td>
-                    <td><code>fizetésIndítása(összeg)</code>, <code>fizetésiEredményFeldolgozása(eredmény)</code>, <code>státuszMódosítása(újStátusz)</code>, <code>fizetésiAdatokLekérdezése()</code></td>
-                    <td>Egy foglaláshoz legfeljebb egy sikeres fizetés tartozik (<code>1</code> &harr; <code>0..1</code>).</td>
-                </tr>
-                <tr>
-                    <td><code>Kupon</code></td>
-                    <td><code>kuponkód</code>, <code>kedvezményMértéke</code>, <code>érvényességVége</code>, <code>aktív</code></td>
-                    <td><code>érvényességEllenőrzése()</code>, <code>kedvezménySzámítása(eredetiÖsszeg)</code>, <code>kedvezményAlkalmazása(eredetiÖsszeg)</code></td>
-                    <td>Kedvezmények érvényesítése; egy foglalás <code>0..1</code> kupont használhat fel, egy kupon <code>0..*</code> foglaláshoz kapcsolódhat.</td>
-                </tr>
-                <tr>
-                    <td><code>Értesítés</code></td>
-                    <td><code>értesítésAzonosító</code>, <code>típus</code>, <code>címzett</code>, <code>küldésIdőpontja</code>, <code>küldésiStátusz</code></td>
-                    <td><code>értesítésLétrehozása(típus, címzett)</code>, <code>üzenetÖsszeállítása(foglalásiAdatok)</code>, <code>értesítésKüldése()</code>, <code>küldésiStátuszMódosítása(újStátusz)</code></td>
-                    <td>Visszaigazoló, emlékeztető és ütközésjelző üzenetek kezelése (<code>1</code> foglaláshoz <code>0..*</code> értesítés).</td>
-                </tr>
-                <tr>
-                    <td><code>Számla</code> <em>(&laquo;tervezett&raquo;)</em></td>
-                    <td><code>számlaAzonosító</code>, <code>számlaszám</code>, <code>kiállításDátuma</code>, <code>összeg</code>, <code>bizonylatAdatok</code></td>
-                    <td><code>számlaLétrehozása(fizetésiAdatok, számlázásiAdatok)</code>, <code>számlaAdatokLekérdezése()</code>, <code>bizonylatMentése(bizonylatAdatok)</code></td>
-                    <td>Későbbi fejlesztési elem (Could have); egy sikeres fizetéshez <code>0..1</code> számla kapcsolódik.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="anal-4-3">4.3. Bankkártyás fizetés szekvenciadiagramja</h3>
+        <h4>4.1.1. Kapcsolatok pontosítása</h4>
         <p>
-            A szekvenciadiagram részletezi a kuponkedvezmény kiszámítását, a külső fizetési szolgáltató felé indított tranzakciót, valamint a fizetési eredmény visszacsatolását a <code>Foglaláskezelés</code> és az <code>Értesítés</code> osztályok felé.
+            A kezdeti osztálydiagram elkészítése során meghatároztuk az alrendszerhez tartozó osztályok legfontosabb kapcsolatait. Ebben a fázisban ezeket részletesebben megvizsgáljuk, elnevezzük, valamint meghatározzuk a kapcsolatok szerepköreit és számosságait.
         </p>
+
+        <h5>Foglalás – Fizetés kapcsolat</h5>
+        <p>
+            A Foglalás és Fizetés osztályok közötti kapcsolat biztosítja, hogy a szobafoglalásokhoz tartozó pénzügyi tranzakciók nyomon követhetők legyenek.
+        </p>
+        <p>
+            A kapcsolatot „fizetés tartozik hozzá” névvel jelöljük. A jelenlegi modellben egy foglaláshoz legfeljebb egy véglegesített sikeres fizetést rendelünk, míg egy sikeres fizetés pontosan egy foglaláshoz kapcsolódik. Ennek megfelelően a Foglalás oldalán 1, a Fizetés oldalán pedig 0..1 számosságot alkalmazunk.
+        </p>
+        <p>
+            Sikertelen fizetés esetén a foglalás nem kerül véglegesítésre, a rendszer pedig felszabadítja az ideiglenesen zárolt időszakot. A sikertelen fizetési próbálkozások részletes naplózását a későbbi rendszertervezés során pontosíthatjuk.
+        </p>
+
+        <h5>Foglalás – Kupon kapcsolat</h5>
+        <p>
+            A foglalási folyamat során a vendégeknek lehetőségük van kedvezményre jogosító kuponkód felhasználására.
+        </p>
+        <p>
+            A kapcsolatot „kupont használ fel” névvel jelöljük. Egy foglaláshoz legfeljebb egy kupon kapcsolódhat, azonban kupon megadása nem kötelező. Ennek megfelelően a Kupon oldalán 0..1 számosságot alkalmazunk.
+        </p>
+        <p>
+            Egy kupon több különböző foglalásnál is felhasználható lehet, ezért a Foglalás oldalán 0..* számosságot tervezünk. A kuponok tényleges felhasználási korlátait a későbbi tervezési fázisban határozzuk meg.
+        </p>
+
+        <h5>Foglalás – Értesítés kapcsolat</h5>
+        <p>
+            A Foglalás és Értesítés osztályok közötti kapcsolat az automatikus vendégkommunikáció működését biztosítja.
+        </p>
+        <p>
+            A kapcsolatot „értesítést generál” névvel jelöljük. Egy foglaláshoz több értesítés is kapcsolódhat, például foglalási visszaigazolás, fizetési emlékeztető vagy érkezés előtti tájékoztatás.
+        </p>
+        <p>
+            A kapcsolat számossága a Foglalás oldalán 1, az Értesítés oldalán 0..*. Ez lehetővé teszi, hogy egy foglaláshoz több különböző típusú üzenetet is nyilvántartsunk.
+        </p>
+        <p>
+            A rendszer a foglalásokhoz közvetlenül nem kapcsolódó értesítéseket is küldhet, például foglalási ütközés esetén a tulajdonos számára. Ezek kezelését az Értesítés osztály feladatainak pontosítása során vesszük figyelembe.
+        </p>
+
+        <h5>Fizetés – Számla kapcsolat</h5>
+        <p>
+            A Fizetés és Számla osztályok között a későbbi számlázási funkciók megvalósítása érdekében határozunk meg kapcsolatot.
+        </p>
+        <p>
+            A kapcsolatot „számla készül róla” névvel jelöljük. A jelenlegi tervezési elképzelés alapján egy sikeres fizetéshez legfeljebb egy számla kapcsolódhat, míg egy számla egy fizetéshez tartozik.
+        </p>
+        <p>
+            A kapcsolat számossága a Fizetés oldalán 1, a Számla oldalán pedig 0..1.
+        </p>
+        <p>
+            Mivel a számlázási funkció teljes megvalósítása nem tartozik a jelenlegi alapvető követelmények közé, ezt a kapcsolatot egyelőre tervezett kapcsolatként kezeljük.
+        </p>
+
+        <h5>Kapcsolatok külső szolgáltatásokkal</h5>
+        <p>
+            A Fizetés és kommunikáció alrendszer több külső szolgáltatással is együttműködik. A bankkártyás tranzakciók feldolgozásához külső fizetési szolgáltatót, például Stripe vagy Barion rendszert alkalmazunk.
+        </p>
+        <p>
+            Az automatikus értesítések továbbítását egy e-mail-küldő szolgáltatás biztosítja. A későbbiekben a számlázási funkciók megvalósításához külső számlázórendszerrel is kapcsolatot alakíthatunk ki.
+        </p>
+        <p>
+            Ezeket a külső szolgáltatásokat jelenleg nem tekintjük az alrendszer önálló üzleti osztályainak, hanem a rendszer működéséhez szükséges külső kapcsolatokként kezeljük.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest tehát pontosítottuk az osztályok közötti kapcsolatokat, meghatároztuk azok elnevezését és számosságát, valamint tisztáztuk az alrendszer kapcsolatát a Foglaláskezeléssel és a külső szolgáltásokkal.
+        </p>
+
+        <h4>4.1.2. Attribútumok azonosítása</h4>
+        <p>
+            Ebben a fázisban meghatározzuk a Fizetés és kommunikáció alrendszerhez tartozó osztályok legfontosabb attribútumait. A kezdeti osztálydiagram már tartalmazta az alapvető tulajdonságokat, azonban a követelményspecifikáció alapján szükségesnek tartjuk ezek pontosítását és kiegészítését.
+        </p>
+
+        <h5>Fizetés osztály</h5>
+        <p>
+            A Fizetés osztály a szobafoglalásokhoz kapcsolódó pénzügyi tranzakciók adatainak nyilvántartásáért felelős. A kezdeti diagramon szereplő összeg és fizetési státusz mellett szükségesnek tartjuk az egyedi azonosító, a tranzakcióazonosító és a fizetés időpontjának tárolását is.
+        </p>
+        <p>
+            A tranzakcióazonosító segítségével a rendszer kapcsolatot tud teremteni a saját nyilvántartása és a külső fizetési szolgáltató által feldolgozott tranzakció között.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>fizetésAzonosító</li>
+            <li>összeg</li>
+            <li>fizetésiStátusz</li>
+            <li>tranzakcióAzonosító</li>
+            <li>fizetésIdőpontja</li>
+        </ul>
+
+        <h5>Kupon osztály</h5>
+        <p>
+            A Kupon osztály a foglalások során felhasználható kedvezmények nyilvántartására szolgál. A kezdeti diagramon szereplő kuponkód mellett szükségesnek tartjuk a kedvezmény mértékének és a kupon érvényességének meghatározását is.
+        </p>
+        <p>
+            Ezekkel az attribútumokkal a rendszer ellenőrizheti, hogy a vendég által megadott kupon felhasználható-e, valamint meghatározhatja a fizetendő összegre gyakorolt hatását.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>kuponkód</li>
+            <li>kedvezményMértéke</li>
+            <li>érvényességVége</li>
+            <li>aktív</li>
+        </ul>
+        <p>
+            A kedvezmény pontos számítási módját és a kuponok felhasználási korlátait a későbbi rendszertervezés során pontosítjuk.
+        </p>
+
+        <h5>Értesítés osztály</h5>
+        <p>
+            Az Értesítés osztály a rendszer által automatikusan kiküldött üzenetek kezeléséért felelős. A kezdeti diagramon szereplő típus és címzett attribútumok mellett szükségesnek tartjuk az egyedi azonosító, a küldés időpontja és a küldési státusz nyilvántartását is.
+        </p>
+        <p>
+            A küldési státusz segítségével a rendszer ellenőrizheti, hogy egy adott értesítés elküldése sikeresen megtörtént-e.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>értesítésAzonosító</li>
+            <li>típus</li>
+            <li>címzett</li>
+            <li>küldésIdőpontja</li>
+            <li>küldésiStátusz</li>
+        </ul>
+
+        <h5>Számla osztály (tervezett)</h5>
+        <p>
+            A Számla osztály a későbbiekben megvalósítandó számlázási funkciókhoz kapcsolódó adatok nyilvántartására szolgálhat.
+        </p>
+        <p>
+            A kezdeti osztálydiagramon még csak a bizonylat adatai szerepeltek, azonban a számlázási folyamat későbbi kialakítása érdekében szükséges lehet a számla azonosítójának, sorszámának, kiállítási dátumának és összegének tárolása is.
+        </p>
+        <p><strong>Az osztály tervezett attribútumai:</strong></p>
+        <ul>
+            <li>számlaAzonosító</li>
+            <li>számlaszám</li>
+            <li>kiállításDátuma</li>
+            <li>összeg</li>
+            <li>bizonylatAdatok</li>
+        </ul>
+        <p>
+            A Számla osztály attribútumait egyelőre előzetes tervezési javaslatként kezeljük. A végleges felépítésüket a későbbi számlázási funkciók és a külső számlázórendszerek követelményeinek megfelelően határozzuk meg.
+        </p>
+        <p>
+            Az attribútumok azonosítása során tehát a kezdeti osztálydiagramot egyedi azonosítókkal, állapotinformációkkal és a fizetési, illetve kommunikációs folyamatok követéséhez szükséges további tulajdonságokkal egészítettük ki.
+        </p>
+        <p>
+            Az attribútumok pontos típusait és részletes leírásait a későbbi osztálydokumentációban határozzuk meg.
+        </p>
+
+        <h4>4.1.3. Bázisosztályok keresése</h4>
+        <p>
+            A Fizetés és kommunikáció alrendszer osztályainak vizsgálata során ellenőrizzük, hogy találhatók-e olyan közös tulajdonságok vagy viselkedések, amelyek indokolttá tennék egy közös bázisosztály bevezetését.
+        </p>
+        <p>
+            A Fizetés, Kupon, Értesítés és Számla osztályok eltérő feladatokat látnak el a rendszerben. A Fizetés a pénzügyi tranzakciókat kezeli, a Kupon a kedvezmények alkalmazását biztosítja, az Értesítés az automatikus üzenetküldésért felelős, míg a Számla a későbbiekben megvalósítandó bizonylatkezelési funkciókat támogathatja.
+        </p>
+        <p>
+            Bár egyes osztályok rendelkezhetnek hasonló attribútumokkal, például azonosítóval vagy dátummal, ezek önmagukban nem indokolják közös bázisosztály kialakítását.
+        </p>
+        <p>
+            Az Értesítés osztály esetében felmerülhetne egy általánosabb üzenetküldési osztályhierarchia létrehozása, amely külön kezelné például az e-mailes és egyéb értesítési formákat. Mivel azonban a jelenlegi követelményspecifikáció elsősorban az automatikus e-mail-kommunikációra épül, ennek bevezetését nem tartjuk szükségesnek.
+        </p>
+        <p>
+            Ennek megfelelően a Fizetés és kommunikáció alrendszer négy osztályát önálló osztályként kezeljük, és közöttük jelenleg nem alkalmazunk öröklődési vagy általánosítási kapcsolatokat.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest ebben a lépésben nem történt változtatás az osztályok öröklődési viszonyit illetően.
+        </p>
+
+        <h3 id="anal-4-2">4.2. Dinamikus modell</h3>
+        <p>
+            A Fizetés és kommunikáció alrendszer dinamikus modelljének elkészítése során a foglalásokhoz kapcsolódó fizetési folyamatokat, a kedvezmények alkalmazását és az automatikus értesítések működését vizsgáljuk. A modell alapját a korábban elkészített Szoftver Követelmény Specifikációban szereplő „Szobafoglalás leadása és automatikus visszaigazolás” használati eset képezi.
+        </p>
+        <p>
+            A dinamikus modell segítségével bemutatjuk, hogyan történik a fizetendő összeg meghatározása, a bankkártyás fizetés kezdeményezése, a fizetési eredmény feldolgozása, valamint a sikeres foglalásokhoz kapcsolódó visszaigazoló e-mailek kiküldése.
+        </p>
+        <p>
+            Emellett megvizsgáljuk a Fizetés osztály állapotváltozásait is, különös figyelmet fordítva a sikeres és sikertelen tranzakciók kezelésére.
+        </p>
+
+        <h4>4.2.1. Bankkártyás fizetés és automatikus visszaigazolás</h4>
+        <p>
+            A fizetési folyamat akkor kezdődik, amikor a vendég kiválasztotta a megfelelő szobát, megadta személyes adatait, és kezdeményezni szeretné a foglalás kifizetését.
+        </p>
+        <p>
+            A rendszer a Foglaláskezelés alrendszertől megkapja a kiválasztott szobához és időszakhoz tartozó adatokat, valamint a fizetendő összeget.
+        </p>
+        <p>
+            Amennyiben a vendég rendelkezik kuponkóddal, a rendszer ellenőrzi annak érvényességét. Érvényes kupon esetén a kedvezmény figyelembevételével újraszámolja a fizetendő összeget, majd megjeleníti azt a vendég számára.
+        </p>
+        <p>
+            A fizetés kezdeményezésekor a rendszer kapcsolatot létesít a külső fizetési szolgáltatóval, amely a bankkártyás tranzakció feldolgozásáért felelős. A vendég a fizetési felületen megadja a szükséges adatokat, majd a szolgáltató visszaküldi a tranzakció eredményét.
+        </p>
+        <p>
+            Sikeres fizetés esetén a Fizetés objektum sikeres állapotba kerül, és a rendszer továbbítja az eredményt a Foglaláskezelés alrendszernek. Ezt követően a foglalás véglegesítésre kerül, „Kifizetve” státuszt kap, és a kapcsolódó időszak véglegesen foglalttá válik.
+        </p>
+        <p>
+            A sikeres foglalásról a rendszer automatikusan visszaigazoló e-mailt küld a vendégnek. Az értesítés tartalmazza a foglaláshoz kapcsolódó legfontosabb információkat.
+        </p>
+        <p>
+            Sikertelen fizetés esetén a rendszer tájékoztatja a vendéget a tranzakció sikertelenségéről. Ilyenkor a foglalás nem kerül véglegesítésre, és a Foglaláskezelés alrendszer kezdeményezi az ideiglenesen zárolt időszak felszabadítását.
+        </p>
+        <p>
+            A bankkártyás fizetés és az automatikus visszaigazolás folyamatát bemutató UML szekvenciadiagram a dokumentum mellékletei között található.
+        </p>
+
         <div class="diagram-box">
             <img src="Fizetés és kommunikáció alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Bankkártyás fizetés és automatikus visszaigazolás – Szekvenciadiagram">
-            <p class="diagram-caption">7. ábra: Bankkártyás fizetés és automatikus visszaigazolás – Szekvenciadiagram</p>
+            <p class="diagram-caption">6. ábra: Fizetés és kommunikáció alrendszer – Szekvenciadiagram</p>
         </div>
 
-        <h3 id="anal-4-4">4.4. Fizetés osztály állapotdiagramja</h3>
+        <h4>4.2.2. A Fizetés osztály állapotdiagramja</h4>
         <p>
-            A <code>Fizetés</code> példány létrehozásakor <strong>Fizetés indítva</strong> állapotba kerül, a fizetési kapu felé továbbításkor <strong>Feldolgozás alatt</strong> státuszba lép, majd a tranzakció kimenetelétől függően <strong>Sikeres</strong> vagy <strong>Sikertelen</strong> végállapotot vesz fel.
+            A Fizetés osztály állapotdiagramjának segítségével bemutatjuk, hogyan változik egy fizetési művelet állapota a tranzakció feldolgozása során.
         </p>
+        <p>
+            A fizetési folyamat kezdeményezésekor a művelet „Fizetés indítva” állapotba kerül. Ezt követően a rendszer továbbítja a fizetési kérelmet a külső fizetési szolgáltató számára, és a tranzakció „Feldolgozás alatt” állapotba lép.
+        </p>
+        <p>
+            Amennyiben a fizetési szolgáltató sikeres tranzakciót jelez vissza, a fizetés „Sikeres” állapotba kerül. A rendszer ezt követően lehetővé teszi a kapcsolódó foglalás véglegesítését, valamint az automatikus visszaigazolás kiküldését.
+        </p>
+        <p>
+            Ha a bankkártyás tranzakció sikertelen, a fizetés „Sikertelen” állapotba kerül. Ilyenkor a rendszer nem véglegesíti a foglalást, és a korábban lefoglalt időszak ideiglenes zárolása feloldható.
+        </p>
+        <p>
+            Az állapotdiagram elkészítésével pontosabban meghatározhatjuk a fizetési folyamat lehetséges kimeneteleit, valamint a sikeres és sikertelen fizetések kezelésének feltételeit.
+        </p>
+
         <div class="diagram-box">
             <img src="Fizetés osztály állapotdiagramja.png" class="portrait-diagram" alt="Fizetés osztály állapotdiagramja">
-            <p class="diagram-caption">8. ábra: Fizetés osztály állapotdiagramja</p>
+            <p class="diagram-caption">7. ábra: Fizetés osztály állapotdiagramja</p>
+        </div>
+
+        <h3 id="anal-4-3">4.3. Funkcionális modell</h3>
+        <p>
+            A Fizetés és kommunikáció alrendszer funkcionális modelljének elkészítése során bemutatjuk a fizetési folyamatokhoz, a kedvezmények alkalmazásához és az automatikus értesítések kiküldéséhez kapcsolódó legfontosabb feldolgozási lépéseket, valamint az egyes műveletek közötti adatáramlást.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a foglalásokhoz tartozó pénzügyi tranzakciók kezelése és a vendégek automatikus tájékoztatása. A folyamatok végrehajtása során az alrendszer együttműködik a Foglaláskezelés alrendszerrel és a külső fizetési szolgáltatóval.
+        </p>
+
+        <h4>4.3.1. Kuponok ellenőrzése és kedvezmények alkalmazása</h4>
+        <p>
+            A foglalási folyamat során a vendégnek lehetősége van kuponkód megadására. A rendszer ellenőrzi, hogy a megadott kuponkód létezik-e, aktív-e, valamint érvényes-e az adott időpontban.
+        </p>
+        <p>
+            Amennyiben a kupon érvényes, a rendszer meghatározza a kedvezmény mértékét, majd ennek figyelembevételével újraszámolja a foglalás fizetendő összegét. A módosított összeget továbbítja a Foglaláskezelés alrendszer számára.
+        </p>
+        <p>
+            Érvénytelen kupon esetén a rendszer tájékoztatja a vendéget, és a fizetendő összeg változatlan marad.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a kuponkód és a foglalás eredeti összege. A kimeneti adatok a kupon érvényességére vonatkozó információ, a kedvezmény mértéke és a módosított fizetendő összeg.
+        </p>
+
+        <h4>4.3.2. Bankkártyás fizetés feldolgozása</h4>
+        <p>
+            A fizetési folyamat kezdeményezésekor az alrendszer megkapja a Foglaláskezelés alrendszertől a szükséges foglalási adatokat és a fizetendő összeget.
+        </p>
+        <p>
+            A rendszer kapcsolatot létesít a külső fizetési szolgáltatóval, amely biztosítja a bankkártyás tranzakció végrehajtásához szükséges fizetési felületet. A bankkártyaadatok feldolgozását a külső szolgáltató végzi, így azok nem kerülnek tárolásra a saját rendszerünkben.
+        </p>
+        <p>
+            A tranzakció végrehajtását követően a fizetési szolgáltató visszaküldi a fizetés eredményét. A rendszer feldolgozza a kapott információkat, és módosítja a Fizetés objektum aktuális státuszát.
+        </p>
+        <p>
+            Sikeres fizetés esetén az alrendszer továbbítja a tranzakció eredményét a Foglaláskezelés alrendszer számára, amely ezt követően véglegesíti a foglalást.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a foglalási adatok, a fizetendő összeg és a fizetési szolgáltató által visszaküldött információk. A kimeneti adatok a fizetési státusz, a tranzakcióazonosító és a fizetés eredménye.
+        </p>
+
+        <h4>4.3.3. Automatikus értesítések kiküldése</h4>
+        <p>
+            A sikeres foglalás véglegesítését követően a Foglaláskezelés alrendszer értesítési kérelmet továbbít a Fizetés és kommunikáció alrendszer számára.
+        </p>
+        <p>
+            A rendszer a kapott foglalási adatok alapján összeállítja a visszaigazoló e-mail tartalmát, amely magában foglalja a foglaláshoz kapcsolódó legfontosabb információkat, például az érkezés és távozás dátumát, a kiválasztott szobát és a fizetett összeget.
+        </p>
+        <p>
+            A rendszer ezt követően létrehozza az Értesítés objektumot, meghatározza az értesítés típusát és címzettjét, majd az e-mail-küldő szolgáltatás segítségével továbbítja az üzenetet.
+        </p>
+        <p>
+            Az értesítés elküldését követően a rendszer rögzíti a küldés eredményét és időpontját.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a foglalási adatok, az értesítés típusa és a címzett e-mail-címe. A kimeneti adatok az elküldött értesítés és annak küldési státusza.
+        </p>
+
+        <h4>4.3.4. Sikertelen fizetések és értesítések kezelése</h4>
+        <p>
+            Amennyiben a külső fizetési szolgáltató sikertelen tranzakciót jelez vissza, a rendszer a Fizetés objektum státuszát „Sikertelen” állapotra módosítja.
+        </p>
+        <p>
+            A fizetés eredményét továbbítja a Foglaláskezelés alrendszer számára, amely gondoskodik az ideiglenesen zárolt időszak felszabadításáról és a megfelelő hibaüzenet megjelenítéséről.
+        </p>
+        <p>
+            Sikertelen értesítésküldés esetén a rendszer rögzíti a küldés sikertelenségét. Az értesítés elküldésének sikertelensége nem befolyásolja a már sikeresen véglegesített foglalás állapotát.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a fizetési és e-mail-küldő szolgáltatások által visszaküldött eredmények. A kimeneti adatok a módosított státuszok, valamint a szükséges hibajelzések.
+        </p>
+
+        <h4>4.3.5. Számlázási folyamat (tervezett)</h4>
+        <p>
+            A rendszer későbbi továbbfejlesztése során lehetőség nyílhat a sikeres fizetésekhez kapcsolódó számlák automatikus kiállítására.
+        </p>
+        <p>
+            A tervezett folyamat során a rendszer a sikeresen végrehajtott tranzakció adatai és a számlázáshoz szükséges vendégadatok alapján kezdeményezi a számla létrehozását egy külső számlázórendszer segítségével.
+        </p>
+        <p>
+            A létrehozott számla adatait a Számla objektum segítségével tartjuk nyilván.
+        </p>
+        <p>
+            A feldolgozás tervezett bemeneti adatai a sikeres fizetés adatai és a vendég számlázási adatai. A kimeneti adatok a kiállított számla és a hozzá tartozó bizonylat adatai.
+        </p>
+        <p>
+            Mivel a számlázási funkció a rendszer későbbi továbbfejlesztéséhez tartozik, annak pontos működését a későbbi tervezési fázisban határozzuk meg.
+        </p>
+
+        <h3 id="anal-4-4">4.4. Operációk azonosítása</h3>
+        <p>
+            A Fizetés és kommunikáció alrendszer operációinak azonosítása során a korábban elkészített dinamikus és funkcionális modellekből indulunk ki. Célunk, hogy meghatározzuk az egyes osztályokhoz tartozó legfontosabb műveleteket, amelyek segítségével megvalósítható a bankkártyás fizetések kezelése, a kedvezmények alkalmazása, valamint az automatikus értesítések kiküldése.
+        </p>
+        <p>
+            Az alrendszer négy fő osztályát vizsgáljuk meg: Fizetés, Kupon, Értesítés és Számla. Az operációkat az osztályok feladatai és a közöttük fennálló kapcsolatok alapján határozzuk meg.
+        </p>
+
+        <h4>Fizetés osztály</h4>
+        <p>A Fizetés osztály feladata a foglalásokhoz kapcsolódó pénzügyi tranzakciók kezelése, valamint a fizetések eredményének nyilvántartása.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>fizetésIndítása(összeg)</code>: Kezdeményezi a bankkártyás fizetést a külső fizetési szolgáltatón keresztül.</li>
+            <li><code>fizetésiEredményFeldolgozása(eredmény)</code>: Feldolgozza a fizetési szolgáltatótól kapott tranzakciós eredményt.</li>
+            <li><code>státuszMódosítása(újStátusz)</code>: Módosítja a fizetés aktuális állapotát.</li>
+            <li><code>fizetésiAdatokLekérdezése()</code>: Lekérdezi a fizetéshez tartozó legfontosabb adatokat, például az összeget, a státuszt és a tranzakcióazonosítót.</li>
+        </ul>
+
+        <h4>Kupon osztály</h4>
+        <p>A Kupon osztály a foglalások során felhasználható kedvezménykódok kezeléséért és ellenőrzéséért felelős.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>érvényességEllenőrzése()</code>: Megvizsgálja, hogy a kupon aktív-e, és az érvényességi időn belül használják-e fel.</li>
+            <li><code>kedvezménySzámítása(eredetiÖsszeg)</code>: Meghatározza a kupon alapján alkalmazható kedvezmény összegét.</li>
+            <li><code>kedvezményAlkalmazása(eredetiÖsszeg)</code>: Kiszámítja a kedvezmény levonása után fizetendő összeget.</li>
+        </ul>
+
+        <h4>Értesítés osztály</h4>
+        <p>Az Értesítés osztály feladata a rendszer által automatikusan küldött üzenetek előállítása, továbbítása és a küldési eredmények nyilvántartása.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>értesítésLétrehozása(típus, címzett)</code>: Létrehozza a megadott típusú értesítést a megfelelő címzett számára.</li>
+            <li><code>üzenetÖsszeállítása(foglalásiAdatok)</code>: A foglalási adatok alapján elkészíti az értesítés tartalmát.</li>
+            <li><code>értesítésKüldése()</code>: Kezdeményezi az értesítés továbbítását a külső e-mail-küldő szolgáltatáson keresztül.</li>
+            <li><code>küldésiStátuszMódosítása(újStátusz)</code>: Rögzíti az értesítés elküldésének eredményét.</li>
+        </ul>
+
+        <h4>Számla osztály (tervezett)</h4>
+        <p>A Számla osztály a rendszer későbbi továbbfejlesztése során megvalósítandó számlázási funkciókhoz kapcsolódik. Feladata a sikeres fizetésekhez tartozó bizonylatok létrehozásának és nyilvántartásának támogatása.</p>
+        <p><strong>Az osztályhoz a következő tervezett operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>számlaLétrehozása(fizetésiAdatok, számlázásiAdatok)</code>: Kezdeményezi a számla létrehozását a szükséges adatok alapján.</li>
+            <li><code>számlaAdatokLekérdezése()</code>: Lekérdezi a kiállított számlához tartozó adatokat.</li>
+            <li><code>bizonylatMentése(bizonylatAdatok)</code>: Rögzíti a külső számlázórendszertől kapott bizonylat adatait.</li>
+        </ul>
+
+        <h4>Az operációk meghatározásának eredménye</h4>
+        <p>
+            Az operációk azonosítása során pontosítottuk a Fizetés és kommunikáció alrendszer osztályainak feladatait, és meghatároztuk a fizetési, kedvezménykezelési és értesítési folyamatok végrehajtásához szükséges műveleteket.
+        </p>
+        <p>
+            A Fizetés osztály négy, a Kupon osztály három, az Értesítés osztály négy, míg a tervezett Számla osztály három operációval rendelkezik.
+        </p>
+        <p>
+            Az alrendszer továbbra is együttműködik a Foglaláskezelés alrendszerrel, amely a foglalások véglegesítéséért és a foglalási adatok kezeléséért felelős. A pénzügyi tranzakciók tényleges feldolgozását külső fizetési szolgáltató végzi, míg az értesítések továbbításához külső e-mail-küldő szolgáltatást használunk.
+        </p>
+        <p>
+            Az elemzés során nem tartottuk szükségesnek új osztály bevezetését. A korábban meghatározott osztályokat a szükséges operációkkal egészítettük ki, a Számla osztályt pedig továbbra is tervezett funkcióként kezeljük.
+        </p>
+        <p>
+            Az így meghatározott operációkat a következő fejezetben elkészítendő részletes osztálydiagramon is feltüntetjük, majd az egyes osztályok dokumentációjában részletesebben bemutatjuk.
+        </p>
+
+        <h3 id="anal-4-5">4.5. Az analízis modell osztálydiagramja</h3>
+        <p>
+            A Fizetés és kommunikáció alrendszer részletes osztálydiagramját a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze. A kezdeti osztálydiagramhoz képest pontosítottuk az osztályok közötti kapcsolatokat, meghatároztuk azok számosságát, valamint kiegészítettük az osztályokat a szükséges attribútumokkal és operációkkal.
+        </p>
+        <p>
+            Az alrendszer négy fő osztálya a Fizetés, Kupon, Értesítés és Számla. A Számla osztályt továbbra is tervezett funkcióként kezeljük, mivel annak teljes megvalósítása a rendszer későbbi továbbfejlesztése során történhet meg.
+        </p>
+        <p>
+            A diagramon megjelenítjük a Foglaláskezelés alrendszerhez tartozó Foglalás osztályt is, amely a fizetési, kedvezménykezelési és értesítési folyamatokhoz kapcsolódik.
+        </p>
+        <p>
+            A pontosított osztálydiagram segítségével áttekinthetővé válik az egyes osztályok feladata, azok együttműködése, valamint a pénzügyi tranzakciók és az automatikus kommunikáció kezeléséhez szükséges műveletek. A kapcsolódó Foglalás osztály részletes leírását a Foglaláskezelés alrendszer elemzése során már elkészítettük.
+        </p>
+        <p>
+            A Fizetés és kommunikáció alrendszer részletes UML-osztálydiagramja a dokumentum mellékletei között található.
+        </p>
+
+        <div class="diagram-box">
+            <img src="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram.png" alt="Fizetés és kommunikáció alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">8. ábra: Fizetés és kommunikáció alrendszer – Részletes osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-4-6">4.6. Az analízis modell osztályainak listája</h3>
+        <p>
+            Ebben a fejezetben részletesebben bemutatjuk a Fizetés és kommunikáció alrendszerhez tartozó osztályokat. Az osztályok dokumentálása során meghatározzuk azok feladatait, a velük együttműködő további osztályokat, valamint a legfontosabb attribútumokat és operációkat.
+        </p>
+        <p>
+            Az alrendszer négy fő osztálya a Fizetés, Kupon, Értesítés és Számla. A leírásokat a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze.
+        </p>
+
+        <div class="class-doc-card">
+            <h4>4.6.1. Fizetés</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Fizetés osztály a foglalásokhoz kapcsolódó pénzügyi tranzakciók kezeléséért felelős. Feladata a fizetések kezdeményezése, a külső fizetési szolgáltatótól kapott eredmények feldolgozása, valamint a fizetési adatok és státuszok nyilvántartása.</p>
+            <p><strong>Együttműködők:</strong> Foglalás, Számla (tervezett)</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>fizetésAzonosító</code></td><td>Egész szám</td><td>A fizetés egyedi azonosítója.</td></tr>
+                    <tr><td><code>összeg</code></td><td>Decimális szám</td><td>A fizetendő összeg.</td></tr>
+                    <tr><td><code>fizetésiStátusz</code></td><td>Felsorolás</td><td>A fizetés aktuális állapota, például Sikeres vagy Sikertelen.</td></tr>
+                    <tr><td><code>tranzakcióAzonosító</code></td><td>Szöveg</td><td>A külső fizetési szolgáltató által biztosított tranzakcióazonosító.</td></tr>
+                    <tr><td><code>fizetésIdőpontja</code></td><td>Dátum és idő</td><td>A fizetés végrehajtásának időpontja.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>fizetésIndítása()</code></td><td><code>összeg</code></td><td>Kezdeményezi a bankkártyás fizetést a külső fizetési szolgáltatón keresztül.</td></tr>
+                    <tr><td><code>fizetésiEredményFeldolgozása()</code></td><td><code>eredmény</code></td><td>Feldolgozza a fizetési szolgáltatótól kapott tranzakciós eredményt.</td></tr>
+                    <tr><td><code>státuszMódosítása()</code></td><td><code>újStátusz</code></td><td>Módosítja a fizetés aktuális állapotát.</td></tr>
+                    <tr><td><code>fizetésiAdatokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a fizetéshez tartozó legfontosabb adatokat.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>4.6.2. Kupon</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Kupon osztály a foglalások során felhasználható kedvezménykódok kezeléséért felelős. Feladata a kuponok érvényességének ellenőrzése, a kedvezmények mértékének meghatározása, valamint a fizetendő összeg módosításának támogatása.</p>
+            <p><strong>Együttműködők:</strong> Foglalás</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>kuponkód</code></td><td>Szöveg</td><td>A kupon egyedi azonosítására szolgáló kód.</td></tr>
+                    <tr><td><code>kedvezményMértéke</code></td><td>Decimális szám</td><td>A kupon által biztosított kedvezmény mértéke.</td></tr>
+                    <tr><td><code>érvényességVége</code></td><td>Dátum</td><td>A kupon felhasználhatóságának utolsó napja.</td></tr>
+                    <tr><td><code>aktív</code></td><td>Logikai</td><td>Meghatározza, hogy a kupon jelenleg felhasználható-e.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>érvényességEllenőrzése()</code></td><td>Nincs</td><td>Ellenőrzi, hogy a kupon aktív-e, és az érvényességi időn belül használják-e fel.</td></tr>
+                    <tr><td><code>kedvezménySzámítása()</code></td><td><code>eredetiÖsszeg</code></td><td>Meghatározza a kupon alapján alkalmazható kedvezmény összegét.</td></tr>
+                    <tr><td><code>kedvezményAlkalmazása()</code></td><td><code>eredetiÖsszeg</code></td><td>Kiszámítja a kedvezmény levonása után fizetendő összeget.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>4.6.3. Értesítés</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            Az Értesítés osztály a rendszer által automatikusan küldött üzenetek kezeléséért felelős. Feladata a foglalási visszaigazolások és egyéb tájékoztatások összeállítása, továbbítása, valamint a küldési eredmények nyilvántartása.</p>
+            <p><strong>Együttműködők:</strong> Foglalás</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>értesítésAzonosító</code></td><td>Egész szám</td><td>Az értesítés egyedi azonosítója.</td></tr>
+                    <tr><td><code>típus</code></td><td>Felsorolás</td><td>Az értesítés típusa, például visszaigazolás vagy fizetési emlékeztető.</td></tr>
+                    <tr><td><code>címzett</code></td><td>Szöveg</td><td>Az értesítés címzettjének e-mail-címe.</td></tr>
+                    <tr><td><code>küldésIdőpontja</code></td><td>Dátum és idő</td><td>Az értesítés elküldésének időpontja.</td></tr>
+                    <tr><td><code>küldésiStátusz</code></td><td>Felsorolás</td><td>Az értesítés küldésének aktuális állapota.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>értesítésLétrehozása()</code></td><td><code>típus, címzett</code></td><td>Létrehozza a megadott típusú értesítést a megfelelő címzett számára.</td></tr>
+                    <tr><td><code>üzenetÖsszeállítása()</code></td><td><code>foglalásiAdatok</code></td><td>Összeállítja az értesítés tartalmát a foglalási adatok alapján.</td></tr>
+                    <tr><td><code>értesítésKüldése()</code></td><td>Nincs</td><td>Kezdeményezi az értesítés továbbítását a külső e-mail-küldő szolgáltatáson keresztül.</td></tr>
+                    <tr><td><code>küldésiStátuszMódosítása()</code></td><td><code>újStátusz</code></td><td>Módosítja az értesítés küldési státuszát.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>4.6.4. Számla (tervezett)</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Számla osztály a rendszer későbbi továbbfejlesztése során megvalósítandó számlázási funkciókhoz kapcsolódik. Feladata a sikeres fizetésekhez tartozó számlák létrehozásának támogatása, valamint a kiállított bizonylatok adatainak nyilvántartása.</p>
+            <p><strong>Együttműködők:</strong> Fizetés</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>számlaAzonosító</code></td><td>Egész szám</td><td>A számla egyedi azonosítója.</td></tr>
+                    <tr><td><code>számlaszám</code></td><td>Szöveg</td><td>A kiállított számla sorszáma.</td></tr>
+                    <tr><td><code>kiállításDátuma</code></td><td>Dátum</td><td>A számla kiállításának dátuma.</td></tr>
+                    <tr><td><code>összeg</code></td><td>Decimális szám</td><td>A számlán szereplő összeg.</td></tr>
+                    <tr><td><code>bizonylatAdatok</code></td><td>Összetett adat</td><td>A kiállított bizonylathoz kapcsolódó információk.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>számlaLétrehozása()</code></td><td><code>fizetésiAdatok, számlázásiAdatok</code></td><td>Kezdeményezi a számla létrehozását a szükséges adatok alapján.</td></tr>
+                    <tr><td><code>számlaAdatokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a kiállított számlához tartozó adatokat.</td></tr>
+                    <tr><td><code>bizonylatMentése()</code></td><td><code>bizonylatAdatok</code></td><td>Rögzíti a külső számlázórendszertől kapott bizonylat adatait.</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- 5. NAPTÁR ÉS SZINKRONIZÁCIÓ ALRENDSZER -->
+    <!-- 5. NAPTÁR ÉS SZINKRONIZÁCIÓ ALRENDSZER MODELLJE -->
     <section class="card" id="anal-5">
         <span class="subsystem-badge badge-n">N Alrendszer</span>
-        <h2>5. Naptár és szinkronizáció alrendszer</h2>
+        <h2>5. Naptár és szinkronizáció alrendszer modellje</h2>
+
+        <h3 id="anal-5-1">5.1. Statikus modell</h3>
         <p>
-            A <strong>Naptár és szinkronizáció alrendszer</strong> biztosítja az egységes foglaltsági nyilvántartást, az 5 percenkénti kétirányú iCal-adatcserét a külső szállásportálokkal (Booking.com, Airbnb), valamint a párhuzamos foglalásokból eredő túlfoglalások azonnali blokkolását és riasztását.
+            A Naptár és szinkronizáció alrendszer statikus modelljének elkészítése során részletesebben megvizsgáljuk a korábban meghatározott osztályokat, azok tulajdonságait és a közöttük fennálló kapcsolatokat. Az alrendszer három fő osztályból áll: Foglalási naptár, Külső naptár és Foglalási ütközés.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a vendégház szobáinak foglaltsági adatainak nyilvántartása, valamint a külső szállásfoglaló platformokkal történő naptár-szinkronizáció biztosítása. A rendszer célja, hogy a különböző felületeken érkező foglalásokat összehangolja, és lehetőség szerint megakadályozza a párhuzamos foglalások kialakulását.
+        </p>
+        <p>
+            A célunk, hogy a kezdeti osztálydiagramot pontosítva egy olyan modellt alakítsunk ki, amely megfelelően szemlélteti a foglalási naptárak, a külső platformok és az esetlegesen kialakuló foglalási ütközések közötti kapcsolatokat.
         </p>
 
-        <h3 id="anal-5-1">5.1. Részletes analízis osztálydiagram</h3>
-        <div class="diagram-box">
-            <img src="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram.png" alt="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram">
-            <p class="diagram-caption">9. ábra: Naptár és szinkronizáció alrendszer – Részletes analízis osztálydiagram</p>
-        </div>
-
-        <h3 id="anal-5-2">5.2. Osztályok specifikációja</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Osztály neve</th>
-                    <th>Attribútumok</th>
-                    <th>Operációk (Metódusok)</th>
-                    <th>Szerepkör és kapcsolatok</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>Foglalási naptár</code></td>
-                    <td><code>naptárAzonosító</code>, <code>foglaltIdőszakok</code>, <code>utolsóFrissítés</code></td>
-                    <td><code>elérhetőségEllenőrzése(szoba, érkezés, távozás)</code>, <code>időszakZárolása(szoba, érkezés, távozás)</code>, <code>zárolásFeloldása(szoba, érkezés, távozás)</code>, <code>foglalásRögzítése(foglalás)</code>, <code>foglaltságiAdatokLekérdezése()</code>, <code>foglaltságiAdatokFrissítése(foglalásiAdatok)</code>, <code>ütközésEllenőrzése(foglalás)</code></td>
-                    <td>A vendégház központi foglaltsági naptára; <code>0..*</code> külső naptárral szinkronizál, és nyilvántartja a foglalásokat.</td>
-                </tr>
-                <tr>
-                    <td><code>Külső naptár</code></td>
-                    <td><code>külsőNaptárAzonosító</code>, <code>platform</code>, <code>iCalHivatkozás</code>, <code>utolsóSzinkronizáció</code>, <code>szinkronizációsStátusz</code></td>
-                    <td><code>szinkronizációIndítása()</code>, <code>külsőAdatokLekérdezése()</code>, <code>foglalásokÖsszehasonlítása(központiAdatok)</code>, <code>foglaltságiAdatokTovábbítása(foglaltságiAdatok)</code>, <code>szinkronizációsStátuszMódosítása(újStátusz)</code>, <code>utolsóSzinkronizációRögzítése(időpont)</code></td>
-                    <td>Egy adott OTA csatorna (Booking.com, Airbnb) iCal-végpontját és szinkronizációs állapotát reprezentálja.</td>
-                </tr>
-                <tr>
-                    <td><code>Foglalási ütközés</code></td>
-                    <td><code>ütközésAzonosító</code>, <code>érintettIdőszak</code>, <code>észlelésIdőpontja</code>, <code>státusz</code></td>
-                    <td><code>ütközésLétrehozása(érintettFoglalások, érintettIdőszak)</code>, <code>érintettFoglalásokLekérdezése()</code>, <code>értesítésKezdeményezése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>ütközésRendezése()</code></td>
-                    <td>Átfedő foglalások észlelésekor létrejövő riasztási rekord, amely értesíti a tulajdonost és nyomon követi a rendezést.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="anal-5-3">5.3. Naptárszinkronizáció szekvenciadiagramja</h3>
+        <h4>5.1.1. Kapcsolatok pontosítása</h4>
         <p>
-            A szekvenciadiagram bemutatja az időzítő által 5 percenként indított szinkronizációs ciklust, az ütközésmentes foglalásimportálást, valamint az ütközésészleléskor lefutó riasztási és tulajdonosi rendezési folyamatot.
+            A kezdeti osztálydiagram elkészítése során meghatároztuk a Naptár és szinkronizáció alrendszer legfontosabb kapcsolatait. Ebben a fázisban ezeket részletesebben megvizsgáljuk, elnevezzük, valamint meghatározzuk a kapcsolatok szerepköreit és számosságait.
         </p>
+
+        <h5>Vendégház – Foglalási naptár kapcsolat</h5>
+        <p>
+            A Vendégház és Foglalási naptár osztályok közötti kapcsolat biztosítja, hogy minden szálláshely foglaltsági adatai egy központi naptárban legyenek nyilvántartva.
+        </p>
+        <p>
+            A kapcsolatot „naptárral rendelkezik” névvel jelöljük. A jelenlegi modellben egy vendégházhoz egy központi foglalási naptár tartozik, és egy foglalási naptár egy vendégház adatait kezeli.
+        </p>
+        <p>
+            Ennek megfelelően a kapcsolat számossága mindkét oldalon 1.
+        </p>
+
+        <h5>Foglalási naptár – Foglalás kapcsolat</h5>
+        <p>
+            A Foglalási naptár és Foglalás osztályok közötti kapcsolat a szobák foglaltsági adatainak nyilvántartását biztosítja.
+        </p>
+        <p>
+            A kapcsolatot „nyilvántartja” névvel jelöljük. Egy foglalási naptár több foglalást is tartalmazhat, azonban egy adott foglalás a jelenlegi modellben egy központi naptárhoz kapcsolódik.
+        </p>
+        <p>
+            A kapcsolat számossága a Foglalási naptár oldalán 1, a Foglalás oldalán pedig 0..*.
+        </p>
+        <p>
+            A Foglalás osztály a Foglaláskezelés alrendszerhez tartozik, ezért annak részletes attribútumait és operációit ott dokumentáltuk.
+        </p>
+
+        <h5>Foglalási naptár – Külső naptár kapcsolat</h5>
+        <p>
+            A Foglalási naptár és Külső naptár osztályok közötti kapcsolat biztosítja a Booking, Airbnb és más külső szállásfoglaló platformokkal történő adatcserét.
+        </p>
+        <p>
+            A kapcsolatot „szinkronizálja” névvel jelöljük. Egy központi foglalási naptárhoz több külső naptár is kapcsolódhat, azonban egy külső naptárkapcsolat egy központi foglalási naptárhoz tartozik.
+        </p>
+        <p>
+            A kapcsolat számossága a Foglalási naptár oldalán 1, a Külső naptár oldalán pedig 0..*.
+        </p>
+        <p>
+            A külső naptárak összekapcsolása nem kötelező, ezért a rendszer akkor is működőképes marad, ha a tulajdonos még nem állított be külső naptárkapcsolatokat.
+        </p>
+
+        <h5>Foglalás – Foglalási ütközés kapcsolat</h5>
+        <p>
+            A Foglalás és Foglalási ütközés osztályok közötti kapcsolat a különböző foglalási felületeken létrejövő, egymással ütköző foglalások kezelését segíti.
+        </p>
+        <p>
+            A kapcsolatot „ütközésben érintett” névvel jelöljük. Egy foglaláshoz több ütközési esemény is kapcsolódhat, míg egy foglalási ütközés legalább két egymással ütköző foglalást érint.
+        </p>
+        <p>
+            Ennek megfelelően a Foglalás oldalán 2..*, a Foglalási ütközés oldalán pedig 0..* számosságot alkalmazunk.
+        </p>
+        <p>
+            Ez a kapcsolat lehetővé teszi, hogy a rendszer azonosítsa azokat az időszakokat, amelyekben több foglalás is ugyanarra a szobára vonatkozik.
+        </p>
+
+        <h5>Tulajdonos – Foglalási ütközés kapcsolat</h5>
+        <p>
+            A Foglalási ütközés osztály a Tulajdonos osztállyal is kapcsolatban áll, mivel a követelményspecifikáció szerint a rendszer ütközés esetén értesíti a szálláshely tulajdonosát.
+        </p>
+        <p>
+            A kapcsolatot „kezeli az ütközést” névvel jelöljük. Egy tulajdonos több foglalási ütközést is kezelhet, azonban egy ütközési eseményhez a jelenlegi modellben egy felelős tulajdonost rendelünk.
+        </p>
+        <p>
+            A kapcsolat számossága a Tulajdonos oldalán 1, a Foglalási ütközés oldalán 0..*.
+        </p>
+        <p>
+            A Tulajdonos osztály részletes leírását az Üzemeltetés és takarítás alrendszer elemzése során készítjük el.
+        </p>
+
+        <h5>A kapcsolatok pontosításának eredménye</h5>
+        <p>
+            A kezdeti osztálydiagramhoz képest meghatároztuk a kapcsolatok elnevezését és számosságát, valamint pontosítottuk a különböző alrendszerek közötti együttműködést.
+        </p>
+        <p>
+            A modellben továbbra is a három korábban meghatározott fő osztály szerepel, azonban a Foglalási naptár és a Foglalási ütközés osztályok kapcsolatainak részletesebb meghatározásával biztosítjuk a szinkronizációs folyamat megfelelő szemléltetését.
+        </p>
+
+        <h4>5.1.2. Attribútumok azonosítása</h4>
+        <p>
+            Ebben a fázisban meghatározzuk a Naptár és szinkronizáció alrendszerhez tartozó osztályok legfontosabb attribútumait. A kezdeti osztálydiagram már tartalmazta az alapvető tulajdonságokat, azonban a követelményspecifikáció alapján szükségesnek tartjuk ezek pontosítását és kiegészítését.
+        </p>
+
+        <h5>Foglalási naptár osztály</h5>
+        <p>
+            A Foglalási naptár osztály a vendégház szobáinak foglaltsági adatainak központi nyilvántartásáért felelős.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő foglalt időszakok mellett szükségesnek tartjuk egy egyedi naptárazonosító és az utolsó frissítés időpontjának bevezetését is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>naptárAzonosító</li>
+            <li>foglaltIdőszakok</li>
+            <li>utolsóFrissítés</li>
+        </ul>
+        <p>
+            A foglalt időszakok segítségével a rendszer ellenőrizheti a szobák elérhetőségét, míg az utolsó frissítés időpontja a naptáradatok naprakészségének követését támogatja.
+        </p>
+
+        <h5>Külső naptár osztály</h5>
+        <p>
+            A Külső naptár osztály a Booking, Airbnb és más külső foglalási platformokhoz kapcsolódó naptáradatokat reprezentálja.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő platform és iCal-hivatkozás mellett szükségesnek tartjuk az egyedi azonosító, az utolsó szinkronizáció időpontja és a szinkronizációs státusz nyilvántartását is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>külsőNaptárAzonosító</li>
+            <li>platform</li>
+            <li>iCalHivatkozás</li>
+            <li>utolsóSzinkronizáció</li>
+            <li>szinkronizációsStátusz</li>
+        </ul>
+        <p>
+            Ezekkel az attribútumokkal a rendszer nyomon követheti a külső naptárkapcsolatok állapotát, valamint ellenőrizheti, hogy az adatok frissítése sikeresen megtörtént-e.
+        </p>
+
+        <h5>Foglalási ütközés osztály</h5>
+        <p>
+            A Foglalási ütközés osztály a különböző foglalási platformok között kialakuló foglalási konfliktusok nyilvántartására szolgál.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő érintett időszak mellett szükségesnek tartjuk az egyedi azonosító, az észlelés időpontja és az ütközés aktuális státuszának tárolását is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>ütközésAzonosító</li>
+            <li>érintettIdőszak</li>
+            <li>észlelésIdőpontja</li>
+            <li>státusz</li>
+        </ul>
+        <p>
+            A státusz segítségével a rendszer nyomon követheti, hogy az adott ütközést a tulajdonos már ellenőrizte vagy rendezte-e.
+        </p>
+
+        <h5>Az attribútumok azonosításának eredménye</h5>
+        <p>
+            Az attribútumok azonosítása során a kezdeti osztálydiagramot egyedi azonosítókkal, időpontokkal és állapotinformációkkal egészítettük ki.
+        </p>
+        <p>
+            Ezek a tulajdonságok biztosítják a foglalási naptárak és a szinkronizációs folyamatok megfelelő követhetőségét, valamint támogatják a foglalási ütközések kezelését.
+        </p>
+        <p>
+            Az attribútumok pontos típusait és részletes leírásait a későbbi osztálydokumentációban határozzuk meg.
+        </p>
+
+        <h4>5.1.3. Bázisosztályok keresése</h4>
+        <p>
+            A Naptár és szinkronizáció alrendszer osztályainak vizsgálata során ellenőrizzük, hogy találhatók-e olyan közös tulajdonságok vagy viselkedések, amelyek indokolttá tennék egy közös bázisosztály létrehozását.
+        </p>
+        <p>
+            A Foglalási naptár és Külső naptár osztályok hasonló szerepet töltenek be, mivel mindkettő a foglaltsági adatok nyilvántartásához és kezeléséhez kapcsolódik.
+        </p>
+        <p>
+            Felmerülhetne egy közös Naptár bázisosztály bevezetése, amely a két osztály közös tulajdonságait és műveleteit tartalmazná. Ugyanakkor a Foglalási naptár a rendszer központi nyilvántartásáért felelős, míg a Külső naptár elsősorban a külső platformokhoz tartozó kapcsolatok és szinkronizációs információk kezelését végzi.
+        </p>
+        <p>
+            A két osztály feladatai közötti különbség miatt jelenleg nem tartjuk indokoltnak közös bázisosztály kialakítását.
+        </p>
+        <p>
+            A Foglalási ütközés osztály ettől eltérő feladatot lát el, mivel a párhuzamos foglalásokból származó konfliktusok nyilvántartására és kezelésére szolgál.
+        </p>
+        <p>
+            Ennek megfelelően a Naptár és szinkronizáció alrendszer három fő osztályát önálló osztályként kezeljük, közöttük jelenleg nem alkalmazunk általánosítási vagy öröklődési kapcsolatokat.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest ebben a lépésben nem történt változtatás az osztályok öröklődési viszonyait illetően.
+        </p>
+
+        <h3 id="anal-5-2">5.2. Dinamikus modell</h3>
+        <p>
+            A Naptár és szinkronizáció alrendszer dinamikus modelljének elkészítése során a külső foglalási naptárak szinkronizációját, a foglaltsági adatok frissítését, valamint a párhuzamos foglalásokból származó ütközések kezelését vizsgáljuk. A modell alapját a korábban elkészített Szoftver Követelmény Specifikációban szereplő „Naptár-szinkronizáció és túlfoglalás blokkolása” használati eset képezi.
+        </p>
+        <p>
+            A dinamikus modell segítségével bemutatjuk, hogyan történik a Booking és Airbnb platformok foglalási adatainak lekérdezése, a központi foglalási naptár frissítése, valamint az esetleges foglalási ütközések felismerése.
+        </p>
+        <p>
+            Emellett megvizsgáljuk a Foglalási ütközés osztály állapotváltozásait is, különös figyelmet fordítva az ütközések észlelésére, a tulajdonos értesítésére és a problémák rendezésére.
+        </p>
+
+        <h4>5.2.1. Naptár-szinkronizáció és túlfoglalás blokkolása</h4>
+        <p>
+            A naptár-szinkronizációs folyamat automatikusan, a rendszer háttérműködésének részeként történik. A követelményspecifikáció alapján a rendszer ötpercenként ellenőrzi a kapcsolódó külső szállásfoglaló platformok naptárait, és lekérdezi az ott szereplő foglalási adatokat.
+        </p>
+        <p>
+            A folyamat megkezdésekor a rendszer ellenőrzi a korábban beállított külső naptárkapcsolatokat, majd az iCal-hivatkozások segítségével lekéri a Booking és Airbnb platformokon található foglalásokat.
+        </p>
+        <p>
+            A lekérdezett adatokat összehasonlítja a központi Foglalási naptárban már szereplő foglalásokkal. Amennyiben új foglalást talál, megvizsgálja, hogy az adott szoba és időszak nem ütközik-e egy korábban rögzített foglalással.
+        </p>
+        <p>
+            Ha nem található ütközés, a rendszer rögzíti az új foglalást a központi nyilvántartásban, majd frissíti a foglaltsági adatokat. Ezt követően kezdeményezi a módosított foglaltsági információk továbbítását a többi kapcsolódó naptár felé.
+        </p>
+        <p>
+            Amennyiben a rendszer olyan új foglalást észlel, amely egy már meglévő foglalással azonos szobára és egymást átfedő időszakra vonatkozik, foglalási ütközést jelez.
+        </p>
+        <p>
+            Ilyen esetben a rendszer létrehozza a Foglalási ütközés objektumot, rögzíti az érintett időszakot és a konfliktushoz kapcsolódó információkat, majd automatikus értesítést küld a vendégház tulajdonosának.
+        </p>
+        <p>
+            A tulajdonos ezt követően manuálisan ellenőrizheti a problémás foglalásokat, és elvégezheti a szükséges módosításokat.
+        </p>
+        <p>
+            A naptár-szinkronizáció és a túlfoglalás blokkolásának folyamatát bemutató UML szekvenciadiagram a dokumentum mellékletei között található.
+        </p>
+
         <div class="diagram-box">
             <img src="Naptár és szinkronizáció alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Naptár-szinkronizáció és túlfoglalás blokkolása – Szekvenciadiagram">
-            <p class="diagram-caption">10. ábra: Naptár-szinkronizáció és túlfoglalás blokkolása – Szekvenciadiagram</p>
+            <p class="diagram-caption">9. ábra: Naptár és szinkronizáció alrendszer – Szekvenciadiagram</p>
+        </div>
+
+        <h3 id="anal-5-3">5.3. Funkcionális modell</h3>
+        <p>
+            A Naptár és szinkronizáció alrendszer funkcionális modelljének elkészítése során bemutatjuk a foglaltsági adatok nyilvántartásához, a külső naptárak szinkronizációjához és a foglalási ütközések kezeléséhez kapcsolódó legfontosabb feldolgozási lépéseket, valamint az egyes műveletek közötti adatáramlást.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a vendégház szobáinak foglaltsági adatainak naprakészen tartása, a különböző foglalási platformokról érkező adatok összehangolása, valamint a párhuzamos foglalások kialakulásának megelőzése.
+        </p>
+        <p>
+            A folyamatok végrehajtása során az alrendszer együttműködik a Foglaláskezelés, a Fizetés és kommunikáció, valamint az Üzemeltetés és takarítás alrendszerekkel.
+        </p>
+
+        <h4>5.3.1. Szobák elérhetőségének ellenőrzése</h4>
+        <p>
+            A foglalási folyamat során a Naptár és szinkronizáció alrendszer megkapja a Foglaláskezelés alrendszertől a kiválasztott szobához és időszakhoz tartozó adatokat.
+        </p>
+        <p>
+            A rendszer megvizsgálja a központi foglalási naptárban szereplő foglalt és ideiglenesen zárolt időszakokat, majd ellenőrzi, hogy a kiválasztott szoba elérhető-e a megadott időszakban.
+        </p>
+        <p>
+            Amennyiben a megadott időszak nem ütközik egy már meglévő foglalással vagy zárolással, a rendszer elérhetőnek jelöli a szobát. Ellenkező esetben jelzi, hogy a szoba az adott időszakban nem foglalható.
+        </p>
+        <p>
+            Az ellenőrzés eredményét az alrendszer továbbítja a Foglaláskezelés alrendszer számára.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a szoba azonosítója, az érkezés és távozás dátuma, valamint a központi naptár foglaltsági adatai. A kimeneti adat a szoba elérhetőségére vonatkozó információ.
+        </p>
+
+        <h4>5.3.2. Foglalási időszakok zárolása és felszabadítása</h4>
+        <p>
+            A foglalási folyamat során, a fizetés kezdeményezése előtt a Foglaláskezelés alrendszer ideiglenes zárolási kérelmet továbbít a Naptár és szinkronizáció alrendszer számára.
+        </p>
+        <p>
+            A rendszer ismételten ellenőrzi a kiválasztott időszak elérhetőségét, majd amennyiben az továbbra is szabad, ideiglenesen zárolja azt. Az elérhetőség ellenőrzését és a zárolást egységes műveletként kezeljük, hogy ugyanarra az időszakra ne indulhasson párhuzamos foglalás.
+        </p>
+        <p>
+            Sikeres fizetés és a foglalás véglegesítése esetén az ideiglenes zárolást végleges foglaltság váltja fel. Sikertelen fizetés esetén a rendszer feloldja az ideiglenes zárolást, így az adott szoba ismét foglalhatóvá válik.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a szoba azonosítója, az érintett időszak és a foglalási folyamat eredménye. A kimeneti adatok a módosított foglaltsági információk és a zárolás eredménye.
+        </p>
+
+        <h4>5.3.3. Külső naptárak szinkronizációja</h4>
+        <p>
+            A rendszer meghatározott időközönként, ötpercenként kezdeményezi a kapcsolódó külső naptárak szinkronizációját.
+        </p>
+        <p>
+            A korábban beállított iCal-hivatkozások segítségével lekérdezi a Booking, Airbnb és egyéb kapcsolódó szállásfoglaló platformok elérhető naptáradatait.
+        </p>
+        <p>
+            A rendszer a lekérdezett adatokat összehasonlítja a központi foglalási naptárban szereplő információkkal, és azonosítja az új vagy módosított foglalásokat.
+        </p>
+        <p>
+            Amennyiben a beérkező adatok nem okoznak foglalási ütközést, a rendszer frissíti a központi nyilvántartást. Ezt követően a módosított foglaltsági adatokat elérhetővé teszi a többi kapcsolódó külső naptár számára.
+        </p>
+        <p>
+            A szinkronizáció befejezését követően a rendszer rögzíti a művelet időpontját és eredményét.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a külső naptárak iCal-hivatkozásai, a külső platformokról lekérdezett foglalási adatok és a központi foglalási naptár adatai. A kimeneti adatok a frissített foglaltsági információk, a szinkronizációs státusz és az utolsó sikeres szinkronizáció időpontja.
+        </p>
+
+        <h4>5.3.4. Foglalási ütközések felismerése</h4>
+        <p>
+            A külső naptárak szinkronizációja során a rendszer megvizsgálja, hogy a beérkező foglalások között található-e olyan, amely egy már meglévő foglalással azonos szobára és egymást átfedő időszakra vonatkozik.
+        </p>
+        <p>
+            Amennyiben a rendszer foglalási ütközést észlel, létrehoz egy Foglalási ütközés objektumot, amelyben rögzíti az érintett időszakot, az észlelés időpontját és az ütközéshez kapcsolódó foglalásokat.
+        </p>
+        <p>
+            Az objektum kezdetben „Észlelt” státuszt kap. A rendszer az ütköző időszakot nem teszi elérhetővé újabb foglalások számára, majd értesítési kérelmet továbbít a Fizetés és kommunikáció alrendszernek.
+        </p>
+        <p>
+            A sikeres értesítésküldést követően az ütközés státusza „Jelzett” állapotra módosul.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a külső és központi foglalási adatok, a szobák azonosítói és az érintett időszakok. A kimeneti adatok a létrehozott Foglalási ütközés objektum, az ütközés státusza és a tulajdonos számára továbbított értesítési kérelem.
+        </p>
+
+        <h4>5.3.5. Foglalási ütközések rendezése</h4>
+        <p>
+            A tulajdonos az automatikus értesítés alapján megtekintheti a rendszer által észlelt foglalási ütközéseket és az azokhoz kapcsolódó információkat.
+        </p>
+        <p>
+            Az érintett foglalások ellenőrzésének megkezdésekor a rendszer az ütközés státuszát „Ellenőrzés alatt” állapotra módosítja.
+        </p>
+        <p>
+            A tulajdonos megvizsgálja az érintett foglalásokat, majd a szükséges módosítások elvégzésével manuálisan rendezi a kialakult konfliktust.
+        </p>
+        <p>
+            A probléma megoldását követően a rendszer ellenőrzi, hogy az ütközés megszűnt-e, majd frissíti a központi foglalási naptár adatait, és elérhetővé teszi a módosított foglaltsági információkat a kapcsolódó külső naptárak számára.
+        </p>
+        <p>
+            Az ütközés státusza ezt követően „Rendezett” állapotra módosul.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai az ütközéshez tartozó információk és a tulajdonos által végrehajtott módosítások. A kimeneti adatok a frissített foglaltsági adatok és a rendezett foglalási ütközés.
+        </p>
+
+        <h4>5.3.6. Sikertelen szinkronizáció kezelése</h4>
+        <p>
+            Amennyiben valamelyik külső naptár adatainak lekérdezése sikertelen, a rendszer rögzíti a szinkronizáció sikertelenségét, és módosítja a Külső naptár objektum szinkronizációs státuszát.
+        </p>
+        <p>
+            A sikertelen szinkronizáció nem eredményezi a korábban rögzített foglaltsági adatok törlését. A rendszer megőrzi az utolsó sikeres szinkronizáció során lekérdezett információkat, és a következő ütemezett szinkronizáció alkalmával ismét megkísérli az adatok frissítését.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a külső naptárkapcsolat adatai és a szinkronizáció során kapott hibainformációk. A kimeneti adatok a módosított szinkronizációs státusz és a megőrzött foglaltsági információk.
+        </p>
+
+        <h3 id="anal-5-4">5.4. Operációk azonosítása</h3>
+        <p>
+            A Naptár és szinkronizáció alrendszer operációinak azonosítása során a korábban elkészített dinamikus és funkcionális modellekből indulunk ki. Célunk, hogy meghatározzuk az egyes osztályokhoz tartozó legfontosabb műveleteket, amelyek segítségével megvalósítható a szobák foglaltságának nyilvántartása, a külső naptárak szinkronizációja, valamint a foglalási ütközések felismerése és kezelése.
+        </p>
+        <p>
+            Az alrendszer három fő osztályát vizsgáljuk meg: Foglalási naptár, Külső naptár és Foglalási ütközés. Az operációkat az osztályok feladatai és a közöttük fennálló kapcsolatok alapján határozzuk meg.
+        </p>
+
+        <h4>Foglalási naptár osztály</h4>
+        <p>A Foglalási naptár osztály feladata a vendégház szobáinak foglaltsági adatainak központi nyilvántartása, valamint az elérhetőségi ellenőrzések és a foglalási időszakok kezelésének biztosítása.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>elérhetőségEllenőrzése(szoba, érkezés, távozás)</code>: Megvizsgálja, hogy a kiválasztott szoba szabad-e a megadott időszakban.</li>
+            <li><code>időszakZárolása(szoba, érkezés, távozás)</code>: Ellenőrzi az időszak elérhetőségét, majd sikeres ellenőrzés esetén ideiglenesen zárolja azt a fizetési folyamat idejére.</li>
+            <li><code>zárolásFeloldása(szoba, érkezés, távozás)</code>: Sikertelen fizetés vagy megszakított foglalás esetén feloldja az ideiglenes zárolást.</li>
+            <li><code>foglalásRögzítése(foglalás)</code>: Nyilvántartásba veszi a sikeresen véglegesített vagy külső platformról átvett foglalást.</li>
+            <li><code>foglaltságiAdatokLekérdezése()</code>: Lekérdezi a központi naptárban szereplő foglaltsági információkat.</li>
+            <li><code>foglaltságiAdatokFrissítése(foglalásiAdatok)</code>: Frissíti a központi naptár adatait a módosított vagy újonnan beérkező foglalások alapján.</li>
+            <li><code>ütközésEllenőrzése(foglalás)</code>: Ellenőrzi, hogy a megadott foglalás időszaka átfedésben van-e ugyanazon szoba más foglalásaival.</li>
+        </ul>
+
+        <h4>Külső naptár osztály</h4>
+        <p>A Külső naptár osztály a Booking, Airbnb és más külső szállásfoglaló platformokhoz kapcsolódó naptáradatok kezeléséért és szinkronizációjáért felelős.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>szinkronizációIndítása()</code>: Elindítja a külső naptár adatainak szinkronizációját.</li>
+            <li><code>külsőAdatokLekérdezése()</code>: Az iCal-hivatkozás segítségével lekérdezi a külső platformon szereplő foglalási adatokat.</li>
+            <li><code>foglalásokÖsszehasonlítása(központiAdatok)</code>: Összehasonlítja a külső naptárban szereplő foglalásokat a központi naptár adataival, és azonosítja az eltéréseket.</li>
+            <li><code>foglaltságiAdatokTovábbítása(foglalásiAdatok)</code>: Elérhetővé teszi a frissített foglaltsági információkat a kapcsolódó külső naptár számára.</li>
+            <li><code>szinkronizációsStátuszMódosítása(újStátusz)</code>: Módosítja a szinkronizáció aktuális állapotát a művelet eredményének megfelelően.</li>
+            <li><code>utolsóSzinkronizációRögzítése(időpont)</code>: Rögzíti a legutóbbi sikeres szinkronizáció időpontját.</li>
+        </ul>
+
+        <h4>Foglalási ütközés osztály</h4>
+        <p>A Foglalási ütközés osztály feladata a párhuzamos foglalásokból származó konfliktusok nyilvántartása, valamint az ütközések ellenőrzésének és rendezésének támogatása.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>ütközésLétrehozása(érintettFoglalások, érintettIdőszak)</code>: Létrehozza a felismert foglalási konfliktushoz tartozó nyilvántartást.</li>
+            <li><code>érintettFoglalásokLekérdezése()</code>: Lekérdezi az ütközésben érintett foglalásokat és azok adatait.</li>
+            <li><code>értesítésKezdeményezése()</code>: Értesítési kérelmet továbbít a Fizetés és kommunikáció alrendszer számára a tulajdonos figyelmeztetése érdekében.</li>
+            <li><code>státuszMódosítása(újStátusz)</code>: Módosítja az ütközés aktuális állapotát, például Észlelt, Jelzett, Ellenőrzés alatt vagy Rendezett.</li>
+            <li><code>ütközésRendezése()</code>: A tulajdonos által elvégzett módosítások ellenőrzése után rendezett állapotba helyezi a megszűnt konfliktust.</li>
+        </ul>
+
+        <h4>Az operációk meghatározásának eredménye</h4>
+        <p>
+            Az operációk azonosítása során pontosítottuk a Naptár és szinkronizáció alrendszer osztályainak feladatait, és meghatároztuk a foglaltsági adatok kezeléséhez, a külső naptárak szinkronizációjához és a foglalási ütközések nyilvántartásához szükséges műveleteket.
+        </p>
+        <p>
+            A Foglalási naptár osztály hét, a Külső naptár osztály hat, míg a Foglalási ütközés osztály öt operációval rendelkezik.
+        </p>
+        <p>
+            Az alrendszer továbbra is együttműködik a Foglaláskezelés alrendszerrel, amely a foglalások létrehozásáért és módosításáért felelős. A foglalási ütközésekkel kapcsolatos automatikus értesítéseket a Fizetés és kommunikáció alrendszer továbbítja, míg a konfliktusok manuális rendezését a vendégház tulajdonosa végzi.
+        </p>
+        <p>
+            A külső foglalási platformokkal történő adatcsere iCal-alapú szinkronizáció segítségével valósul meg. A rendszer a frissített foglaltsági információkat elérhetővé teszi a kapcsolódó platformok számára, azonban azok tényleges átvételének időpontja a külső szolgáltatók működésétől is függ.
+        </p>
+        <p>
+            Az elemzés során nem tartottuk szükségesnek új osztály bevezetését. A korábban meghatározott három fő osztályt a szükséges operációkkal egészítettük ki.
+        </p>
+        <p>
+            Az így meghatározott műveleteket a következő fejezetben elkészítendő részletes osztálydiagramon is feltüntetjük, majd az egyes osztályok dokumentációjában részletesebben bemutatjuk
+        </p>
+
+        <h3 id="anal-5-5">5.5. Az analízis modell osztálydiagramja</h3>
+        <p>
+            A Naptár és szinkronizáció alrendszer részletes osztálydiagramját a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze. A kezdeti osztálydiagramhoz képest pontosítottuk az osztályok közötti kapcsolatokat, meghatároztuk azok számosságát, valamint kiegészítettük az osztályokat a szükséges attribútumokkal és operációkkal.
+        </p>
+        <p>
+            Az alrendszer három fő osztálya a Foglalási naptár, Külső naptár és Foglalási ütközés. Ezek az osztályok biztosítják a szobák foglaltsági adatainak központi nyilvántartását, a külső szállásfoglaló platformokkal történő szinkronizációt, valamint a párhuzamos foglalásokból származó konfliktusok kezelését.
+        </p>
+        <p>
+            A diagramon megjelenítjük a más alrendszerekhez tartozó, de a naptárkezelési és szinkronizációs folyamatokban részt vevő osztályokat is, mint például a Vendégház, Foglalás, Tulajdonos és Értesítés.
+        </p>
+        <p>
+            A pontosított osztálydiagram segítségével áttekinthetővé válik az egyes osztályok feladata, azok együttműködése, valamint a naptárak szinkronizációjához és a foglalási ütközések kezeléséhez szükséges műveletek. A más alrendszerekhez tartozó osztályok részletes leírását a saját alrendszerük elemzése során végezzük el.
+        </p>
+
+        <div class="diagram-box">
+            <img src="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram.png" alt="Naptár és szinkronizáció alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">10. ábra: Naptár és szinkronizáció alrendszer – Részletes osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-5-6">5.6. Az analízis modell osztályainak listája</h3>
+        <p>
+            Ebben a fejezetben részletesebben bemutatjuk a Naptár és szinkronizáció alrendszerhez tartozó osztályokat. Az osztályok dokumentálása során meghatározzuk azok feladatait, a velük együttműködő további osztályokat, valamint a legfontosabb attribútumokat és operációkat.
+        </p>
+        <p>
+            Az alrendszer három fő osztálya a Foglalási naptár, Külső naptár és Foglalási ütközés. A leírásokat a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze.
+        </p>
+
+        <div class="class-doc-card">
+            <h4>5.6.1. Foglalási naptár</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Foglalási naptár osztály a vendégház szobáinak foglaltsági adatainak központi nyilvántartásáért felelős. Feladata a szobák elérhetőségének ellenőrzése, a foglalási időszakok ideiglenes zárolása és felszabadítása, valamint az új foglalások rögzítésének és a foglaltsági adatok frissítésének biztosítása.</p>
+            <p><strong>Együttműködők:</strong> Vendégház, Foglalás, Külső naptár, Foglalási ütközés</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>naptárAzonosító</code></td><td>Egész szám</td><td>A foglalási naptár egyedi azonosítója.</td></tr>
+                    <tr><td><code>foglaltIdőszakok</code></td><td>Lista</td><td>A szobákhoz tartozó foglalt és zárolt időszakok nyilvántartása.</td></tr>
+                    <tr><td><code>utolsóFrissítés</code></td><td>Dátum és idő</td><td>A központi naptár utolsó frissítésének időpontja.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>elérhetőségEllenőrzése()</code></td><td><code>szoba, érkezés, távozás</code></td><td>Ellenőrzi, hogy a kiválasztott szoba elérhető-e a megadott időszakban.</td></tr>
+                    <tr><td><code>időszakZárolása()</code></td><td><code>szoba, érkezés, távozás</code></td><td>Ellenőrzi a szoba elérhetőségét, majd ideiglenesen zárolja a kiválasztott időszakot.</td></tr>
+                    <tr><td><code>zárolásFeloldása()</code></td><td><code>szoba, érkezés, távozás</code></td><td>Sikertelen fizetés vagy megszakított foglalás esetén feloldja az ideiglenes zárolást.</td></tr>
+                    <tr><td><code>foglalásRögzítése()</code></td><td><code>foglalás</code></td><td>Nyilvántartásba veszi a sikeresen véglegesített vagy külső platformról átvett foglalást.</td></tr>
+                    <tr><td><code>foglaltságiAdatokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a központi naptárban szereplő foglaltsági információkat.</td></tr>
+                    <tr><td><code>foglaltságiAdatokFrissítése()</code></td><td><code>foglalásiAdatok</code></td><td>Frissíti a központi naptár adatait az új vagy módosított foglalások alapján.</td></tr>
+                    <tr><td><code>ütközésEllenőrzése()</code></td><td><code>foglalás</code></td><td>Megvizsgálja, hogy a foglalás ütközik-e ugyanazon szoba más foglalásaival.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>5.6.2. Külső naptár</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Külső naptár osztály a Booking, Airbnb és más külső szállásfoglaló platformokhoz kapcsolódó naptáradatok kezeléséért felelős. Feladata a külső foglalási adatok lekérdezése, a központi naptárral történő összehasonlítása, valamint a szinkronizációs folyamatok eredményének és állapotának nyilvántartása.</p>
+            <p><strong>Együttműködők:</strong> Foglalási naptár</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>külsőNaptárAzonosító</code></td><td>Egész szám</td><td>A külső naptárkapcsolat egyedi azonosítója.</td></tr>
+                    <tr><td><code>platform</code></td><td>Szöveg</td><td>A külső szállásfoglaló platform neve, például Booking vagy Airbnb.</td></tr>
+                    <tr><td><code>iCalHivatkozás</code></td><td>Szöveg</td><td>A külső naptár eléréséhez szükséges iCal-hivatkozás.</td></tr>
+                    <tr><td><code>utolsóSzinkronizáció</code></td><td>Dátum és idő</td><td>A legutóbbi sikeres szinkronizáció időpontja.</td></tr>
+                    <tr><td><code>szinkronizációsStátusz</code></td><td>Felsorolás</td><td>A szinkronizáció aktuális állapota, például Sikeres vagy Sikertelen.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>szinkronizációIndítása()</code></td><td>Nincs</td><td>Elindítja a külső naptár adatainak szinkronizációját.</td></tr>
+                    <tr><td><code>külsőAdatokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a külső platformon szereplő foglalási adatokat az iCal-hivatkozás segítségével.</td></tr>
+                    <tr><td><code>foglalásokÖsszehasonlítása()</code></td><td><code>központiAdatok</code></td><td>Összehasonlítja a külső és központi naptárban szereplő foglalásokat.</td></tr>
+                    <tr><td><code>foglaltságiAdatokTovábbítása()</code></td><td><code>foglalásiAdatok</code></td><td>Elérhetővé teszi a frissített foglaltsági információkat a külső platform számára.</td></tr>
+                    <tr><td><code>szinkronizációsStátuszMódosítása()</code></td><td><code>újStátusz</code></td><td>Módosítja a szinkronizáció aktuális állapotát.</td></tr>
+                    <tr><td><code>utolsóSzinkronizációRögzítése()</code></td><td><code>időpont</code></td><td>Rögzíti a legutóbbi sikeres szinkronizáció időpontját.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>5.6.3. Foglalási ütközés</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Foglalási ütközés osztály a különböző szállásfoglaló platformokon létrejövő, egymással ütköző foglalások nyilvántartásáért felelős. Feladata a konfliktusok adatainak rögzítése, az érintett foglalások azonosítása, valamint a tulajdonos értesítésének és a problémák rendezésének támogatása.</p>
+            <p><strong>Együttműködők:</strong> Foglalási naptár, Foglalás, Tulajdonos, Értesítés</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>ütközésAzonosító</code></td><td>Egész szám</td><td>A foglalási ütközés egyedi azonosítója.</td></tr>
+                    <tr><td><code>érintettIdőszak</code></td><td>Dátumintervallum</td><td>Az ütköző foglalások által érintett időszak.</td></tr>
+                    <tr><td><code>észlelésIdőpontja</code></td><td>Dátum és idő</td><td>A foglalási ütközés felismerésének időpontja.</td></tr>
+                    <tr><td><code>státusz</code></td><td>Felsorolás</td><td>Az ütközés aktuális állapota, például Észlelt, Jelzett, Ellenőrzés alatt vagy Rendezett.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>ütközésLétrehozása()</code></td><td><code>érintettFoglalások, érintettIdőszak</code></td><td>Létrehozza a felismert foglalási konfliktushoz tartozó nyilvántartást.</td></tr>
+                    <tr><td><code>érintettFoglalásokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi az ütközésben érintett foglalásokat és azok adatait.</td></tr>
+                    <tr><td><code>értesítésKezdeményezése()</code></td><td>Nincs</td><td>Értesítési kérelmet továbbít a tulajdonos figyelmeztetése érdekében.</td></tr>
+                    <tr><td><code>státuszMódosítása()</code></td><td><code>újStátusz</code></td><td>Módosítja a foglalási ütközés aktuális állapotát.</td></tr>
+                    <tr><td><code>ütközésRendezése()</code></td><td>Nincs</td><td>Ellenőrzi a konfliktus megszűnését, majd rendezett állapotba helyezi az ütközést.</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- 6. ÜZEMELTETÉS ÉS TAKARÍTÁS ALRENDSZER -->
+    <!-- 6. ÜZEMELTETÉS ÉS TAKARÍTÁS ALRENDSZER MODELLJE -->
     <section class="card" id="anal-6">
         <span class="subsystem-badge badge-u">U Alrendszer</span>
-        <h2>6. Üzemeltetés és takarítás alrendszer</h2>
+        <h2>6. Üzemeltetés és takarítás alrendszer modellje</h2>
+
+        <h3 id="anal-6-1">6.1. Statikus modell</h3>
         <p>
-            Az <strong>Üzemeltetés és takarítás alrendszer</strong> támogatja a tulajdonosi felügyeletet és a takarító személyzet mobilalapú napi munkavégzését, beleértve a fotóval igazolt készre jelentést, a szobastátuszok automatikus frissítését, a műszaki hibabejelentést és az offline gyorsítótárazást.
+            Az Üzemeltetés és takarítás alrendszer statikus modelljének elkészítése során részletesebben megvizsgáljuk a korábban meghatározott osztályokat, azok tulajdonságait és a közöttük fennálló kapcsolatokat. Az alrendszer öt fő osztályból áll: Tulajdonos, Takarító, Takarítási feladat, Takarítási fotó és Hibabejelentés.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a vendégház napi működésének támogatása, a takarítási feladatok nyilvántartása, valamint a szobák tisztasági állapotának követése. A rendszer segítségével a takarító személyzet mobiltelefonon keresztül tekintheti meg és végezheti el a feladatait, míg a tulajdonos a saját kezelőfelületén ellenőrizheti a szobák állapotát és az esetleges meghibásodásokat.
+        </p>
+        <p>
+            A célunk, hogy a kezdeti osztálydiagramot pontosítva egy olyan modellt alakítsunk ki, amely megfelelően szemlélteti a tulajdonos, a takarító személyzet és a takarítási feladatok közötti kapcsolatokat, valamint támogatja a szobák állapotának naprakész nyilvántartását.
         </p>
 
-        <h3 id="anal-6-1">6.1. Részletes analízis osztálydiagram</h3>
-        <div class="diagram-box">
-            <img src="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram.png" class="portrait-diagram" alt="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram">
-            <p class="diagram-caption">11. ábra: Üzemeltetés és takarítás alrendszer – Részletes analízis osztálydiagram</p>
-        </div>
-
-        <h3 id="anal-6-2">6.2. Osztályok specifikációja</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Osztály neve</th>
-                    <th>Attribútumok</th>
-                    <th>Operációk (Metódusok)</th>
-                    <th>Szerepkör és kapcsolatok</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>Tulajdonos</code></td>
-                    <td><code>tulajdonosAzonosító</code>, <code>név</code>, <code>e-mail</code>, <code>telefonszám</code></td>
-                    <td><code>takarításiFeladatokLekérdezése()</code>, <code>szobaÁllapotLekérdezése(szoba)</code>, <code>takarításiFotóMegtekintése(feladat)</code>, <code>hibabejelentésekLekérdezése()</code></td>
-                    <td>A vendégház üzemeltetője; lekérdezi a szobák tisztasági állapotát, az igazoló fotókat és a hibabejelentéseket.</td>
-                </tr>
-                <tr>
-                    <td><code>Takarító</code></td>
-                    <td><code>takarítóAzonosító</code>, <code>név</code>, <code>felhasználónév</code>, <code>e-mail</code></td>
-                    <td><code>napiFeladatokLekérdezése(dátum)</code>, <code>takarításMegkezdése(feladat)</code>, <code>takarításBefejezése(feladat, fénykép)</code>, <code>hibaBejelentése(szoba, leírás)</code></td>
-                    <td>A takarító személyzet tagja; <code>0..*</code> takarítási feladatot végez el és <code>0..*</code> hibabejelentést rögzíthet.</td>
-                </tr>
-                <tr>
-                    <td><code>Takarítási feladat</code></td>
-                    <td><code>feladatAzonosító</code>, <code>dátum</code>, <code>állapot</code>, <code>kezdésIdőpontja</code>, <code>befejezésIdőpontja</code></td>
-                    <td><code>állapotLekérdezése()</code>, <code>takarításIndítása(időpont)</code>, <code>takarításBefejezése(időpont)</code>, <code>állapotMódosítása(újÁllapot)</code>, <code>szobaÁllapotFrissítése()</code></td>
-                    <td>Egy adott szoba napi takarítási munkája; befejezésekor <code>0..1</code> igazoló fotó kapcsolódik hozzá, és <em>Tiszta</em> állapotba állítja a szobát.</td>
-                </tr>
-                <tr>
-                    <td><code>Takarítási fotó</code></td>
-                    <td><code>fotóAzonosító</code>, <code>képHivatkozás</code>, <code>feltöltésIdőpontja</code></td>
-                    <td><code>fényképMentése(kép)</code>, <code>fényképLekérdezése()</code>, <code>feltöltésRögzítése(időpont)</code></td>
-                    <td>A takarítás elvégzését dokumentáló fénykép metaadatai és elérési hivatkozása.</td>
-                </tr>
-                <tr>
-                    <td><code>Hibabejelentés</code></td>
-                    <td><code>hibabejelentésAzonosító</code>, <code>leírás</code>, <code>állapot</code>, <code>bejelentésIdőpontja</code></td>
-                    <td><code>hibabejelentésLétrehozása(szoba, takarító, leírás)</code>, <code>hibabejelentésLekérdezése()</code>, <code>státuszMódosítása(újStátusz)</code>, <code>hibabejelentésLezárása()</code></td>
-                    <td>A szobában észlelt műszaki meghibásodás nyilvántartása a tulajdonos felé.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="anal-6-3">6.3. Szobastátusz frissítésének szekvenciadiagramja</h3>
+        <h4>6.1.1. Kapcsolatok pontosítása</h4>
         <p>
-            A szekvenciadiagram végigköveti a takarító mobilfelületen végzett műveleteit: a napi lista lekérdezését, a munka indítását, az opcionális hibabejelentést, valamint az online és offline (helyi gyorsítótáras, majd hálózat-helyreálláskor automatikusan szinkronizáló) készre jelentést.
+            A kezdeti osztálydiagram elkészítése során meghatároztuk az Üzemeltetés és takarítás alrendszer legfontosabb kapcsolatait. Ebben a fázisban ezeket részletesebben megvizsgáljuk, elnevezzük, valamint meghatározzuk a kapcsolatok szerepköreit és számosságait.
         </p>
+
+        <h5>Tulajdonos – Vendégház kapcsolat</h5>
+        <p>
+            A Tulajdonos és Vendégház osztályok közötti kapcsolat biztosítja, hogy a szálláshely működéséért felelős személy hozzáférhessen a vendégház adataihoz, foglalásaihoz és a szobák aktuális állapotához.
+        </p>
+        <p>
+            A kapcsolatot „üzemelteti” névvel jelöljük. A jelenlegi modellben egy vendégházhoz egy felelős tulajdonost rendelünk, és egy tulajdonos egy vendégházat kezel.
+        </p>
+        <p>
+            Ennek megfelelően a kapcsolat számossága mindkét oldalon 1.
+        </p>
+        <p>
+            A Vendégház osztály a Foglaláskezelés alrendszerhez tartozik, ezért annak részletes attribútumait és operációit ott dokumentáltuk.
+        </p>
+
+        <h5>Takarító – Takarítási feladat kapcsolat</h5>
+        <p>
+            A Takarító és Takarítási feladat osztályok közötti kapcsolat a napi takarítási teendők nyilvántartását és végrehajtását biztosítja.
+        </p>
+        <p>
+            A kapcsolatot „elvégzi” névvel jelöljük. Egy takarító több takarítási feladatot is elvégezhet, azonban egy adott feladat végrehajtásáért a jelenlegi modellben egy takarító felelős.
+        </p>
+        <p>
+            A kapcsolat számossága a Takarító oldalán 1, a Takarítási feladat oldalán pedig 0..*.
+        </p>
+        <p>
+            Ez lehetővé teszi, hogy egy takarítóhoz több napi feladat is tartozzon, és a rendszer nyomon követhesse az egyes feladatok teljesítését.
+        </p>
+
+        <h5>Szoba – Takarítási feladat kapcsolat</h5>
+        <p>
+            A Szoba és Takarítási feladat osztályok közötti kapcsolat biztosítja, hogy minden takarítási feladat egy meghatározott szobához kapcsolódjon.
+        </p>
+        <p>
+            A kapcsolatot „takarítást igényel” névvel jelöljük. Egy szobához különböző időpontokban több takarítási feladat is tartozhat, azonban egy adott takarítási feladat egy szobára vonatkozik.
+        </p>
+        <p>
+            A kapcsolat számossága a Szoba oldalán 1, a Takarítási feladat oldalán pedig 0..*.
+        </p>
+        <p>
+            A kapcsolat segítségével a rendszer nyomon követheti, hogy mely szobák várnak takarításra, melyek takarítása van folyamatban, és melyek állnak készen a következő vendég fogadására.
+        </p>
+
+        <h5>Takarítási feladat – Takarítási fotó kapcsolat</h5>
+        <p>
+            A Takarítási feladat és Takarítási fotó osztályok közötti kapcsolat a takarítás elvégzésének fényképes dokumentálását biztosítja.
+        </p>
+        <p>
+            A kapcsolatot „fotóval igazolja” névvel jelöljük. Egy takarítási feladathoz a jelenlegi modellben legfeljebb egy igazoló fénykép tartozik, azonban a feladat végrehajtása közben még nem feltétlenül rendelkezik feltöltött képpel.
+        </p>
+        <p>
+            A kapcsolat számossága a Takarítási feladat oldalán 1, a Takarítási fotó oldalán pedig 0..1.
+        </p>
+        <p>
+            A feladat befejezésekor a takarító fényképet készít az elkészült szobáról, amelyet a rendszer eltárol. A tulajdonos ezt követően a saját kezelőfelületén ellenőrizheti az elvégzett munkát.
+        </p>
+
+        <h5>Szoba – Hibabejelentés kapcsolat</h5>
+        <p>
+            A Szoba és Hibabejelentés osztályok közötti kapcsolat a vendégház szobáiban észlelt meghibásodások nyilvántartását biztosítja.
+        </p>
+        <p>
+            A kapcsolatot „hibabejelentés tartozik hozzá” névvel jelöljük. Egy szobához több hibabejelentés is kapcsolódhat, azonban egy adott hibabejelentés egy meghatározott szobára vonatkozik.
+        </p>
+        <p>
+            A kapcsolat számossága a Szoba oldalán 1, a Hibabejelentés oldalán pedig 0..*.
+        </p>
+        <p>
+            Ez lehetővé teszi, hogy a rendszer egy szobához több különböző időpontban észlelt problémát is nyilvántartson.
+        </p>
+
+        <h5>Takarító – Hibabejelentés kapcsolat</h5>
+        <p>
+            A Takarító és Hibabejelentés osztályok közötti kapcsolat biztosítja, hogy a takarító személyzet a munkavégzés során észlelt problémákat rögzíthesse a rendszerben.
+        </p>
+        <p>
+            A kapcsolatot „hibát jelent be” névvel jelöljük. Egy takarító több hibabejelentést is létrehozhat, azonban egy adott hibabejelentést egy takarítóhoz rendelünk.
+        </p>
+        <p>
+            A kapcsolat számossága a Takarító oldalán 1, a Hibabejelentés oldalán pedig 0..*.
+        </p>
+        <p>
+            A rendszer a rögzített hibabejelentéseket elérhetővé teszi a tulajdonos számára, aki ezek alapján megteheti a szükséges intézkedéseket.
+        </p>
+
+        <h5>Kapcsolatok más alrendszerekkel</h5>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer a Foglaláskezelés alrendszerrel is együttműködik. A Szoba osztályon keresztül hozzáférhet a vendégház szobáinak adataihoz, és módosíthatja azok tisztasági állapotát.
+        </p>
+        <p>
+            A foglalási adatok alapján a tulajdonos és a takarító személyzet tájékozódhat arról, hogy mely szobákat kell előkészíteni a következő vendégek érkezése előtt.
+        </p>
+        <p>
+            A Naptár és szinkronizáció alrendszerrel történő együttműködés lehetővé teszi a foglalási időpontok és a takarítási teendők összehangolását.
+        </p>
+
+        <h5>A kapcsolatok pontosításának eredménye</h5>
+        <p>
+            A kezdeti osztálydiagramhoz képest meghatároztuk a kapcsolatok elnevezését és számosságát, valamint pontosítottuk az egyes osztályok szerepét a vendégház üzemeltetési és takarítási folyamataiban.
+        </p>
+        <p>
+            Az alrendszerben továbbra is az öt korábban meghatározott fő osztály szerepel. Új osztály bevezetését ebben a lépésben nem tartottuk szükségesnek.
+        </p>
+
+        <h4>6.1.2. Attribútumok azonosítása</h4>
+        <p>
+            Ebben a fázisban meghatározzuk az Üzemeltetés és takarítás alrendszerhez tartozó osztályok legfontosabb attribútumait. A kezdeti osztálydiagram már tartalmazta az alapvető tulajdonságokat, azonban a követelményspecifikáció alapján szükségesnek tartjuk ezek pontosítását és kiegészítését.
+        </p>
+
+        <h5>Tulajdonos osztály</h5>
+        <p>
+            A Tulajdonos osztály a vendégház üzemeltetéséért és adminisztrációjáért felelős személy adatait reprezentálja.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő szálláshely-kezelési feladat mellett szükségesnek tartjuk a tulajdonos egyedi azonosítójának és alapvető kapcsolattartási adatainak nyilvántartását.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>tulajdonosAzonosító</li>
+            <li>név</li>
+            <li>e-mail</li>
+            <li>telefonszám</li>
+        </ul>
+        <p>
+            Ezekkel az attribútumokkal a rendszer egyértelműen azonosíthatja a szálláshely üzemeltetéséért felelős személyt, valamint biztosíthatja a vele történő kapcsolattartást.
+        </p>
+
+        <h5>Takarító osztály</h5>
+        <p>
+            A Takarító osztály a vendégház szobáinak tisztán tartásáért felelős személyzetet reprezentálja.
+        </p>
+        <p>
+            A rendszer működéséhez szükséges a takarítók egyedi azonosítása, valamint a hozzájuk tartozó feladatok nyilvántartása.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>takarítóAzonosító</li>
+            <li>név</li>
+            <li>felhasználónév</li>
+            <li>e-mail</li>
+        </ul>
+        <p>
+            A felhasználónév a takarítói felületre történő bejelentkezéshez kapcsolódik, míg az egyedi azonosító a feladatok és hibabejelentések megfelelő személyhez rendelését biztosítja.
+        </p>
+
+        <h5>Takarítási feladat osztály</h5>
+        <p>
+            A Takarítási feladat osztály a vendégház szobáihoz kapcsolódó takarítási teendők nyilvántartására szolgál.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő dátum és állapot attribútumok mellett szükségesnek tartjuk az egyedi azonosító, valamint a takarítás megkezdésének és befejezésének időpontját is rögzíteni.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>feladatAzonosító</li>
+            <li>dátum</li>
+            <li>állapot</li>
+            <li>kezdésIdőpontja</li>
+            <li>befejezésIdőpontja</li>
+        </ul>
+        <p>
+            Az állapot segítségével a rendszer nyomon követheti, hogy egy adott feladat elvégzésre vár, folyamatban van, vagy már befejeződött.
+        </p>
+        <p>
+            A kezdési és befejezési időpontok segítségével a tulajdonos pontosabb képet kaphat a napi takarítási feladatok előrehaladásáról.
+        </p>
+
+        <h5>Takarítási fotó osztály</h5>
+        <p>
+            A Takarítási fotó osztály a takarítási feladatok elvégzése után készített fényképek nyilvántartására szolgál.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő kép attribútum mellett szükségesnek tartjuk a fénykép egyedi azonosítójának és feltöltési időpontjának tárolását is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>fotóAzonosító</li>
+            <li>képHivatkozás</li>
+            <li>feltöltésIdőpontja</li>
+        </ul>
+        <p>
+            A képHivatkozás segítségével a rendszer elérheti a feltöltött fényképet, míg a feltöltés időpontja lehetővé teszi a takarítás dokumentálásának követését.
+        </p>
+
+        <h5>Hibabejelentés osztály</h5>
+        <p>
+            A Hibabejelentés osztály a vendégház szobáiban észlelt problémák, meghibásodások nyilvántartására szolgál.
+        </p>
+        <p>
+            A kezdeti diagramon szereplő leírás és állapot attribútumok mellett szükségesnek tartjuk az egyedi azonosító és a bejelentés időpontjának bevezetését is.
+        </p>
+        <p><strong>Az osztály attribútumai:</strong></p>
+        <ul>
+            <li>hibabejelentésAzonosító</li>
+            <li>leírás</li>
+            <li>állapot</li>
+            <li>bejelentésIdőpontja</li>
+        </ul>
+        <p>
+            Az állapot segítségével a rendszer nyomon követheti, hogy az adott hibabejelentés új, javítás alatt áll, vagy már megoldották a problémát.
+        </p>
+        <p>
+            A bejelentés időpontja lehetővé teszi a meghibásodások időbeli követését és a tulajdonos számára az elvégzendő intézkedések áttekintését.
+        </p>
+
+        <h5>Az attribútumok azonosításának eredménye</h5>
+        <p>
+            Az attribútumok azonosítása során a kezdeti osztálydiagramot egyedi azonosítókkal, kapcsolattartási adatokkal, időpontokkal és állapotinformációkkal egészítettük ki.
+        </p>
+        <p>
+            Ezek a tulajdonságok biztosítják a takarítási feladatok megfelelő nyilvántartását, a személyzet munkájának követhetőségét, valamint a szobákban észlelt meghibásodások kezelését.
+        </p>
+        <p>
+            Az attribútumok pontos típusait és részletes leírásait a későbbi osztálydokumentációban határozzuk meg.
+        </p>
+
+        <h4>6.1.3. Bázisosztályok keresése</h4>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer osztályainak vizsgálata során ellenőrizzük, hogy találhatók-e olyan közös tulajdonságok vagy viselkedések, amelyek indokolttá tennék egy közös bázisosztály létrehozását.
+        </p>
+        <p>
+            A Tulajdonos és Takarító osztályok között több hasonlóság is megfigyelhető, mivel mindkettő a rendszer belső felhasználóit reprezentálja.
+        </p>
+        <p>
+            Mindkét osztály rendelkezik személyes adatokkal, például névvel, e-mail-címmel és egyedi azonosítóval. Emellett mindkét felhasználói csoport számára szükséges a rendszerbe történő bejelentkezés és a megfelelő jogosultságok biztosítása.
+        </p>
+        <p>
+            Ennek alapján felmerülhet egy közös Felhasználó bázisosztály kialakítása, amely tartalmazná a közös tulajdonságokat és a felhasználói fiókok kezeléséhez kapcsolódó alapvető műveleteket.
+        </p>
+        <p>
+            A Tulajdonos és Takarító osztályok azonban eltérő feladatokat látnak el. A tulajdonos a vendégház működését felügyeli, míg a takarító személyzet a napi takarítási feladatokat végzi, frissíti a szobák állapotát és hibabejelentéseket készít.
+        </p>
+        <p>
+            Mivel a rendszer szerepköralapú jogosultságkezelést alkalmaz, a közös felhasználói tulajdonságok kezelését a későbbi rendszertervezés során is megoldhatjuk. A jelenlegi elemzési fázisban ezért nem vezetünk be új Felhasználó bázisosztályt.
+        </p>
+        <p>
+            A Takarítási feladat, Takarítási fotó és Hibabejelentés osztályok eltérő szerepet töltenek be a rendszerben. Bár mindegyik a vendégház napi működéséhez kapcsolódik, nem találtunk olyan jelentős közös tulajdonságokat vagy viselkedéseket, amelyek indokolttá tennék egy közös bázisosztály létrehozását.
+        </p>
+        <p>
+            Ennek megfelelően az Üzemeltetés és takarítás alrendszer öt fő osztályát önálló osztályként kezeljük, közöttük jelenleg nem alkalmazunk általánosítási vagy öröklődési kapcsolatokat.
+        </p>
+        <p>
+            A kezdeti osztálydiagramhoz képest ebben a lépésben nem történt változtatás az osztályok öröklődési viszonyait illetően.
+        </p>
+
+        <h3 id="anal-6-2">6.2. Dinamikus modell</h3>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer dinamikus modelljének elkészítése során a takarítási feladatok végrehajtását, a szobák tisztasági állapotának frissítését, valamint a takarítás során észlelt meghibásodások bejelentését vizsgáljuk. A modell alapját a korábban elkészített Szoftver Követelmény Specifikációban szereplő „Szoba státuszának frissítése mobilról” használati eset képezi.
+        </p>
+        <p>
+            A dinamikus modell segítségével bemutatjuk, hogyan történik a takarító személyzet napi feladatainak lekérdezése, a takarítás megkezdése és befejezése, valamint az elkészült szobákról készített fényképek feltöltése.
+        </p>
+        <p>
+            Emellett megvizsgáljuk a Takarítási feladat osztály állapotváltozásait is, különös figyelmet fordítva a feladatok végrehajtására és az internetkapcsolat megszakadása esetén szükséges adatkezelésre.
+        </p>
+
+        <h4>6.2.1. Szoba státuszának frissítése mobilról</h4>
+        <p>
+            A takarítási folyamat akkor kezdődik, amikor a takarító bejelentkezik a rendszer mobiltelefonon is használható felületére.
+        </p>
+        <p>
+            A bejelentkezést követően a rendszer lekérdezi és megjeleníti a takarítóhoz rendelt napi feladatokat. A feladatlistában szerepelnek a kitakarítandó szobák és az egyes feladatok aktuális állapotai.
+        </p>
+        <p>
+            A takarító kiválasztja a megfelelő feladatot, majd a „Takarítás megkezdése” gomb segítségével elindítja a munkát. A rendszer ezt követően a kiválasztott Takarítási feladat objektum állapotát „Folyamatban” értékre módosítja.
+        </p>
+        <p>
+            A takarítás befejezése után a takarító a mobiltelefon kamerájával fényképet készít az elkészült szobáról, majd a „Kész vagyok” gomb megnyomásával jelzi a feladat teljesítését.
+        </p>
+        <p>
+            A rendszer eltárolja a feltöltött fényképet, rögzíti a takarítás befejezésének időpontját, és a Takarítási feladat objektum állapotát „Befejezett” értékre módosítja. Ezzel egyidejűleg a kapcsolódó Szoba objektum állapota „Tiszta” lesz.
+        </p>
+        <p>
+            A tulajdonos a saját kezelőfelületén megtekintheti a frissített szobaállapotot és a takarító által feltöltött fényképet, így ellenőrizheti az elvégzett munkát.
+        </p>
+        <p>
+            Amennyiben a takarító valamilyen meghibásodást észlel, a „Hiba bejelentése” funkció segítségével rögzítheti a probléma leírását. A rendszer létrehozza a megfelelő Hibabejelentés objektumot, amelyet elérhetővé tesz a tulajdonos számára.
+        </p>
+        <p>
+            A folyamat során internetkapcsolati hiba is előfordulhat. Ha a takarító telefonja nem rendelkezik internetkapcsolattal, a rendszer a rögzített adatokat, valamint a feltöltésre váró fényképet ideiglenesen helyben tárolja.
+        </p>
+        <p>
+            Amint az internetkapcsolat helyreáll, a rendszer automatikusan továbbítja az elmentett adatokat a szerver számára. A központi nyilvántartás és a tulajdonosi felület a sikeres szinkronizációt követően frissül.
+        </p>
+        <p>
+            A szoba státuszának mobilról történő frissítését bemutató UML szekvenciadiagram a dokumentum mellékletei között található.
+        </p>
+
         <div class="diagram-box">
             <img src="Üzemeltetés és takarítás alrendszer – Szekvenciadiagram.png" class="portrait-diagram" alt="Szoba státuszának frissítése mobilról – Szekvenciadiagram">
-            <p class="diagram-caption">12. ábra: Szoba státuszának frissítése mobilról – Szekvenciadiagram</p>
+            <p class="diagram-caption">11. ábra: Üzemeltetés és takarítás alrendszer – Szekvenciadiagram</p>
         </div>
 
-        <h3 id="anal-6-4">6.4. Takarítási feladat állapotdiagramja</h3>
+        <h4>6.2.2. A Takarítási feladat osztály állapotdiagramja</h4>
         <p>
-            A <code>Takarítási feladat</code> az <strong>Elvégzésre vár</strong> állapotból indul, a munka megkezdésekor <strong>Folyamatban</strong> állapotba lép (ahol hibabejelentés is rögzíthető), majd internetkapcsolattól függően közvetlenül vagy a <strong>Feltöltésre vár</strong> offline pufferszakaszon keresztül jut el a <strong>Befejezett</strong> állapotba.
+            A Takarítási feladat osztály állapotdiagramjának segítségével bemutatjuk, hogyan változik egy takarítási feladat állapota annak létrehozásától kezdve a munka befejezéséig.
         </p>
+        <p>
+            A feladat létrehozásakor az objektum „Elvégzésre vár” állapotba kerül. Ez azt jelenti, hogy a takarítási feladat már szerepel a rendszer nyilvántartásában, azonban a takarító még nem kezdte meg a munkát.
+        </p>
+        <p>
+            Amikor a takarító kiválasztja a megfelelő feladatot, és megnyomja a „Takarítás megkezdése” gombot, az objektum „Folyamatban” állapotba lép.
+        </p>
+        <p>
+            A takarítás befejezése után a takarító fényképet készít az elkészült szobáról, majd jelzi a feladat teljesítését. Amennyiben az internetkapcsolat megfelelően működik, és a szükséges adatok sikeresen feltöltődnek, a feladat „Befejezett” állapotba kerül.
+        </p>
+        <p>
+            Ha a takarítás befejezésekor nincs internetkapcsolat, a rendszer az adatokat ideiglenesen a telefonon tárolja, és a feladat „Feltöltésre vár” állapotba kerül.
+        </p>
+        <p>
+            Az internetkapcsolat helyreállását követően a rendszer automatikusan megkísérli a tárolt adatok feltöltését. Sikeres feltöltés esetén a feladat állapota „Befejezett” értékre módosul.
+        </p>
+        <p>
+            A feladat sikeres befejezésével a kapcsolódó szoba tisztasági állapota „Tiszta” lesz, amelyet a tulajdonos is megtekinthet a kezelőfelületén.
+        </p>
+        <p>
+            A takarítás során a dolgozó hibabejelentést is készíthet, azonban ez önmagában nem módosítja a takarítási feladat aktuális állapotát.
+        </p>
+        <p>
+            Az állapotdiagram elkészítésével pontosabban meghatározhatjuk a takarítási feladatok életciklusát, valamint a kapcsolat nélküli adatrögzítés és a későbbi szinkronizáció működését.
+        </p>
+        <p>
+            A „Feltöltésre vár” állapotot az elemzés során vezettük be, mivel a követelményspecifikáció előírja az internetkapcsolat megszakadása esetén történő ideiglenes adattárolást, de a feladatok teljes állapotkezelését nem részletezi.
+        </p>
+
         <div class="diagram-box">
             <img src="Takarítási feladat osztály állapotdiagramja.png" class="portrait-diagram" alt="Takarítási feladat osztály állapotdiagramja">
-            <p class="diagram-caption">13. ábra: Takarítási feladat osztály állapotdiagramja</p>
+            <p class="diagram-caption">12. ábra: Takarítási feladat osztály állapotdiagramja</p>
+        </div>
+
+        <h3 id="anal-6-3">6.3. Funkcionális modell</h3>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer funkcionális modelljének elkészítése során bemutatjuk a takarítási feladatok nyilvántartásához, a szobák tisztasági állapotának frissítéséhez, a takarítási fényképek feltöltéséhez és a hibabejelentések kezeléséhez kapcsolódó legfontosabb feldolgozási lépéseket, valamint az egyes műveletek közötti adatáramlást.
+        </p>
+        <p>
+            Az alrendszer elsődleges feladata a vendégház napi működésének támogatása, a takarító személyzet munkájának nyomon követése, valamint annak biztosítása, hogy a tulajdonos folyamatosan tájékozódhasson a szobák aktuális állapotáról.
+        </p>
+        <p>
+            A folyamatok végrehajtása során az alrendszer együttműködik a Foglaláskezelés, valamint a Naptár és szinkronizáció alrendszerrel.
+        </p>
+
+        <h4>6.3.1. Napi takarítási feladatok lekérdezése</h4>
+        <p>
+            A takarítási folyamat első lépéseként a takarító bejelentkezik a rendszer mobiltelefonon is használható felületére.
+        </p>
+        <p>
+            A sikeres bejelentkezést követően a rendszer azonosítja a takarítót, majd lekérdezi a hozzá rendelt, adott napra vonatkozó takarítási feladatokat.
+        </p>
+        <p>
+            A lekérdezés során a rendszer figyelembe veszi a feladatok dátumát, aktuális állapotát és a hozzájuk tartozó szobákat. Ezt követően összeállítja a napi feladatlistát, amelyet megjelenít a takarító számára.
+        </p>
+        <p>
+            A takarító a listából kiválaszthatja a megfelelő feladatot, és megtekintheti a kitakarítandó szoba adatait.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a takarító azonosítója, az aktuális dátum és a nyilvántartott takarítási feladatok. A kimeneti adatok a takarítóhoz rendelt napi feladatok listája és azok aktuális állapota.
+        </p>
+
+        <h4>6.3.2. Takarítási feladat megkezdése</h4>
+        <p>
+            Miután a takarító kiválasztotta a megfelelő feladatot, a „Takarítás megkezdése” gomb segítségével elindíthatja a munkát.
+        </p>
+        <p>
+            A rendszer azonosítja a kiválasztott Takarítási feladat objektumot, majd ellenőrzi annak aktuális állapotát. Amennyiben a feladat még nem kezdődött el, a rendszer az állapotát „Folyamatban” értékre módosítja.
+        </p>
+        <p>
+            Ezzel egyidejűleg rögzíti a takarítás megkezdésének időpontját, így a tulajdonos nyomon követheti a munkavégzés előrehaladását.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a kiválasztott takarítási feladat azonosítója, annak aktuális állapota és a kezdés időpontja. A kimeneti adatok a módosított feladatállapot és a rögzített kezdési időpont.
+        </p>
+
+        <h4>6.3.3. Takarítás befejezése és szobaállapot frissítése</h4>
+        <p>
+            A takarítás befejezését követően a takarító a mobiltelefon kamerájával fényképet készít az elkészült szobáról, majd a „Kész vagyok” gomb megnyomásával jelzi a feladat teljesítését.
+        </p>
+        <p>
+            A rendszer feldolgozza a takarítótól kapott adatokat, és elmenti a feltöltött fényképet a Takarítási fotó objektum segítségével.
+        </p>
+        <p>
+            Ezt követően rögzíti a takarítás befejezésének időpontját, majd a Takarítási feladat objektum állapotát „Befejezett” értékre módosítja.
+        </p>
+        <p>
+            A sikeres feldolgozás után a rendszer frissíti a kapcsolódó Szoba objektum tisztasági állapotát is, amely „Tiszta” értéket kap.
+        </p>
+        <p>
+            A módosított állapotot és a feltöltött fényképet elérhetővé teszi a tulajdonos kezelőfelületén, így a tulajdonos ellenőrizheti az elvégzett munkát.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a takarítási feladat azonosítója, az elkészült fénykép és a befejezés időpontja. A kimeneti adatok a befejezett takarítási feladat, az elmentett fénykép és a frissített szobaállapot.
+        </p>
+
+        <h4>6.3.4. Hibabejelentések rögzítése</h4>
+        <p>
+            A takarítási folyamat során előfordulhat, hogy a takarító valamilyen meghibásodást vagy problémát észlel a szobában.
+        </p>
+        <p>
+            Ilyen esetben a mobilos felületen található „Hiba bejelentése” funkció segítségével rögzítheti a problémát. A takarító megadja a hiba leírását, majd kezdeményezi a bejelentés mentését.
+        </p>
+        <p>
+            A rendszer létrehoz egy új Hibabejelentés objektumot, amely tartalmazza a probléma leírását, a bejelentés időpontját és az aktuális állapotát.
+        </p>
+        <p>
+            A hibabejelentést hozzárendeli az érintett szobához és a bejelentést készítő takarítóhoz, majd elérhetővé teszi a tulajdonos számára.
+        </p>
+        <p>
+            A tulajdonos a kezelőfelületen megtekintheti a bejelentett problémákat, és a szükséges intézkedések elvégzése során nyomon követheti azok állapotát.
+        </p>
+        <p>
+            A hibabejelentés önmagában nem módosítja a kapcsolódó takarítási feladat állapotát, így a takarítás és a meghibásodások kezelése külön nyilvántartható.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a szoba azonosítója, a takarító azonosítója, a hiba leírása és a bejelentés időpontja. A kimeneti adatok a létrehozott Hibabejelentés objektum és annak aktuális állapota.
+        </p>
+
+        <h4>6.3.5. Internetkapcsolat nélküli adatrögzítés</h4>
+        <p>
+            A takarítók mobilos felületének működése során előfordulhat, hogy a telefon internetkapcsolata megszakad.
+        </p>
+        <p>
+            A rendszernek ilyen esetben is biztosítania kell a takarítás során keletkező adatok ideiglenes tárolását. Amennyiben a takarító internetkapcsolat nélkül fejezi be a munkát, a telefon helyben menti a feladat állapotváltozását, az elkészült fényképet és az esetleges hibabejelentés adatait.
+        </p>
+        <p>
+            A feladat ebben az esetben „Feltöltésre vár” állapotba kerül, amely jelzi, hogy a módosítások még nem jutottak el a központi szerverhez.
+        </p>
+        <p>
+            Amint az internetkapcsolat helyreáll, a rendszer automatikusan megkísérli a korábban elmentett adatok továbbítását.
+        </p>
+        <p>
+            Sikeres feltöltés esetén a központi nyilvántartás frissül, a takarítási feladat „Befejezett” állapotba kerül, és a kapcsolódó szoba tisztasági állapota is módosul.
+        </p>
+        <p>
+            Amennyiben a feltöltés sikertelen, a rendszer megőrzi a helyben tárolt adatokat, és később ismét megkísérli azok továbbítását.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a helyben tárolt takarítási adatok, a feltöltendő fényképek, az esetleges hibabejelentések és az internetkapcsolat állapota. A kimeneti adatok a szerverre továbbított információk, a frissített állapotok és a szinkronizáció eredménye.
+        </p>
+
+        <h4>6.3.6. Takarítási feladatok tulajdonosi ellenőrzése</h4>
+        <p>
+            A tulajdonos a belső kezelőfelületen keresztül folyamatosan nyomon követheti a vendégház szobáinak aktuális állapotát és a takarítási feladatok előrehaladását.
+        </p>
+        <p>
+            A rendszer a tulajdonos kérésére lekérdezi a nyilvántartott takarítási feladatokat, majd azok állapota alapján megjeleníti, hogy mely szobák várnak takarításra, melyek takarítása van folyamatban, és melyek készültek már el.
+        </p>
+        <p>
+            A tulajdonos kiválaszthat egy adott szobát, megtekintheti a hozzá tartozó takarítási feladat adatait, valamint ellenőrizheti a takarító által feltöltött fényképet.
+        </p>
+        <p>
+            Emellett hozzáférhet az adott szobához kapcsolódó hibabejelentésekhez is, így tájékozódhat az esetleges meghibásodásokról.
+        </p>
+        <p>
+            A rendszer a legutóbb sikeresen rögzített központi adatokat jeleníti meg, ezért kapcsolat nélküli munkavégzés esetén az új állapotok csak a későbbi sikeres szinkronizáció után válnak láthatóvá.
+        </p>
+        <p>
+            A feldolgozás bemeneti adatai a tulajdonos lekérdezési kérelme, a szobák azonosítói, valamint a nyilvántartott takarítási feladatok és hibabejelentések. A kimeneti adatok a szobák aktuális állapotai, a takarítási feladatok adatai, a feltöltött fényképek és a hibabejelentések.
+        </p>
+
+        <h3 id="anal-6-4">6.4. Operációk azonosítása</h3>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer operációinak azonosítása során a korábban elkészített dinamikus és funkcionális modellekből indulunk ki. Célunk, hogy meghatározzuk az egyes osztályokhoz tartozó legfontosabb műveleteket, amelyek segítségével megvalósítható a takarítási feladatok kezelése, a szobák tisztasági állapotának frissítése, a fényképek feltöltése, valamint a hibabejelentések nyilvántartása.
+        </p>
+        <p>
+            Az alrendszer öt fő osztályát vizsgáljuk meg: Tulajdonos, Takarító, Takarítási feladat, Takarítási fotó és Hibabejelentés. Az operációkat az osztályok feladatai és a közöttük fennálló kapcsolatok alapján határozzuk meg.
+        </p>
+
+        <h4>Tulajdonos osztály</h4>
+        <p>A Tulajdonos osztály feladata a vendégház napi működésének felügyelete, valamint a takarítási feladatok és a szobák aktuális állapotának ellenőrzése.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>takarításiFeladatokLekérdezése()</code>: Lekérdezi a vendégházhoz tartozó takarítási feladatokat és azok aktuális állapotát.</li>
+            <li><code>szobaÁllapotLekérdezése(szoba)</code>: Megjeleníti a kiválasztott szoba aktuális tisztasági állapotát.</li>
+            <li><code>takarításiFotóMegtekintése(feladat)</code>: Lekérdezi és megjeleníti a kiválasztott takarítási feladathoz tartozó fényképet.</li>
+            <li><code>hibabejelentésekLekérdezése()</code>: Lekérdezi a vendégház szobáihoz kapcsolódó hibabejelentéseket.</li>
+        </ul>
+
+        <h4>Takarító osztály</h4>
+        <p>A Takarító osztály a vendégház szobáinak tisztán tartásáért felelős személyzethez kapcsolódó műveleteket biztosítja. Feladata a napi takarítási teendők megtekintése, a munkavégzés elindítása és befejezése, valamint az esetleges meghibásodások bejelentése.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>napiFeladatokLekérdezése(dátum)</code>: Lekérdezi a takarítóhoz rendelt, adott napra vonatkozó takarítási feladatokat.</li>
+            <li><code>takarításMegkezdése(feladat)</code>: Elindítja a kiválasztott takarítási feladat végrehajtását.</li>
+            <li><code>takarításBefejezése(feladat, fénykép)</code>: Kezdeményezi a takarítás befejezését és az elkészült fénykép feltöltését.</li>
+            <li><code>hibaBejelentése(szoba, leírás)</code>: Létrehozza a kiválasztott szobában észlelt problémához tartozó hibabejelentést.</li>
+        </ul>
+
+        <h4>Takarítási feladat osztály</h4>
+        <p>A Takarítási feladat osztály a napi takarítási munkák nyilvántartásáért, valamint a feladatok állapotváltozásainak kezeléséért felelős.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>állapotLekérdezése()</code>: Lekérdezi a takarítási feladat aktuális állapotát.</li>
+            <li><code>takarításIndítása(időpont)</code>: Megkezdi a takarítási feladat végrehajtását, rögzíti a kezdési időpontot, és a feladat állapotát „Folyamatban” értékre módosítja.</li>
+            <li><code>takarításBefejezése(időpont)</code>: Sikeres adatfeldolgozás esetén rögzíti a befejezés időpontját, és a feladat állapotát „Befejezett” értékre módosítja.</li>
+            <li><code>állapotMódosítása(újÁllapot)</code>: Módosítja a takarítási feladat aktuális állapotát.</li>
+            <li><code>szobaÁllapotFrissítése()</code>: A sikeresen befejezett takarítási feladat alapján a kapcsolódó szoba tisztasági állapotát „Tiszta” értékre módosítja.</li>
+        </ul>
+
+        <h4>Takarítási fotó osztály</h4>
+        <p>A Takarítási fotó osztály a takarítás befejezése után készített fényképek kezeléséért és nyilvántartásáért felelős. Segítségével a tulajdonos ellenőrizheti az elvégzett munkát.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>fényképMentése(kép)</code>: Elmenti a takarító által feltöltött fényképet, és rögzíti annak elérési hivatkozását.</li>
+            <li><code>fényképLekérdezése()</code>: Lekérdezi a korábban elmentett fényképet.</li>
+            <li><code>feltöltésRögzítése(időpont)</code>: Rögzíti a fénykép sikeres feltöltésének időpontját.</li>
+        </ul>
+
+        <h4>Hibabejelentés osztály</h4>
+        <p>A Hibabejelentés osztály feladata a vendégház szobáiban észlelt meghibásodások nyilvántartása, valamint a problémák állapotának követése.</p>
+        <p><strong>Az osztályhoz a következő operációkat rendeljük:</strong></p>
+        <ul>
+            <li><code>hibabejelentésLétrehozása(szoba, takarító, leírás)</code>: Létrehozza a meghibásodáshoz tartozó bejelentést, és hozzárendeli az érintett szobához és a bejelentést készítő takarítóhoz.</li>
+            <li><code>hibabejelentésLekérdezése()</code>: Lekérdezi a hibabejelentéshez tartozó adatokat.</li>
+            <li><code>státuszMódosítása(újStátusz)</code>: Módosítja a hibabejelentés aktuális állapotát, például Új, Javítás alatt vagy Megoldott értékre.</li>
+            <li><code>hibabejelentésLezárása()</code>: A probléma megoldását követően lezárja a hibabejelentést.</li>
+        </ul>
+
+        <h4>Az operációk meghatározásának eredménye</h4>
+        <p>
+            Az operációk azonosítása során pontosítottuk az Üzemeltetés és takarítás alrendszer osztályainak feladatait, és meghatároztuk a takarítási feladatok végrehajtásához, a szobaállapotok frissítéséhez, a fényképek nyilvántartásához és a hibabejelentések kezeléséhez szükséges műveleteket.
+        </p>
+        <p>
+            A Tulajdonos osztály négy, a Takarító osztály négy, a Takarítási feladat osztály öt, a Takarítási fotó osztály három, míg a Hibabejelentés osztály négy operációval rendelkezik.
+        </p>
+        <p>
+            Az alrendszer továbbra is együttműködik a Foglaláskezelés alrendszerrel, amely a vendégház szobáinak alapvető adatait tartja nyilván. A takarítási feladatok végrehajtása során a rendszer módosítja a kapcsolódó Szoba objektum tisztasági állapotát, amelyet a tulajdonos a saját kezelőfelületén megtekinthet.
+        </p>
+        <p>
+            Az internetkapcsolat megszakadása esetén a mobilos felület ideiglenesen helyben tárolja az adatokat, majd a kapcsolat helyreállását követően továbbítja azokat a központi rendszer számára. Ezt a működést a mobilos felület adatkezelési feladatának tekintjük, ezért nem vezetünk be hozzá külön üzleti osztályt.
+        </p>
+        <p>
+            Az elemzés során nem tartottuk szükségesnek új osztály bevezetését. A korábban meghatározott öt fő osztályt a szükséges operációkkal egészítettük ki.
+        </p>
+        <p>
+            Az így meghatározott műveleteket a következő fejezetben elkészítendő részletes osztálydiagramon is feltüntetjük, majd az egyes osztályok dokumentációjában részletesebben bemutatjuk.
+        </p>
+
+        <h3 id="anal-6-5">6.5. Az analízis modell osztálydiagramja</h3>
+        <p>
+            Az Üzemeltetés és takarítás alrendszer részletes osztálydiagramját a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze. A kezdeti osztálydiagramhoz képest pontosítottuk az osztályok közötti kapcsolatokat, meghatároztuk azok számosságát, valamint kiegészítettük az osztályokat a szükséges attribútumokkal és operációkkal.
+        </p>
+        <p>
+            Az alrendszer öt fő osztálya a Tulajdonos, Takarító, Takarítási feladat, Takarítási fotó és Hibabejelentés. Ezek az osztályok biztosítják a vendégház napi működésének felügyeletét, a takarítási feladatok nyilvántartását, a fényképek kezelését, valamint a szobákban észlelt meghibásodások bejelentését.
+        </p>
+        <p>
+            A diagramon megjelenítjük a Foglaláskezelés alrendszerhez tartozó Vendégház és Szoba osztályokat is, mivel ezek közvetlenül kapcsolódnak a szálláshely üzemeltetéséhez és a takarítási feladatok végrehajtásához.
+        </p>
+        <p>
+            A pontosított osztálydiagram segítségével áttekinthetővé válik az egyes osztályok feladata, azok együttműködése, valamint a takarítási folyamatok és hibabejelentések kezeléséhez szükséges műveletek. A más alrendszerekhez tartozó osztályok részletes leírását a Foglaláskezelés alrendszer elemzése során már elkészítettük.
+        </p>
+
+        <div class="diagram-box">
+            <img src="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram.png" class="portrait-diagram" alt="Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram">
+            <p class="diagram-caption">13. ábra: Üzemeltetés és takarítás alrendszer – Részletes osztálydiagram</p>
+        </div>
+
+        <h3 id="anal-6-6">6.6. Az analízis modell osztályainak listája</h3>
+        <p>
+            Ebben a fejezetben részletesebben bemutatjuk az Üzemeltetés és takarítás alrendszerhez tartozó osztályokat. Az osztályok dokumentálása során meghatározzuk azok feladatait, a velük együttműködő további osztályokat, valamint a legfontosabb attribútumokat és operációkat.
+        </p>
+        <p>
+            Az alrendszer öt fő osztálya a Tulajdonos, Takarító, Takarítási feladat, Takarítási fotó és Hibabejelentés. A leírásokat a korábban elkészített statikus, dinamikus és funkcionális modellek alapján állítottuk össze.
+        </p>
+
+        <div class="class-doc-card">
+            <h4>6.6.1. Tulajdonos</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Tulajdonos osztály a vendégház üzemeltetéséért és adminisztrációjáért felelős személyt reprezentálja. Feladata a vendégház napi működésének felügyelete, a takarítási feladatok és a szobák aktuális állapotának ellenőrzése, valamint a feltöltött fényképek és hibabejelentések megtekintésének biztosítása.</p>
+            <p><strong>Együttműködők:</strong> Vendégház, Szoba, Takarítási feladat, Takarítási fotó, Hibabejelentés</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>tulajdonosAzonosító</code></td><td>Egész szám</td><td>A tulajdonos egyedi azonosítója.</td></tr>
+                    <tr><td><code>név</code></td><td>Szöveg</td><td>A tulajdonos teljes neve.</td></tr>
+                    <tr><td><code>e-mail</code></td><td>Szöveg</td><td>A tulajdonos kapcsolattartáshoz használt e-mail-címe.</td></tr>
+                    <tr><td><code>telefonszám</code></td><td>Szöveg</td><td>A tulajdonos telefonszáma.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>takarításiFeladatokLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a vendégházhoz tartozó takarítási feladatokat és azok aktuális állapotát.</td></tr>
+                    <tr><td><code>szobaÁllapotLekérdezése()</code></td><td><code>szoba</code></td><td>Lekérdezi a kiválasztott szoba aktuális tisztasági állapotát.</td></tr>
+                    <tr><td><code>takarításiFotóMegtekintése()</code></td><td><code>feladat</code></td><td>Lekérdezi és megjeleníti a takarítási feladathoz tartozó fényképet.</td></tr>
+                    <tr><td><code>hibabejelentésekLekérdezése()</code></td><td>Nincs</td><td>Lekérdezi a vendégház szobáihoz kapcsolódó hibabejelentéseket.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>6.6.2. Takarító</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Takarító osztály a vendégház szobáinak tisztán tartásáért felelős személyzetet reprezentálja. Feladata a napi takarítási teendők lekérdezése, a takarítás megkezdése és befejezése, valamint a munkavégzés során észlelt meghibásodások bejelentése.</p>
+            <p><strong>Együttműködők:</strong> Takarítási feladat, Hibabejelentés, Szoba</p>
+            <h5>Attribútumok</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Típus</th><th>Leírás</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>takarítóAzonosító</code></td><td>Egész szám</td><td>A takarító egyedi azonosítója.</td></tr>
+                    <tr><td><code>név</code></td><td>Szöveg</td><td>A takarító teljes neve.</td></tr>
+                    <tr><td><code>felhasználónév</code></td><td>Szöveg</td><td>A rendszerbe történő bejelentkezéshez használt felhasználónév.</td></tr>
+                    <tr><td><code>e-mail</code></td><td>Szöveg</td><td>A takarító kapcsolattartáshoz használt e-mail-címe.</td></tr>
+                </tbody>
+            </table>
+            <h5>Operációk</h5>
+            <table>
+                <thead>
+                    <tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>napiFeladatokLekérdezése()</code></td><td><code>dátum</code></td><td>Lekérdezi a takarítóhoz rendelt, adott napra vonatkozó takarítási feladatokat.</td></tr>
+                    <tr><td><code>takarításMegkezdése()</code></td><td><code>feladat</code></td><td>Elindítja a kiválasztott takarítási feladat végrehajtását.</td></tr>
+                    <tr><td><code>takarításBefejezése()</code></td><td><code>feladat, fénykép</code></td><td>Kezdeményezi a takarítás befejezését és az elkészült fénykép feltöltését.</td></tr>
+                    <tr><td><code>hibaBejelentése()</code></td><td><code>szoba, leírás</code></td><td>Létrehozza a kiválasztott szobában észlelt problémához tartozó hibabejelentést.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-doc-card">
+            <h4>6.6.3. Takarítási feladat</h4>
+            <p><strong>Felelőssége, feladata:</strong><br>
+            A Takarítási feladat osztály a vendégház szobáihoz kapcsolódó takarítási teendők nyilvántartásáért felelős. Feladata a takarítási munk</p>
         </div>
     </section>
 
     <!-- Alsó navigáció -->
     <div class="footer-nav">
-        <a href="Szoftech_h3.html" class="nav-btn">&larr; Előző: H3 – SRS</a>
+        <a href="Szoftech_h4.html" class="nav-btn">&larr; Vissza: H4 – Tervezés</a>
         <a href="index.html" class="nav-btn primary">Vissza a főoldalra</a>
-        <a href="Szoftech_h4.html" class="nav-btn">Következő: H4 – Tervezés &rarr;</a>
+        <a href="#top" class="nav-btn">Ugrás az oldal tetejére &uarr;</a>
     </div>
 
 </div>
