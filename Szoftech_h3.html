@@ -24,7 +24,7 @@
         }
 
         .container {
-            max-width: 1050px;
+            max-width: 1080px;
             margin: 0 auto;
         }
 
@@ -117,7 +117,7 @@
             color: #164a2a;
             font-size: 1.2rem;
             font-weight: 700;
-            margin-top: 22px;
+            margin-top: 24px;
             margin-bottom: 10px;
         }
 
@@ -147,7 +147,6 @@
 
         li {
             margin-bottom: 7px;
-            text-align: justify;
         }
 
         li strong, p strong {
@@ -178,7 +177,7 @@
         /* Tartalomjegyzék */
         .toc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 16px;
         }
 
@@ -196,7 +195,6 @@
 
         .toc-list li {
             margin-bottom: 6px;
-            text-align: left;
         }
 
         .toc-list li.sub {
@@ -218,13 +216,13 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12px 0 20px 0;
-            font-size: 0.94rem;
+            margin: 12px 0 22px 0;
+            font-size: 0.93rem;
         }
 
         th, td {
             border: 1px solid #cce2d0;
-            padding: 10px 13px;
+            padding: 10px 12px;
             text-align: left;
             vertical-align: top;
         }
@@ -239,13 +237,45 @@
             background-color: #fafdfb;
         }
 
-        code {
-            font-family: Consolas, Monaco, monospace;
-            background-color: #eef7f0;
-            padding: 2px 5px;
+        .uc-table td:first-child {
+            width: 24%;
+            font-weight: 700;
+            color: #164a2a;
+            background-color: #f4faf5;
+        }
+
+        .prio-must {
+            display: inline-block;
+            background-color: #164a2a;
+            color: #ffffff;
+            padding: 2px 8px;
             border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .prio-should {
+            display: inline-block;
+            background-color: #2f7d4c;
+            color: #ffffff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* Kiemelő dobozok */
+        .info-box {
+            background-color: #f5fbf6;
+            border: 1px solid #cbe3cf;
+            border-left: 4px solid #1b5e36;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin: 14px 0 18px 0;
+        }
+
+        .info-box strong {
             color: #123b22;
-            font-size: 0.9em;
         }
 
         /* Diagram doboz */
@@ -254,7 +284,7 @@
             border: 1px solid #cbe3cf;
             border-radius: 8px;
             padding: 18px;
-            margin: 18px 0;
+            margin: 16px 0 22px 0;
             text-align: center;
         }
 
@@ -264,8 +294,9 @@
             display: block;
             margin: 0 auto;
             border-radius: 6px;
-            border: 1px solid #b8d6be;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+            border: 1px solid #c3dcc8;
+            background-color: #1e1e1e;
+            box-shadow: 0 3px 10px rgba(20, 61, 36, 0.08);
         }
 
         .diagram-caption {
@@ -277,62 +308,13 @@
             font-size: 0.95rem;
         }
 
-        /* Használati eset kártyák */
-        .uc-box {
-            background-color: #fbfdfb;
-            border: 1px solid #cde3d1;
-            border-left: 5px solid #1b5e36;
-            border-radius: 8px;
-            padding: 18px 22px;
-            margin: 18px 0;
-        }
-
-        .uc-box h4 {
-            margin-top: 0;
-            font-size: 1.12rem;
+        code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #eef7f0;
+            padding: 2px 5px;
+            border-radius: 4px;
             color: #123b22;
-        }
-
-        .prio-must {
-            display: inline-block;
-            background-color: #d4ebd8;
-            color: #123b22;
-            border: 1px solid #8ec298;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 0.82rem;
-        }
-
-        .prio-should {
-            display: inline-block;
-            background-color: #e8f4fa;
-            color: #134663;
-            border: 1px solid #a9cde0;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 0.82rem;
-        }
-
-        .prio-could {
-            display: inline-block;
-            background-color: #fff8e6;
-            color: #7a5200;
-            border: 1px solid #e6c86e;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 0.82rem;
-        }
-
-        /* Kézikönyv blokkok */
-        .manual-step {
-            background-color: #f7fbf8;
-            border: 1px solid #d5e8d8;
-            border-radius: 8px;
-            padding: 16px 20px;
-            margin-bottom: 14px;
+            font-size: 0.9em;
         }
 
         .footer-nav {
@@ -342,6 +324,29 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 10px;
+        }
+        /* Keskeny kijelzőn a táblázatok görgethetők. */
+        .table-wrap { overflow-x: auto; }
+        .table-wrap table { min-width: 540px; }
+        .table-wrap .uc-table { min-width: 0; }
+        .diagram-box img { background-color: transparent; }
+        .diagram-box [hidden] { display: none !important; }
+        .diagram-note { font-size: .92rem; text-align: center; color: #385b40; }
+        @media (max-width: 600px) {
+            body { padding: 12px 8px 25px; }
+            .card { padding: 20px 16px; }
+            .toc-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.55rem; }
+            h2 { font-size: 1.25rem; }
+            p { text-align: left; }
+            th, td { padding: 8px; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .navbar, .footer-nav { display: none; }
+            .card { box-shadow: none; border: 0; padding: 10px 0; }
+            h2, h3, h4 { break-after: avoid; }
+            tr { break-inside: avoid; }
         }
     </style>
 </head>
@@ -365,25 +370,25 @@
     <!-- Címlap / Fejléc -->
     <header class="card">
         <p class="subtitle">Miskolci Egyetem GÉIK &bull; Szoftvertechnológia (Adatbázis-tervezéssel) &bull; H3 Mérföldkő</p>
-        <h1>Software követelmény specifikáció (SRS) és Felhasználói dokumentáció</h1>
+        <h1>Szoftverkövetelmény-specifikáció (SRS) és felhasználói dokumentáció</h1>
         <p>
-            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer<br>
-            Jelen dokumentum a specifikációs fázis (H3) hivatalos követelményspecifikációja, amely tartalmazza a rendszer áttekintését, a teljes Use Case modellt, a funkcionális és nem-funkcionális elvárásokat, a tervezési korlátozásokat, az interfészeket, valamint a végfelhasználói kézikönyv első verzióját.
+            <strong>Projekt címe:</strong> Automatizált vendégház-menedzsment és kommunikációs rendszer (Ácsingózó Vendégház)<br>
+            A H3 mérföldkő dokumentációja a vendégház-menedzsment rendszer funkcionális és nem funkcionális követelményeit, a használati eseteket, a tervezett felépítést és a külső kapcsolódásokat ismerteti. Az utolsó fejezet a vendégek, a tulajdonos és a takarító személyzet számára készült felhasználói útmutató.
         </p>
         <div class="meta-row">
             <div class="meta-badge"><strong>Csapat neve:</strong> No-Life Gamerek</div>
             <div class="meta-badge"><strong>Gyakorlatvezető:</strong> Sátán Ádám</div>
-            <div class="meta-badge"><strong>Dokumentum:</strong> Szoftech_h3.html (v1.2)</div>
+            <div class="meta-badge"><strong>Dokumentum:</strong> Szoftech_h3.html (v1.4)</div>
         </div>
 
-        <h3>Dokumentumtörténet (History)</h3>
-        <table>
+        <h3 style="margin-top: 20px;">Dokumentumtörténet (History)</h3>
+        <table style="margin-bottom: 0;">
             <thead>
                 <tr>
-                    <th>Dátum</th>
-                    <th>Verzió</th>
-                    <th>Leírás</th>
-                    <th>Szerző</th>
+                    <th style="width: 16%;">Dátum</th>
+                    <th style="width: 12%;">Verzió</th>
+                    <th style="width: 48%;">Leírás</th>
+                    <th style="width: 24%;">Szerző</th>
                 </tr>
             </thead>
             <tbody>
@@ -396,13 +401,13 @@
                 <tr>
                     <td>2026. 11. 12.</td>
                     <td>1.0</td>
-                    <td>A használati esetek részletes kifejtése, a 4–12. fejezetek és a Felhasználói kézikönyv véglegesítése.</td>
+                    <td>A használati esetek részletes kifejtése, a 4–12. fejezetek és a Felhasználói kézikönyv első verziója.</td>
                     <td>Szepesi János, Lemák Marcell, Németh Donát</td>
                 </tr>
                 <tr>
                     <td>2026. 11. 26.</td>
-                    <td>1.2</td>
-                    <td>Szabványos HTML struktúrába ültetés, forrásszöveggel való teljes tartalmi összehangolás és History tábla rögzítése.</td>
+                    <td>1.4</td>
+                    <td>Frontend és Backend működés részletezése, követelmények pontosítása és közérthető Felhasználói dokumentáció (13. pont).</td>
                     <td>Szepesi János</td>
                 </tr>
             </tbody>
@@ -416,443 +421,359 @@
             <div class="toc-box">
                 <ul class="toc-list">
                     <li><a href="#srs-1">1. Bevezetés</a></li>
-                    <li><a href="#srs-2">2. Áttekintés</a></li>
+                    <li><a href="#srs-2">2. A rendszer áttekintése</a></li>
+                    <li class="sub"><a href="#srs-2-1">2.1. A frontend felépítése</a></li>
+                    <li class="sub"><a href="#srs-2-2">2.2. A backend felépítése</a></li>
                     <li><a href="#srs-3">3. A rendszer funkciói (Use Case modell)</a></li>
                     <li class="sub"><a href="#srs-3-diagram">Use Case diagram</a></li>
                     <li class="sub"><a href="#srs-3-1">3.1. Szobafoglalás leadása és automatikus visszaigazolás</a></li>
                     <li class="sub"><a href="#srs-3-2">3.2. Szoba státuszának frissítése mobilról</a></li>
-                    <li class="sub"><a href="#srs-3-3">3.3. Naptár-szinkronizáció és túlfoglalás blokkolása</a></li>
-                    <li class="sub"><a href="#srs-3-funkc-tabla">Funkcionális követelmények összefoglalása</a></li>
-                    <li><a href="#srs-4">4. Használhatóság</a></li>
-                    <li><a href="#srs-5">5. Megbízhatóság</a></li>
-                    <li><a href="#srs-6">6. Teljesítmény</a></li>
+                    <li class="sub"><a href="#srs-3-3">3.3. Naptárszinkronizáció és ütközéskezelés</a></li>
+                    <li class="sub"><a href="#srs-3-osszefoglalo">Funkcionális követelmények összefoglalása</a></li>
                 </ul>
             </div>
             <div class="toc-box">
                 <ul class="toc-list">
+                    <li><a href="#srs-4">4. Használhatóság</a></li>
+                    <li><a href="#srs-5">5. Megbízhatóság</a></li>
+                    <li><a href="#srs-6">6. Teljesítmény</a></li>
                     <li><a href="#srs-7">7. Támogatottság</a></li>
                     <li><a href="#srs-8">8. Tervezési korlátozások</a></li>
-                    <li><a href="#srs-9">9. On-line dokumentáció és Help rendszer</a></li>
+                    <li><a href="#srs-9">9. Online dokumentáció és súgó</a></li>
                     <li><a href="#srs-10">10. Felhasznált kész komponensek</a></li>
                     <li><a href="#srs-11">11. Interfészek</a></li>
                     <li class="sub"><a href="#srs-11-1">11.1. Felhasználói interfészek</a></li>
-                    <li class="sub"><a href="#srs-11-2">11.2. Hardware interfészek</a></li>
-                    <li class="sub"><a href="#srs-11-3">11.3. Software interfészek</a></li>
+                    <li class="sub"><a href="#srs-11-2">11.2. Hardverinterfészek</a></li>
+                    <li class="sub"><a href="#srs-11-3">11.3. Szoftverinterfészek</a></li>
                     <li class="sub"><a href="#srs-11-4">11.4. Kommunikációs interfészek</a></li>
-                    <li><a href="#srs-12">12. Alkalmazott szabványok</a></li>
-                    <li class="sub"><a href="#srs-12-1">12.1. Kötelező</a></li>
-                    <li class="sub"><a href="#srs-12-2">12.2. Választott</a></li>
-                    <li><a href="#srs-13">13. Felhasználói dokumentáció (Kézikönyv v1.0)</a></li>
+                    <li><a href="#srs-12">12. Alkalmazott szabványok és előírások</a></li>
+                    <li><a href="#srs-13">13. Felhasználói dokumentáció (kézikönyv)</a></li>
+                    <li class="sub"><a href="#srs-13-1">13.1. Vendégeknek – szobafoglalás</a></li>
+                    <li class="sub"><a href="#srs-13-2">13.2. Tulajdonosnak – a vendégház kezelése</a></li>
+                    <li class="sub"><a href="#srs-13-3">13.3. Takarítóknak – a mobilfelület használata</a></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 1. BEVEZETÉS -->
     <section class="card" id="srs-1">
         <h2>1. Bevezetés</h2>
-        <p>
-            Ez a dokumentum (SRS) azért készült, hogy részletesen bemutassa az <strong>„Automatizált vendégház-menedzsment és kommunikációs rendszer”</strong> nevű projektünk működését és elvárásait. A célunk, hogy a vendégházak tulajdonosainak ne kelljen többet papírokkal és Excel-táblázatokkal szenvedniük.
-        </p>
-        <p>
-            Egy olyan rendszert tervezünk, ami automatikusan kezeli a foglalásokat, a fizetést, egyezteti a naptárakat, és még a takarítóknak is szól, hogy mikor melyik szobát kell megcsinálni. A dokumentumot a csapatunk és a gyakorlatvezető számára készítettük, hogy pontosan lássuk, mit is fogunk leprogramozni. A dokumentumban szereplő szakkifejezések részletes magyarázatát a különálló <a href="Szotar.html"><strong>Fogalomtár (Szótár)</strong></a> dokumentum tartalmazza.
-        </p>
+<p>Projektünkben egy kisebb szálláshely mindennapi üzemeltetéséhez készítünk webes alkalmazást. A rendszer tervezésénél az Ácsingózó Vendégház működéséből indultunk ki, elsősorban a foglalások nyilvántartásával, a vendégekkel történő kommunikációval és a takarítás megszervezésével foglalkozunk. Ezeket a feladatokat jelenleg több különböző felületen is el lehet végezni, de az adatok egyeztetése sok esetben a tulajdonosra marad.</p>
+<p>A foglalások a vendégház saját weboldaláról, külső szállásközvetítő oldalakról, illetve telefonos vagy személyes egyeztetésből érkezhetnek. Ha az egyes naptárak nem ugyanazt az állapotot mutatják, előfordulhat, hogy egy már foglalt szoba másik felületen még elérhető. Egy ilyen eset nemcsak a tulajdonos munkáját nehezíti meg, hanem a vendég számára is kellemetlenséget okozhat. A foglalások központi nyilvántartásával és a külső naptárak rendszeres egyeztetésével ezt a kockázatot szeretnénk csökkenteni.</p>
+<p>A másik fontos terület a szobák előkészítése. A vendég távozását követően a személyzetnek tudnia kell, melyik szobával van feladata, a tulajdonosnak pedig látnia kell, hogy a munka milyen állapotban van. A telefonon vezetett takarítási lista és a fényképes készre jelentés segítségével ezek az információk ugyanabban a rendszerben lesznek elérhetők, mint a foglalások. A takarítók a munka során észlelt meghibásodásokat is rögzíthetik.</p>
+<h3>A dokumentum célja és hatóköre</h3>
+<p>A szoftverkövetelmény-specifikáció (Software Requirements Specification, SRS) a H3 mérföldkő része. Ebben rögzítjük, milyen műveleteket kell támogatnia a programnak, hogyan viselkedjen a gyakori hibák esetén, és milyen minőségi elvárásoknak kell megfelelnie. A dokumentum a fejlesztés és a későbbi tesztelés alapjául szolgál; nem egy már üzemelő rendszer működését igazolja. A konkrét osztályok, adatbázistáblák és programozási megoldások részletes terve a következő mérföldkőhöz tartozik.</p>
+<p>A jelenlegi hatókörbe beletartozik a szabad szobák keresése, a regisztráció nélküli foglalás, a bankkártyás fizetés, a kuponok kezelése, a visszaigazoló e-mail, az iCal-naptárkapcsolat, a tulajdonosi adminisztráció és a takarítói felület. A teljes körű számlázási integráció későbbi bővítési lehetőség. A külső szolgáltatók saját működését a program nem tudja irányítani, ezért a dokumentumban külön kezeljük a helyi műveleteket és a külső rendszerektől függő folyamatokat.</p>
+<p>A specifikáció elsősorban a fejlesztőcsapat és a gyakorlatvezető számára készült. A 13. fejezet ezzel szemben a leendő felhasználóknak szól, ezért ott a műveletek elvégzésére koncentrálunk. A dokumentumban használt fogalmak magyarázata a <a href="Szotar.html">szótárban</a> található.</p>
     </section>
 
-    <!-- 2. ÁTTEKINTÉS -->
     <section class="card" id="srs-2">
-        <h2>2. Áttekintés</h2>
-        <p>
-            A szoftverünk három fő részből fog állni:
-        </p>
-        <ul>
-            <li><strong>Publikus weboldal (Vendégfelület):</strong> Egy nyilvános webes felület, ahol a vendégek tudnak szobát nézni és foglalni.</li>
-            <li><strong>Belső adminisztratív felület (Tulajdonosi felület):</strong> Egy zárt belső felület, ahol a tulajdonos látja a bevételeket, a foglalásokat és mindent tud módosítani.</li>
-            <li><strong>Takarítói mobilfelület:</strong> Egy mobilon is jól használható, egyszerű felület a takarítóknak, ahol csak azt látják, mi a napi feladatuk.</li>
-        </ul>
-        <p>
-            Ezzel a rendszerrel rengeteg időt spórolunk meg, ráadásul elkerüljük a legnagyobb rémálmot: azt, hogy ketten foglalják le ugyanazt a szobát ugyanarra az időpontra (túlfoglalás).
-        </p>
+        <h2>2. A rendszer áttekintése</h2>
+<p>A program böngészőből használható alkalmazásként készül. A vendégek a nyilvános oldalon keresztül foglalnak, a tulajdonos és a takarítók pedig bejelentkezés után férhetnek hozzá a munkájukhoz szükséges adatokhoz. Nem ugyanazt a kezelőfelületet kapja mindenki, mert a három felhasználói kör eltérő feladatokat végez. A hozzáférési jogosultságokat nemcsak a felületen, hanem a szerveroldalon is ellenőrizni kell.</p>
+<div class="table-wrap"><table><thead><tr><th>Felhasználó</th><th>Elsődleges feladatok</th><th>Hozzáférés</th></tr></thead><tbody>
+<tr><td>Vendég</td><td>Szobakeresés, adatok megadása, foglalás, kupon használata, fizetés.</td><td>Nyilvános felület, regisztráció nélkül.</td></tr>
+<tr><td>Tulajdonos</td><td>Foglalások és árak kezelése, naptárak összekötése, bevételek és takarítások áttekintése.</td><td>Bejelentkezéshez és tulajdonosi jogosultsághoz kötött.</td></tr>
+<tr><td>Takarító személyzet</td><td>Napi feladatok megtekintése, takarítás indítása, fotófeltöltés, hibabejelentés.</td><td>Bejelentkezéshez és takarítói jogosultsághoz kötött.</td></tr></tbody></table></div>
+<h3 id="srs-2-1">2.1. A frontend felépítése</h3>
+<p>A felhasználói felületeket HTML5, CSS3 és JavaScript segítségével tervezzük kialakítani. A megjelenésnek alkalmazkodnia kell az eszköz képernyőméretéhez. A felület a felhasználói műveleteket továbbítja a backend felé, és megjeleníti a kapott választ. A foglalások érvényességéről és a fizetendő összegről viszont nem a böngésző hozza meg a végleges döntést.</p>
+<h4>Vendégoldali foglalási felület</h4>
+<p>A foglalás az érkezési és távozási dátum, valamint a vendégek számának megadásával kezdődik. A keresés eredményeként azok a szobák jelennek meg, amelyek a rendszerben nyilvántartott foglalások és érvényes ideiglenes zárolások alapján elérhetők. Egy találatnál szerepel a szoba fényképe, befogadóképessége, éjszakánkénti ára és a kiválasztott időszakra számított teljes díj. Ha nincs megfelelő találat, a felület ezt egyértelműen jelzi, és lehetőséget ad a keresés módosítására.</p>
+<p>A kiválasztott szobához tartozó foglalási űrlapon a vendég a nevét, e-mail-címét, telefonszámát és címét adja meg. A kliensoldali ellenőrzés már a kitöltéskor jelezheti a hiányzó adatokat és a hibás e-mail-formátumot. A kitöltött mezőket a szerver is ellenőrzi, így nem elegendő az űrlap ellenőrzésének megkerülésével megfelelőnek látszó kérést küldeni. A kuponkód megadása opcionális, a kedvezmény csak érvényes kód esetén jelenhet meg a végösszegben.</p>
+<p>A fizetés elindítása előtt a vendég még egyszer áttekintheti a foglalás adatait. Ha a szerver elfogadja a kérést, 15 perces ideiglenes zárolás jön létre a saját rendszerben. A felületen látható visszaszámláló a lejáratról tájékoztatja a vendéget, de a határidőt a szerver tartja nyilván. A fizetést a külső szolgáltató felületén lehet elvégezni. A visszatérés után a vendég a ténylegesen ellenőrzött fizetési állapot alapján kap tájékoztatást.</p>
+<h4>Tulajdonosi vezérlőpult (dashboard)</h4>
+<p>Az adminisztrációs oldal fő nézetében a tulajdonos a napi érkezéseket, távozásokat és a takarítás állapotát követheti. Emellett megtekinthető az utolsó sikeres naptárszinkronizáció időpontja is. Ha egy külső forrás hosszabb ideje nem volt elérhető, a régi adatokat nem szabad friss adatként feltüntetni. Ez különösen fontos akkor, amikor a tulajdonos telefonon foglalást rögzít, és az elérhető szobákról kell tájékoztatnia a vendéget.</p>
+<p>A foglalások áttekintéséhez FullCalendar alapú naptárat tervezünk. A foglalások forrása (saját weboldal, Booking.com, Airbnb) színnel és felirattal különböztethető meg. A naptár szobánként mutatja az időszakokat; egy esemény kiválasztásakor a tulajdonos a rendelkezésre álló részleteket tekintheti meg. A kívülről importált naptáresemények nem feltétlenül tartalmaznak minden olyan adatot, amelyet a saját weboldalon leadott foglalásnál tárolunk.</p>
+<p>A tulajdonosi felület további részein lehet kézi foglalást rögzíteni, a szobaárakat és kuponokat kezelni, a külső naptárak címeit beállítani, valamint a takarítás során készült képeket és hibajelzéseket megtekinteni. A foglalásoknál észlelt ütközést külön figyelmeztetéssel kell jelezni. A kezelőfelület célja, hogy a tulajdonosnak a napi feladatokhoz ne kelljen folyamatosan több alkalmazás között váltania.</p>
+<h4>Takarítói mobilfelület (PWA)</h4>
+<p>A takarítói felület elsősorban okostelefonon használható. Bejelentkezés után az adott naphoz tartozó feladatok jelennek meg, a szoba megnevezésével és a távozás időpontjával. A feladatlista nem tartalmazza a vendégek fizetési adatait vagy a tulajdonosi beállításokat, mert ezek nem szükségesek a takarításhoz.</p>
+<p>A takarító a megfelelő feladat kiválasztása után elindíthatja a munkát. A takarítás befejezésekor a telefon kamerájával készített képet csatolja, majd készre jelenti a feladatot. A szoba állapotának a sikeres szerveroldali mentés után kell megváltoznia. Ha valamilyen hibát észlel, rövid leírással külön bejelentést küldhet a tulajdonosnak. Egy karbantartási probléma és egy befejezett takarítás két külön információ, ezért az egyik rögzítése nem helyettesíti a másikat.</p>
+<p>A vendégház egyes részein előfordulhat gyenge internetkapcsolat. Ennek kezelésére a PWA (Progressive Web App) a korábban betöltött feladatokhoz tartozó módosításokat és fényképeket az IndexedDB helyi tárolóban őrizheti meg. A felületnek meg kell különböztetnie az elküldésre váró műveleteket a szerver által visszaigazoltaktól. A kapcsolat helyreállása után a kliens újrapróbálja a mentést, amennyiben a böngésző és a bejelentkezés állapota ezt lehetővé teszi.</p>
+<h3 id="srs-2-2">2.2. A backend felépítése</h3>
+<p>A szerveroldali alkalmazást C# nyelven, ASP.NET Core környezetben tervezzük elkészíteni, az adatok tárolásához PostgreSQL relációs adatbázist használunk. A backend fogadja a webes felületekről érkező kéréseket, ellenőrzi a jogosultságokat, végrehajtja az üzleti logikát, majd visszaküldi a művelet eredményét. A böngésző közvetlenül nem fér hozzá az adatbázishoz. Ezzel a felépítéssel a különböző felületek ugyanazokra az adatokra és szabályokra támaszkodnak.</p>
+<h4>Foglaláskezelés és árkalkuláció</h4>
+<p>A foglalás létrehozása előtt a szerver ellenőrzi a dátumokat, a férőhelyet, a szoba aktuális foglaltságát és a megadott árhoz tartozó feltételeket. A távozás napjának az érkezés utánra kell esnie. Két időszak akkor ütközik, ha az egyik érkezése a másik távozása elé esik, és fordítva. Így például egy július 10-től 12-ig tartó foglalás ütközik a július 11-től 13-ig tartóval, de önmagában nem akadályozza a július 12-i érkezést, ha a szobát addigra előkészítették.</p>
+<p>Az árkalkuláció a szerveren tárolt árak alapján történik. Ha a vendég kuponkódot ad meg, a szerver ellenőrzi, hogy a kedvezmény alkalmazható-e, majd kiszámítja a fizetendő összeget. Az űrlapon szereplő vagy a böngészőből küldött összeg önmagában nem tekinthető hitelesnek. Ha a kiválasztás és a fizetés indítása között megváltozik az ár vagy megszűnik az elérhetőség, a vendégnek erről visszajelzést kell kapnia.</p>
+<p>Az ideiglenes foglalási zárolást rövid adatbázis-tranzakcióban kell létrehozni, a 15 perces lejáratot külön adatként nyilvántartva. Nem szükséges az adatbázis-tranzakciót a teljes fizetési idő alatt nyitva tartani. A foglalhatóság ellenőrzésének és a zárolás létrehozásának egymással összhangban kell történnie, különben két egyidejű kérés ugyanazt az időszakot is lefoglalhatná. A lejárt zárolásokat a rendszer már nem tekinti aktívnak, egy háttérfolyamat pedig gondoskodik a lejárt bejegyzések kezeléséről.</p>
+<h4>Bankkártyás fizetés és visszaigazolás</h4>
+<p>A fizetési folyamatot Stripe vagy Barion szolgáltatáson keresztül tervezzük lebonyolítani. A bankkártyaadatokat a fizetési szolgáltató kezeli, azok nem kerülnek a vendégház saját adatbázisába. A rendszer a fizetéshez szükséges összeget és a foglaláshoz tartozó azonosítót továbbítja, a tranzakció eredményét pedig a szolgáltatótól kapott hiteles információ alapján dolgozza fel.</p>
+<p>A webhook egy olyan szerveroldali értesítés, amely a fizetés állapotának változásáról tájékoztatja az alkalmazást. A beérkező értesítést a választott szolgáltató előírásai szerint kell ellenőrizni, szükség esetén a fizetési állapot külön lekérdezésével. Az összegnek és a foglaláshoz tartozó azonosítónak is egyeznie kell. A vendég böngészőjének visszatérése a fizetőoldalról nem elegendő a fizetés igazolására.</p>
+<p>Ugyanaz az értesítés többször is megérkezhet, ezért a feldolgozásnak nem szabad ismételten létrehoznia ugyanazt a foglalást vagy visszaigazolást. Ha a fizetés eredménye a zárolás lejárta után érkezik meg, a foglalhatóságot újra ellenőrizni kell. Ütközés esetén nem lehet automatikusan visszaigazolni a foglalást; az eltérést rendezni kell a tulajdonossal és szükség esetén a fizetési szolgáltatóval.</p>
+<h4>Külső naptárak szinkronizálása</h4>
+<p>A Booking.com és az Airbnb naptárainak kezelésére időzített háttérszolgáltatás készül. Ez ötpercenként megkísérli letölteni a beállított iCal-fájlokat, feldolgozza a bennük szereplő eseményeket, és egyezteti azokat a helyi foglalási adatokkal. Az eseményeket a forrás és az esemény azonosítója alapján kell megkülönböztetni, hogy ugyanaz a foglalás ismételt letöltéskor ne kerüljön be újra.</p>
+<p>A saját rendszer kimenő iCal-naptára a foglalt időszakokat adja át a külső szolgáltatásoknak. A külső oldalak ezt a saját frissítési rendjük szerint olvassák be, ezért az ötperces lekérdezési időköz csak a saját alkalmazásunkra vonatkozik. A szinkronizáció nem garantál azonnali, minden platformra kiterjedő zárolást. Ha két foglalás időben átfedi egymást, a rendszernek meg kell őriznie az ütközéshez szükséges információkat, és figyelmeztetnie kell a tulajdonost.</p>
+<h4>Takarítási feladatok, képek és e-mailek kezelése</h4>
+<p>A napi takarítási feladatok a nyilvántartott távozások alapján jönnek létre. A takarítás megkezdése és lezárása a feladat állapotát módosítja, a lezáráskor pedig a szerver ellenőrzi a feltöltött fényképet és a felhasználó jogosultságát. A kapcsolatkimaradás miatt ismételten elküldött műveleteket egyedi műveletazonosítóval lehet felismerni. Ez megakadályozza, hogy egy újrapróbálkozás több azonos bejegyzést eredményezzen.</p>
+<p>A sikeres foglalás után a szerver elindítja a visszaigazoló e-mail küldését, amelyhez SMTP vagy SendGrid használható. A visszaigazolásnak tartalmaznia kell a foglalás lényeges adatait, az érkezés és távozás napját, valamint az összeget. Ha az e-mail küldése hibával zárul, attól egy már elfogadott foglalás nem válhat újra szabaddá. Az e-mail-küldés hibáját külön naplózni kell.</p>
+<h4>Jogosultságok és naplózás</h4>
+<p>A belső felületek használatához bejelentkezés szükséges. A jelszavakat nem olvasható szövegként, hanem megfelelő jelszóhash-eléssel kell tárolni. A szerver minden védett műveletnél ellenőrzi a szerepkört, így a takarító nem férhet hozzá például az árakhoz tartozó beállításokhoz. A hibák és a fontos állapotváltozások naplózása segíti a problémák kivizsgálását, de a naplóban nem szerepelhet jelszó vagy más bizalmas hitelesítési adat.</p>
     </section>
 
-    <!-- 3. A RENDSZER FUNKCIÓI -->
     <section class="card" id="srs-3">
         <h2>3. A rendszer funkciói (Use Case modell)</h2>
-
-        <h3 id="srs-3-diagram">Use Case diagram</h3>
-        <p>
-            Az alábbi használatieset-diagram szemlélteti a <strong>Vendégház-menedzsment rendszer</strong> határait, az érintett aktorokat (<em>Vendég, Takarító személyzet, Rendszer</em>), valamint a fő funkcionális használati eseteket és azok kapcsolatait.
-        </p>
-
-        <div class="diagram-box">
-            <img src="A rendszer funkciói.png" alt="A vendégház-menedzsment rendszer Use Case diagramja">
-            <p class="diagram-caption">1. ábra: A vendégház-menedzsment rendszer Use Case diagramja</p>
-        </div>
-
-        <h3 id="srs-3-1">3.1. Szobafoglalás leadása és automatikus visszaigazolás</h3>
-        <div class="uc-box">
-            <h4>UC-01: Szobafoglalás leadása és automatikus visszaigazolás (<code>&laquo;include&raquo;</code> Bankkártyás fizetés)</h4>
-            <table>
-                <tbody>
-                    <tr>
-                        <th style="width: 26%;">Rövid leírás</th>
-                        <td>A vendég felmegy az oldalra, kiválasztja a dátumot és a szobát, beírja az adatait, kifizeti bankkártyával, a rendszer pedig elmenti az egészet és küld neki egy e-mailt a részletekkel.</td>
-                    </tr>
-                    <tr>
-                        <th>Aktor (ki csinálja?)</th>
-                        <td>Vendég</td>
-                    </tr>
-                    <tr>
-                        <th>Befoglalt használati eset</th>
-                        <td><code>&laquo;include&raquo;</code> Bankkártyás fizetés</td>
-                    </tr>
-                    <tr>
-                        <th>Prekondíciók (előfeltétel)</th>
-                        <td>A kiválasztott szoba szabad legyen, és működjön az internetes fizetés.</td>
-                    </tr>
-                    <tr>
-                        <th>Postkondíciók (utófeltétel)</th>
-                        <td>A foglalás bekerül az adatbázisba <em>„Kifizetve”</em> státusszal, a naptárban lezárul az időpont, és kimegy a visszaigazoló e-mail a vendégnek.</td>
-                    </tr>
-                    <tr>
-                        <th>Szokásos működés (Main Flow)</th>
-                        <td>
-                            <ol style="margin: 0 0 0 18px;">
-                                <li>A vendég megnyitja a weblapot, beállítja, mettől meddig jönne és hányan.</li>
-                                <li>A rendszer kiírja a szabad szobákat és az árakat.</li>
-                                <li>A vendég kiválaszt egy szobát.</li>
-                                <li>Kitölti a nevet, e-mailt, telefonszámot és a címet.</li>
-                                <li>Rányom a fizetés gombra, átkerül a bankkártyás fizető oldalra (<strong>Bankkártyás fizetés</strong>).</li>
-                                <li>Sikeres fizetés után a rendszer elmenti a foglalást.</li>
-                                <li>A rendszer küld egy visszaigazoló e-mailt.</li>
-                                <li>A rendszer rögtön lezárja ezt az időpontot a saját naptárában, hogy más már ne tudja lefoglalni.</li>
-                            </ol>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Alternatív esetek</th>
-                        <td>Ha a vendégnek van kuponkódja, a 4. lépés után beírhatja, és a rendszer újraszámolja az árat.</td>
-                    </tr>
-                    <tr>
-                        <th>Kivételes esetek</th>
-                        <td>Ha a kártyán nincs elég pénz, vagy rossz kódot ír be, a fizetés megszakad. A rendszer hibaüzenetet dob, a szobát pedig újra szabaddá teszi.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h3 id="srs-3-2">3.2. Szoba státuszának frissítése mobilról</h3>
-        <div class="uc-box">
-            <h4>UC-02: Szoba státuszának frissítése mobilról</h4>
-            <table>
-                <tbody>
-                    <tr>
-                        <th style="width: 26%;">Rövid leírás</th>
-                        <td>A takarító a saját telefonján megnézi, melyik szobákat kell ma kitakarítani. Amikor végez eggyel, rányom a gombra, és a rendszer átállítja a szobát <em>„Tiszta”</em> állapotra.</td>
-                    </tr>
-                    <tr>
-                        <th>Aktor (ki csinálja?)</th>
-                        <td>Takarító személyzet</td>
-                    </tr>
-                    <tr>
-                        <th>Prekondíciók (előfeltétel)</th>
-                        <td>A takarító be van jelentkezve a telefonján a rendszerbe.</td>
-                    </tr>
-                    <tr>
-                        <th>Postkondíciók (utófeltétel)</th>
-                        <td>A szoba <em>„Tiszta”</em> lesz az adatbázisban, a recepciós (tulajdonos) pedig egyből látja a gépén, hogy jöhet a következő vendég.</td>
-                    </tr>
-                    <tr>
-                        <th>Szokásos működés (Main Flow)</th>
-                        <td>
-                            <ol style="margin: 0 0 0 18px;">
-                                <li>A takarító megnyitja az oldalt a telefonján.</li>
-                                <li>Látja a mai listát: pl. <em>„2-es szoba takarítása”</em>.</li>
-                                <li>Rányom a <em>„Takarítás megkezdése”</em> gombra.</li>
-                                <li>Amikor végzett, lő egy fotót a telefonnal a tiszta szobáról.</li>
-                                <li>Rányom a <em>„Kész vagyok”</em> gombra.</li>
-                                <li>A rendszer elmenti a képet, és zöldre állítja a szoba státuszát a tulajdonos gépén.</li>
-                            </ol>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Kivételes esetek</th>
-                        <td>Ha elmegy a net a telefonon a takarítás közben, a telefon elmenti az adatokat, és amint újra lesz Wi-Fi/mobilinternet, magától feltölti a szerverre. Ha valami el van törve a szobában, a takarító nyomhat egy <em>„Hiba bejelentése”</em> gombot.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h3 id="srs-3-3">3.3. Naptár-szinkronizáció és túlfoglalás blokkolása</h3>
-        <div class="uc-box">
-            <h4>UC-03: Naptár-szinkronizáció és túlfoglalás blokkolása</h4>
-            <table>
-                <tbody>
-                    <tr>
-                        <th style="width: 26%;">Rövid leírás</th>
-                        <td>A rendszerünk folyamatosan figyeli a többi oldalt. Ha valaki ott foglal, azt észreveszi, beírja a mi naptárunkba, és lezárja, hogy máshol már ne lehessen kivenni.</td>
-                    </tr>
-                    <tr>
-                        <th>Aktor (ki csinálja?)</th>
-                        <td>Rendszer (magától csinálja a háttérben)</td>
-                    </tr>
-                    <tr>
-                        <th>Prekondíciók (előfeltétel)</th>
-                        <td>Jól vannak beállítva a Booking.com és Airbnb linkek az adminisztrációs felületen.</td>
-                    </tr>
-                    <tr>
-                        <th>Postkondíciók (utófeltétel)</th>
-                        <td>Új külső foglalás esetén a mi adatbázisunk is frissül, és mindenhol lezárul a dátum.</td>
-                    </tr>
-                    <tr>
-                        <th>Szokásos működés (Main Flow)</th>
-                        <td>
-                            <ol style="margin: 0 0 0 18px;">
-                                <li>A rendszer 5 percenként ránéz a külső oldalakra.</li>
-                                <li>Lekéri az ottani foglalásokat.</li>
-                                <li>Ha talál egy olyat, ami nálunk még nincs meg, elmenti.</li>
-                                <li>Szól a többi oldalnak, hogy <em>„ezt a dátumot ti is zárjátok le”</em> (kimenő iCal-export frissítése).</li>
-                            </ol>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Kivételes esetek</th>
-                        <td>Ha pont egyszerre (egy másodpercen belül) foglalnak a weblapunkon és a Bookingon, a rendszer érzékeli a bajt, <em>„Ütközés”</em> jelzést ad, és küld egy e-mailt a tulajdonosnak, hogy manuálisan tegyen rendet.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h3 id="srs-3-funkc-tabla">Funkcionális követelmények összefoglalása</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Azonosító</th>
-                    <th>Megnevezés</th>
-                    <th>Követelmény leírása</th>
-                    <th>Prioritás</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>FK-01</code></td>
-                    <td>Szabad szobák keresése</td>
-                    <td>A rendszer a megadott érkezési és távozási dátum, valamint a vendéglétszám alapján listázza a szabad szobákat és az árakat.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-02</code></td>
-                    <td>Online foglalás és időpont-lezárás</td>
-                    <td>A vendég személyes adatai megadásával foglalást adhat le, amely sikeres fizetéskor azonnal lezárja az adott időszakot a naptárban.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-03</code></td>
-                    <td>Bankkártyás fizetés</td>
-                    <td>A rendszer külső fizetési szolgáltatón (Stripe / Barion) keresztül bonyolítja le a bankkártyás fizetést.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-04</code></td>
-                    <td>Kuponkód érvényesítése</td>
-                    <td>A vendég a személyes adatok megadása után kuponkódot írhat be, és a rendszer újraszámolja a fizetendő árat.</td>
-                    <td><span class="prio-should">Should have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-05</code></td>
-                    <td>Automatikus visszaigazoló e-mail</td>
-                    <td>Sikeres fizetés után a rendszer elmenti a foglalást és visszaigazoló e-mailt küld a vendégnek a részletekkel.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-06</code></td>
-                    <td>Kétirányú iCal-naptárszinkronizáció</td>
-                    <td>A rendszer 5 percenként lekéri a külső oldalak (Booking, Airbnb) foglalásait, és frissíti a saját naptárát és exportját.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-07</code></td>
-                    <td>Ütközésérzékelés és riasztás</td>
-                    <td>Egyidejű foglalásból eredő átfedés esetén a rendszer „Ütközés” jelzést ad, és figyelmeztető e-mailt küld a tulajdonosnak.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-08</code></td>
-                    <td>Takarítói feladatlista és fotófeltöltés</td>
-                    <td>A takarító mobilról indíthatja és zárhatja le a takarítást a tiszta szobáról készült fotó feltöltésével, zöldre (Tiszta) állítva a szobastátuszt.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-09</code></td>
-                    <td>Offline adatmentés és hibabejelentés</td>
-                    <td>Hálózatkimaradás esetén a telefon helyben menti a takarítói adatokat, és Wi-Fi visszatérésekor feltölti; emellett a takarító hibát is jelenthet.</td>
-                    <td><span class="prio-should">Should have</span></td>
-                </tr>
-                <tr>
-                    <td><code>FK-10</code></td>
-                    <td>Tulajdonosi adminisztratív felület</td>
-                    <td>A tulajdonos áttekinti a bevételeket, a foglalásokat és a szobastátuszokat, valamint minden adatot módosíthat.</td>
-                    <td><span class="prio-must">Must have</span></td>
-                </tr>
-            </tbody>
-        </table>
+<p>A használati esetekben a rendszer és a felhasználók közötti műveleteket írjuk le. A kiválasztott három eset a projekt fő folyamatait mutatja be: az online foglalást, a takarítás nyilvántartását és a külső foglalások egyeztetését. Mindegyiknél külön szerepel a sikeres működés, az alternatív folyamat és a hibás esetek kezelése. Ezek alapján később olyan tesztek is készíthetők, amelyek nemcsak a szokásos használatot, hanem a problémás helyzeteket is vizsgálják.</p>
+<h3 id="srs-3-diagram">Use Case diagram</h3>
+<p>Az ábra a rendszer határát és a fő használati esetek kapcsolatait szemlélteti. A szöveges leírásban a vendég és a takarító mellett a tulajdonos, a külső szolgáltatások, valamint a naptárszinkronizációt elindító időzített esemény is szerepel. Az időzített folyamat a szerveroldali működés része, nem önálló emberi felhasználó.</p>
+<div class="diagram-box">
+    <img src="usecase.png" alt="A vendégház-menedzsment rendszer Use Case diagramja" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+    <p class="diagram-note" hidden>A diagram megjelenítéséhez a usecase.png fájlt az HTML-fájllal azonos mappába kell helyezni.</p>
+    <p class="diagram-caption">1. ábra: A vendégház-menedzsment rendszer Use Case diagramja</p>
+</div>
+<h3 id="srs-3-1">3.1. Szobafoglalás leadása és automatikus visszaigazolás</h3>
+<div class="table-wrap"><table class="uc-table"><tbody>
+<tr><td>Rövid leírás</td><td>A vendég a nyilvános felületen kiválasztja a számára megfelelő időszakot és szobát, megadja a foglaláshoz szükséges adatokat, majd bankkártyával fizet. A rendszer ellenőrzött fizetés után rögzíti a végleges foglalást és visszaigazolást küld.</td></tr>
+<tr><td>Elsődleges aktor</td><td>Vendég</td></tr>
+<tr><td>Kapcsolódó külső szereplő</td><td>Fizetési szolgáltató, e-mail-küldő szolgáltatás.</td></tr>
+<tr><td>Befoglalt használati eset</td><td><code>«include»</code> Bankkártyás fizetés</td></tr>
+<tr><td>Előfeltételek</td><td>A nyilvános felület elérhető; létezik a megadott létszámnak és időszaknak megfelelő szabad szoba; a fizetési szolgáltatás használható.</td></tr>
+<tr><td>Sikeres utófeltétel</td><td>A foglalás és a hozzá tartozó fizetés rögzítve van, az időszak a helyi naptárban foglalt, a visszaigazoló e-mail küldése elindult.</td></tr>
+<tr><td>Normál folyamat</td><td><ol><li>A vendég megnyitja a foglalási oldalt, megadja az érkezés és távozás dátumát, valamint a vendégek számát.</li><li>A rendszer ellenőrzi a keresési feltételeket és megjeleníti az elérhető szobákat a teljes árral együtt.</li><li>A vendég kiválaszt egy szobát, majd kitölti a foglalási űrlapot.</li><li>A rendszer ellenőrzi az adatokat; opcionálisan érvényesíti a megadott kuponkódot.</li><li>A vendég áttekinti az adatokat és elindítja a fizetést.</li><li>A backend ismét ellenőrzi az időszak elérhetőségét és az árat, majd létrehozza a 15 perces ideiglenes zárolást.</li><li>A vendég a külső fizetési felületen elvégzi a bankkártyás fizetést.</li><li>A szerver a szolgáltató hiteles visszajelzését feldolgozva véglegesíti a foglalást és frissíti a helyi naptárat.</li><li>A rendszer visszajelzést ad a vendégnek, elindítja az e-mail küldését és aktualizálja a kimenő iCal-adatokat.</li></ol></td></tr>
+<tr><td>Alternatív folyamatok</td><td>Kupon nélkül a foglalás az eredeti áron folytatható. Érvénytelen kupon esetén a vendég javíthatja vagy törölheti a kódot. Ha nincs szabad szoba, módosíthatja az időpontot vagy a létszámot.</td></tr>
+<tr><td>Kivételes folyamatok</td><td><ul><li>Ha a szobát időközben más lefoglalta, a fizetés nem indulhat el, a vendég új találatot választhat.</li><li>Ha a fizetés meghiúsul, a rendszer tájékoztatja a vendéget; a zárolás a lezárt sikertelen fizetés vagy a lejárat után oldható fel.</li><li>Függő fizetési állapot esetén a rendszer nem jelzi biztosra a foglalást. Későn beérkező sikeres fizetésnél újra ellenőrzi az elérhetőséget.</li><li>E-mail-küldési hiba esetén a végleges foglalás megmarad, a hiba naplózásra kerül.</li></ul></td></tr>
+<tr><td>Kapcsolódó követelmények</td><td>FK-01, FK-02, FK-03, FK-04, FK-05</td></tr></tbody></table></div>
+<h3 id="srs-3-2">3.2. Szoba státuszának frissítése mobilról</h3>
+<div class="table-wrap"><table class="uc-table"><tbody>
+<tr><td>Rövid leírás</td><td>A takarító a mobilfelületen megnyitja a napi feladatát, jelzi a munkavégzés kezdetét, majd a takarítást igazoló fényképpel lezárja azt. A tulajdonosi felületen a mentett állapot jelenik meg.</td></tr>
+<tr><td>Elsődleges aktor</td><td>Takarító személyzet</td></tr>
+<tr><td>Előfeltételek</td><td>A takarító bejelentkezett, jogosult az adott feladat kezelésére, és a szobához tartozik takarítási feladat.</td></tr>
+<tr><td>Sikeres utófeltétel</td><td>A feladat lezárt, a fénykép elmentve, a szoba állapota „Tiszta”. A tulajdonos az aktuális adatokat megtekintheti.</td></tr>
+<tr><td>Normál folyamat</td><td><ol><li>A takarító belép a mobilfelületre.</li><li>A rendszer betölti az adott napra tartozó feladatlistát.</li><li>A takarító kiválasztja a szobát, és ellenőrzi a távozás időpontját.</li><li>A „Takarítás megkezdése” művelettel jelzi, hogy elkezdte a munkát.</li><li>A munka befejezésekor a „Kész vagyok” gombbal megnyitja a fénykép készítésére szolgáló felületet.</li><li>Elkészíti és jóváhagyja a képet, majd elküldi a szervernek.</li><li>A szerver ellenőrzi és menti a képet, lezárja a feladatot, és frissíti a szoba tisztasági állapotát.</li><li>A mobilfelület visszajelzést ad a mentés eredményéről.</li></ol></td></tr>
+<tr><td>Alternatív folyamat</td><td>A takarító a feladat során hibabejelentést készíthet, például egy nem működő világításról. A hibajelzéshez rövid leírás tartozik, amelyet a tulajdonos az adminisztrációs felületen lát.</td></tr>
+<tr><td>Kivételes folyamatok</td><td><ul><li>Kameraengedély hiányában a felület jelzi a problémát; fénykép nélkül a feladat nem jelenhet meg sikeresen lezártként.</li><li>Kapcsolatkimaradás esetén a már betöltött feladathoz tartozó változtatások helyben várakoznak. A szerveroldali állapot csak sikeres szinkronizáció után változik meg.</li><li>Ismételt beküldés esetén a rendszer felismeri az azonos műveletet, így nem jön létre újabb lezárás.</li></ul></td></tr>
+<tr><td>Kapcsolódó követelmények</td><td>FK-08, FK-09, FK-10</td></tr></tbody></table></div>
+<h3 id="srs-3-3">3.3. Naptárszinkronizáció és ütközéskezelés</h3>
+<div class="table-wrap"><table class="uc-table"><tbody>
+<tr><td>Rövid leírás</td><td>A háttérszolgáltatás a külső iCal-naptárakból foglaltsági időszakokat olvas be, egyezteti azokat a helyi nyilvántartással, és ütközés esetén jelzi a problémát a tulajdonosnak.</td></tr>
+<tr><td>Kiváltó esemény</td><td>Az időzített háttérfolyamat indulása; külső aktorok a Booking.com és Airbnb naptárszolgáltatásai.</td></tr>
+<tr><td>Előfeltételek</td><td>A tulajdonos beállította a megfelelő szobákhoz tartozó iCal-linkeket. A szinkronizációs szolgáltatás működik.</td></tr>
+<tr><td>Sikeres utófeltétel</td><td>Az importálható foglalások a helyi nyilvántartásban szerepelnek, az export elérhető, az esetleges ütközéseket a tulajdonos látja.</td></tr>
+<tr><td>Normál folyamat</td><td><ol><li>A háttérszolgáltatás ötpercenként elindítja a külső naptárak lekérdezését.</li><li>Letölti a beállított iCal-fájlokat, ellenőrzi és feldolgozza az eseményeket.</li><li>A beérkezett eseményeket összehasonlítja a korábbi importtal és a helyi foglaltsággal.</li><li>Új eseménynél rögzíti a foglaltsági időszakot, ismert eseménynél azonosítja a szükséges módosítást.</li><li>Az ütközésmentes foglaltsági adatok alapján frissül a helyi naptár és a kimenő export.</li><li>A rendszer eltárolja a szinkronizáció eredményét, amely a tulajdonosi felületen is megtekinthető.</li></ol></td></tr>
+<tr><td>Alternatív folyamat</td><td>Ha egy naptár nem tartalmaz új vagy megváltozott eseményt, nem keletkezik új foglalási rekord. A sikeres lekérdezés időpontját ettől függetlenül rögzíteni kell.</td></tr>
+<tr><td>Kivételes folyamatok</td><td><ul><li>Ha a külső naptár nem érhető el vagy nem dolgozható fel, az utolsó érvényes állapot megmarad, a rendszer naplózza a hibát és a következő ciklusban újrapróbálkozik.</li><li>Ha ugyanazt a szobát egymást átfedő időszakra foglalják le, a rendszer ütközést rögzít és figyelmeztető e-mailt küld. A két foglalást nem szabad észrevétlenül felülírni.</li><li>A külső oldalak saját frissítési időköze miatt nem garantálható az azonnali egyezés. A tulajdonosnak szükség esetén a külső foglalási felületen is intézkednie kell.</li></ul></td></tr>
+<tr><td>Kapcsolódó követelmények</td><td>FK-06, FK-07, FK-10</td></tr></tbody></table></div>
+<h3 id="srs-3-osszefoglalo">Funkcionális követelmények összefoglalása</h3>
+<p>Az egyes követelményeket FK azonosítóval látjuk el, hogy a fejlesztés és a tesztelés során egyértelműen lehessen rájuk hivatkozni. A Must have jelölésű funkciók a rendszer alapvető működéséhez szükségesek, a Should have jelölésűek fontos kiegészítések, amelyek megvalósítása az alapfunkciók után is történhet.</p>
+<div class="table-wrap"><table><thead><tr><th>Azonosító</th><th>Megnevezés</th><th>Követelmény leírása</th><th>Prioritás</th></tr></thead><tbody>
+<tr><td><code>FK-01</code></td><td>Szabad szobák keresése</td><td>A rendszer a dátumok és a létszám alapján a helyi adatok szerint elérhető szobákat listázza, feltüntetve a teljes árat. Érvénytelen keresési adatoknál magyarázó visszajelzést ad.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-02</code></td><td>Online foglalás és időpont-lezárás</td><td>A foglaláshoz tartozó adatok ellenőrzése után a rendszer a fizetés idejére 15 perces zárolást hoz létre. A végleges foglalás csak ellenőrzött fizetés és rendelkezésre álló időszak esetén jöhet létre.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-03</code></td><td>Bankkártyás fizetés</td><td>A rendszer külső fizetési szolgáltatáson (Stripe vagy Barion) keresztül kezeli a fizetést. A tranzakció eredményét ellenőrzi; saját adatbázisában nem tárol bankkártyaadatot.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-04</code></td><td>Kuponkód érvényesítése</td><td>A vendég opcionálisan kuponkódot használhat. A szerver ellenőrzi a kód érvényességét, és érvényes kedvezmény esetén újraszámolja a teljes fizetendő összeget.</td><td><span class="prio-should">Should have</span></td></tr>
+<tr><td><code>FK-05</code></td><td>Automatikus visszaigazoló e-mail</td><td>Véglegesített foglalás esetén a rendszer automatikusan visszaigazoló e-mailt küld a megadott címre, feltüntetve a foglalási adatokat. Az e-mail hibája nem törli a foglalást.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-06</code></td><td>Kétirányú iCal-naptárszinkronizáció</td><td>A backend ötpercenként megkísérli a külső naptárak lekérését, és frissíti a helyi nyilvántartást. Kimenő iCal-exportot biztosít a külső szolgáltatók számára.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-07</code></td><td>Ütközésérzékelés és riasztás</td><td>Átfedő foglalások felismerésekor a rendszer rögzíti az ütközést, megjeleníti a tulajdonosnak és e-mailben figyelmezteti. Az ütközés rendezése tulajdonosi döntést igényel.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-08</code></td><td>Takarítói feladatlista és fotófeltöltés</td><td>A takarító megtekintheti a napi teendőket, elindíthatja a takarítást, majd fényképpel lezárhatja a feladatot. A szoba csak sikeres mentés után kerül „Tiszta” állapotba.</td><td><span class="prio-must">Must have</span></td></tr>
+<tr><td><code>FK-09</code></td><td>Offline adatmentés és hibabejelentés</td><td>A kliens kapcsolatkimaradáskor helyben megőrzi az elküldésre váró műveleteket, és a kapcsolat visszatérésekor megkísérli a továbbítást. A takarító a szobához hibajelentést rögzíthet.</td><td><span class="prio-should">Should have</span></td></tr>
+<tr><td><code>FK-10</code></td><td>Tulajdonosi adminisztratív felület</td><td>A tulajdonos jogosultságának megfelelően megtekintheti és kezelheti a foglalásokat, árakat, kuponokat, külső naptárakat, bevételi adatokat és takarítási információkat.</td><td><span class="prio-must">Must have</span></td></tr></tbody></table></div>
+<h3>A követelmények ellenőrzésének példái</h3>
+<p>Az alábbi helyzetek a későbbi teszteléshez adnak kiindulási pontot. A táblázat az elvárt viselkedést tartalmazza, nem végrehajtott tesztek eredményét.</p>
+<div class="table-wrap"><table><thead><tr><th>Követelmény</th><th>Vizsgált helyzet</th><th>Elvárt eredmény</th></tr></thead><tbody>
+<tr><td>FK-01</td><td>A távozás korábbi, mint az érkezés.</td><td>A keresés nem indul el, a hibás dátum javítható.</td></tr>
+<tr><td>FK-02</td><td>Két vendég egy időben ugyanarra a szobára indít foglalást.</td><td>Legfeljebb az egyik helyi foglalás kap érvényes zárolást.</td></tr>
+<tr><td>FK-03, FK-05</td><td>Ugyanaz a sikeres fizetési értesítés kétszer érkezik be.</td><td>Nem keletkezik két külön foglalás vagy ismételt visszaigazolás.</td></tr>
+<tr><td>FK-04</td><td>Lejárt vagy ismeretlen kupon megadása.</td><td>A kedvezmény nem kerül alkalmazásra; a vendég tájékoztatást kap.</td></tr>
+<tr><td>FK-06, FK-07</td><td>A külső naptárban átfedő foglalás jelenik meg.</td><td>Az átfedést jelzi a rendszer, és riasztást indít.</td></tr>
+<tr><td>FK-08, FK-09</td><td>Fényképes lezárás hálózatkimaradás közben.</td><td>A művelet várakozik, a szoba csak sikeres feltöltés után lesz tiszta.</td></tr>
+<tr><td>FK-10</td><td>Takarítói fiókkal tulajdonosi beállítás módosítása.</td><td>A szerver megtagadja a hozzáférést.</td></tr></tbody></table></div>
     </section>
 
-    <!-- 4. HASZNÁLHATÓSÁG -->
     <section class="card" id="srs-4">
         <h2>4. Használhatóság</h2>
-        <p>
-            Az oldalnak nagyon egyszerűnek és letisztultnak kell lennie. A takarítóknak szánt mobilos felületet úgy kell megcsinálni, hogy 10 perc alatt bárki megértse (nagy, színes gombokkal).
-        </p>
-        <p>
-            A weblapnak gyorsan kell betöltenie, és telefonon, tableten, valamint számítógépen is jól kell kinéznie (reszponzív megjelenés). A rendszernek magyarul és angolul is működnie kell.
-        </p>
+<p>A három felületet a felhasználók eltérő igényeinek megfelelően kell kialakítani. A vendégnek elsősorban a foglalás lépéseit kell könnyen megtalálnia, a tulajdonosnak a napi működés áttekintése fontos, a takarító pedig általában munka közben, telefonról használja a programot. A kezelőfelületek ezért közös megjelenést, de eltérő menüszerkezetet kapnak.</p>
+<h3>Foglalási felület</h3>
+<p>A vendég regisztráció nélkül végig tudja vinni a foglalást. A keresési, adatmegadási és fizetési lépéseket el kell különíteni egymástól. Minden kötelező mezőt jelölni kell, hiba esetén pedig az érintett mező mellett jelenjen meg a javításhoz szükséges információ. Egy hibás telefonszám vagy e-mail-cím miatt ne kelljen az összes korábban megadott adatot újra beírni. Fizetés előtt a kiválasztott időszaknak és a teljes árnak jól láthatónak kell lennie.</p>
+<h3>Belső felületek</h3>
+<p>A tulajdonosi naptárban az állapotokat nem kizárólag színekkel, hanem szöveges jelöléssel is meg kell különböztetni. A takarító felületén a gyakran használt gombok legyenek jól olvashatók és érintőképernyőn is könnyen kezelhetők. A cél az, hogy egy új takarító körülbelül tíz perc alatt, külön oktatás nélkül megértse a napi feladatok megtekintését, elindítását és lezárását. Ennek ellenőrzéséhez később egyszerű próbahasználatot lehet végezni egy olyan személlyel, aki még nem ismeri a rendszert.</p>
+<p>A reszponzív megjelenés miatt számítógépen, tableten és telefonon is használhatónak kell maradniuk a fő funkcióknak. A feliratokat, űrlapokat és hibaüzeneteket magyar és angol nyelven is meg kell jeleníteni. A nyelvváltás lehetőség szerint ne törölje az aktuálisan kitöltött foglalási adatokat. A felületet a gyakori műveletekre optimalizáljuk, nem szükséges minden beállítást a kezdőképernyőn elhelyezni.</p>
     </section>
 
-    <!-- 5. MEGBÍZHATÓSÁG -->
     <section class="card" id="srs-5">
         <h2>5. Megbízhatóság</h2>
-        <p>
-            Mivel a vendégek éjjel is foglalhatnak, a rendszernek a nap 24 órájában, az év 365 napján mennie kell. Célunk a <strong>99,5%-os rendelkezésre állás</strong>.
-        </p>
-        <p>
-            Fontos, hogy az adatok (pl. a már kifizetett foglalások) soha ne vesszenek el, ezért a rendszer folyamatosan biztonsági mentéseket (<em>backup</em>) csinál a háttérben.
-        </p>
+<p>A foglalási felületnek a nap 24 órájában elérhetőnek kell lennie, mivel a vendégek nem kizárólag munkaidőben használják. A tervezett rendelkezésre állási cél 99,5%. Ez célérték, amelyet az üzemeltetés során a tényleges elérhetőség mérésével lehet ellenőrizni. A külső szolgáltatások esetleges leállása külön problémát jelenthet akkor is, amikor a saját weboldal elérhető.</p>
+<h3>Adatok megőrzése és helyreállítása</h3>
+<p>A foglalások és a fizetések nyilvántartása olyan adatokat tartalmaz, amelyek elvesztése közvetlenül befolyásolná a vendégház működését. Rendszeres biztonsági mentést kell készíteni az adatbázisról, valamint gondoskodni kell a kapcsolódó fényképek megőrzéséről. A mentéseket az éles adatbázistól elkülönítve, korlátozott hozzáféréssel kell tárolni. A mentés elkészítése önmagában nem igazolja, hogy egy hiba után visszaállíthatók az adatok, ezért a visszaállítást is ellenőrizni kell. A pontos mentési gyakoriságot és megőrzési időt az üzemeltetési tervben szükséges rögzíteni.</p>
+<h3>Hibakezelés</h3>
+<p>Adatbázis- vagy hálózati hiba esetén egy művelet nem maradhat észrevétlenül részben végrehajtott állapotban. Ha például a foglalás mentése nem sikerült, a felületen nem jelenhet meg végleges sikeres visszaigazolás. A tranzakciókezelés és az egyedi műveletazonosítók segítenek abban, hogy a párhuzamos vagy ismételt kérések ne hozzanak létre hibás adatokat.</p>
+<p>A külső iCal-források átmeneti elérhetetlenségekor a korábban beolvasott foglalásokat meg kell őrizni. A következő ötperces ciklusban újra meg kell kísérelni a lekérdezést, a tulajdonos pedig az utolsó sikeres szinkron időpontja alapján láthatja, mennyire frissek az adatok. A rendszernek a hibát naplóznia kell, de egyetlen külső naptár hibája nem akadályozhatja szükségtelenül a többi forrás feldolgozását.</p>
+<p>A fizetés és a visszaigazoló e-mail két különálló művelet. Ha az e-mail-szolgáltatás átmenetileg nem működik, a sikeresen kifizetett foglalás megmarad. A tulajdonosnak lehetőséget kell biztosítani a foglalási adatok ellenőrzésére, hogy az érintett vendéggel szükség esetén más módon is felvehesse a kapcsolatot.</p>
     </section>
 
-    <!-- 6. TELJESÍTMÉNY -->
     <section class="card" id="srs-6">
         <h2>6. Teljesítmény</h2>
-        <p>
-            Az oldalnak bírnia kell, ha egyszerre többen is (pl. szezonban 50–100 ember) nézegetik a szobákat. A gombok megnyomása után (főleg fizetésnél) az oldal ne „gondolkozzon” másodpercekig, reagáljon gyorsan (normál terhelés mellett 2 másodpercen belüli válaszidő).
-        </p>
-        <p>
-            A háttérben futó 5 perces naptárszinkronizálás aszinkron módon működik, hogy semmiképpen ne lassítsa be a weboldal működését.
-        </p>
+<p>A rendszer elsősorban kisebb vendégházak forgalmára készül, ugyanakkor a főszezonban vagy egy kiemelt időszak előtt több vendég is kereshet egyszerre. A cél az, hogy 50–100 egyidejű felhasználó mellett a leggyakoribb műveletek továbbra is megfelelő sebességgel működjenek. A szobakeresés, a foglalási adatok ellenőrzése és a napi takarítási lista lekérése esetén a saját szerver válaszidejének célértéke két másodperc, megfelelő hálózati és üzemeltetési körülmények között.</p>
+<p>A külső fizetőoldalon töltött időt, a külső naptár letöltését és az e-mail kézbesítését nem lehet ugyanezzel a válaszidővel garantálni, mert ezek más szolgáltatók működésétől is függenek. Amennyiben valamely művelet hosszabb ideig tart, a felületnek jeleznie kell a folyamat állapotát, hogy a felhasználó ne indítsa el feleslegesen ismételten ugyanazt a műveletet.</p>
+<p>A naptárszinkronizáció, a lejárt zárolások kezelése és az e-mailek küldése a webes kérések kiszolgálásától elkülönített háttérfolyamatként működik. Az adatbázis-lekérdezéseket úgy kell kialakítani, hogy egy adott szoba foglaltságának ellenőrzése ne igényelje az összes foglalási rekord feldolgozását. A fényképfeltöltésnél figyelembe kell venni a mobilinternet sebességét és a fájlméretet; szükség esetén a rendszernek érthető visszajelzést kell adnia a túl nagy vagy nem támogatott fájlokról.</p>
+<h3>Tervezett teljesítmény-ellenőrzés</h3>
+<div class="table-wrap"><table><thead><tr><th>Vizsgálat</th><th>Cél / elvárt működés</th></tr></thead><tbody>
+<tr><td>Párhuzamos keresések</td><td>50–100 egyidejű felhasználó mellett a jellemző keresések kiszolgálása a kétmásodperces célértéken belül.</td></tr>
+<tr><td>Azonos szobára indított párhuzamos foglalások</td><td>A helyi foglalási ütközés elkerülése terhelés alatt is.</td></tr>
+<tr><td>Szinkronizáció futása közbeni keresés</td><td>A háttérfolyamat ne blokkolja szükségtelenül a foglalási felületet.</td></tr>
+<tr><td>Mobilos fotófeltöltés</td><td>Megszakadt kérés után kezelhető újrapróbálkozás és egyértelmű állapotjelzés.</td></tr></tbody></table></div><p>A konkrét mérési környezetet és a mérési eredményeket a tesztelési dokumentációban kell megadni. A fenti értékek nem mért eredmények, hanem a fejlesztés során vizsgálandó célok.</p>
     </section>
 
-    <!-- 7. TÁMOGATOTTSÁG -->
     <section class="card" id="srs-7">
         <h2>7. Támogatottság</h2>
-        <p>
-            A programkódot úgy fogjuk megírni (kommentekkel ellátva, logikusan szétszedve), hogy később könnyen lehessen új funkciókat beletenni.
-        </p>
-        <p>
-            A rendszer minden hibát (pl. ha nem sikerült egy fizetés vagy lefagyott egy lekérdezés) egy külön fájlba (naplóba / logba) fog feljegyezni, hogy utólag meg tudjuk nézni és elemezni tudjuk, mi volt a baj.
-        </p>
+<p>A rendszer karbantarthatósága azért fontos, mert a szálláshely működése és a külső szolgáltatók feltételei idővel megváltozhatnak. A programot olyan részekre célszerű bontani, amelyek külön kezelik a foglalást, az árkalkulációt, a fizetést, a naptárszinkronizációt és a takarítási feladatokat. Így például a fizetési szolgáltató cseréje nem igényli a teljes vendégoldali felület átírását.</p>
+<p>A forráskódban következetes elnevezéseket kell használni. A kommentek elsősorban az üzleti szabályok és a nehezebben értelmezhető megoldások magyarázatára szolgálnak, nem minden utasítás megismétlésére. A fejlesztői dokumentációban érdemes rögzíteni az adatbázis inicializálásának, a szerver indításának és a konfiguráció megadásának lépéseit. A titkos kulcsok, adatbázis-jelszavak és a fizetési szolgáltató hozzáférési adatai ne kerüljenek a nyilvános forráskódba.</p>
+<p>A naplózás segítségével utólag megállapítható, hogy egy sikertelen foglalás, szinkronizáció vagy képfeltöltés melyik komponensben akadt el. A bejegyzésekhez időpont és lehetőség szerint az érintett művelet azonosítója tartozzon. A napló kezelésekor az adatvédelmi szempontokat is figyelembe kell venni. Új verzió kiadása előtt a korábban megvalósított fő folyamatokat újra tesztelni kell.</p>
+<p>Később felmerülhet több vendégház együttes kezelése vagy további szolgáltatók csatlakoztatása. A mostani felépítésnél érdemes számolni a bővíthetőséggel, de a több szálláshelyes működés nem része a jelenlegi kötelező funkcióknak.</p>
     </section>
 
-    <!-- 8. TERVEZÉSI KORLÁTOZÁSOK -->
     <section class="card" id="srs-8">
         <h2>8. Tervezési korlátozások</h2>
-        <p>
-            A szerveroldali (backend) programozást <strong>C# vagy Java</strong> nyelven oldjuk meg. Az adatbázisnak egy bevált, megbízható SQL adatbázist (pl. <strong>MySQL vagy PostgreSQL</strong>) használunk.
-        </p>
-        <p>
-            Arra is figyelni kell, hogy a szerver bérlése ne legyen drága, így költséghatékony (akár egyetemi vagy ingyenes felhős) tárhelyen is el kell futnia a kódnak.
-        </p>
+<p>A fejlesztési technológiákat a projekt céljához, a csapat rendelkezésére álló fejlesztői eszközökhöz és a későbbi üzemeltetés költségeihez igazítjuk. A 2. fejezetben rögzített felépítéssel összhangban a szerveroldali alkalmazás C# nyelven, ASP.NET Core keretrendszerrel, PostgreSQL adatbázissal készül. A felhasználói oldalak webes technológiákra épülnek. A választott tárhelynek ezek futtatását, az adatbázist, a háttérfolyamatokat és a HTTPS-kapcsolatot is támogatnia kell.</p>
+<p>A saját rendszer csak azokat az adatokat tudja beolvasni, amelyeket a Booking.com és az Airbnb elérhetővé tesz a naptárexportban. A külső oldalak frissítési gyakorisága nem állítható be a vendégház alkalmazásából. Emiatt a külső foglalások teljes körű, valós idejű összehangolása nem tekinthető garantált funkciónak. A foglalási ütközések kezelése szükség esetén tulajdonosi közreműködést igényel.</p>
+<p>A bankkártyás fizetést külső szolgáltató végzi. A konkrét fizetési integráció a választott szolgáltatás feltételeitől és az elérhető tesztkörnyezettől függ. A saját rendszer feladata a fizetési kezdeményezés és az eredmény feldolgozása, nem pedig a bankkártyaadatok közvetlen kezelése.</p>
+<p>Az offline működés a takarítói felület korábban letöltött feladataira és az azokhoz kapcsolódó mentésekre korlátozódik. Első bejelentkezéshez, új foglalások lekérdezéséhez és fizetéshez internetkapcsolat szükséges. Az offline adatmegőrzés emellett a böngésző tárolási lehetőségeitől is függ; a helyi tároló törlésekor elveszhetnek a még nem szinkronizált adatok.</p>
     </section>
 
-    <!-- 9. ON-LINE DOKUMENTÁCIÓ ÉS HELP RENDSZER -->
     <section class="card" id="srs-9">
-        <h2>9. On-line dokumentáció és Help rendszer</h2>
-        <p>
-            A vendégek oldalán lesz egy <strong>„Gyakori Kérdések” (GYIK)</strong> fül, ahol a foglalással, lemondással és érkezéssel kapcsolatos legfontosabb tudnivalók találhatók.
-        </p>
-        <p>
-            A tulajdonos adminisztrációs felületén pedig kis kérdőjel ikonokat teszünk a nehezebb beállítások mellé, amelyekre ha ráviszi az egeret (tooltip), egy buborékban elmagyarázza, mit csinál az adott gomb vagy beállítás.
-        </p>
+        <h2>9. Online dokumentáció és súgó</h2>
+<p>A felhasználói dokumentáció célja, hogy a rendszer használatához ne legyen szükség programozói vagy adatbázis-kezelési ismeretekre. A vendégek számára a nyilvános oldalon Gyakori kérdések (GYIK) rész készül, amely az érkezéssel, távozással, foglalással és lemondással kapcsolatos legfontosabb információkat tartalmazza. A vendégház tényleges házirendjét és lemondási feltételeit a tulajdonos adja meg; ezek helyett a program nem határoz meg önálló szabályokat.</p>
+<p>A belső felületen a ritkábban használt beállításoknál rövid súgószöveg jelenik meg. Az iCal-linkek beállításánál például meg kell magyarázni, melyik cím szolgál a külső naptár importálására, és melyiket kell a saját rendszer exportjából a külső szolgáltatásba bemásolni. Telefonon a súgó ne csak egérrel történő rámutatás esetén legyen hozzáférhető, hanem érintéssel is megnyitható legyen.</p>
+<p>A rendszer hibajelzéseinek a felhasználó következő lépését is segíteniük kell. Egy fizetési hiba esetén például célszerű megkülönböztetni a sikertelen tranzakciót és a még ellenőrzés alatt álló fizetést. A takarító esetében pedig külön jelzés szükséges arról, hogy a kép elküldése sikerült-e, vagy még várakozik. A technikai kivételek részletes adatai a fejlesztői naplóban szerepelnek, nem a felhasználónak megjelenő szövegben.</p>
+<p>A teljes használati útmutató a 13. fejezetben található. A felületek véglegesítése után az útmutatót a tényleges menüpontokhoz, gombfeliratokhoz és működéshez kell igazítani.</p>
     </section>
 
-    <!-- 10. FELHASZNÁLT KÉSZ KOMPONENSEK -->
     <section class="card" id="srs-10">
         <h2>10. Felhasznált kész komponensek</h2>
-        <p>
-            Nem írunk meg mindent nulláról, hanem használunk kész, jól működő és iparágilag bevált megoldásokat:
-        </p>
-        <ul>
-            <li><strong>Fizetéshez:</strong> Stripe vagy Barion API (bankkártyás fizetés biztonságos kezelésére).</li>
-            <li><strong>E-mailhez:</strong> SendGrid vagy hasonló SMTP e-mail-küldő szolgáltatás.</li>
-            <li><strong>Naptárhoz:</strong> Egy kész, nyílt forráskódú naptármodult (pl. <strong>FullCalendar</strong>) építünk be a weboldalba.</li>
-        </ul>
+<p>A fejlesztés során nem minden részfunkciót szükséges saját megoldással elkészíteni. A naptár megjelenítése, a fizetés és az e-mail-küldés olyan feladatok, amelyekhez elérhetők külső komponensek és szolgáltatások. Ezek használatával a csapat a vendégház saját üzleti logikájának megvalósítására koncentrálhat.</p>
+<div class="table-wrap"><table><thead><tr><th>Komponens / szolgáltatás</th><th>Tervezett feladat</th><th>Megjegyzés</th></tr></thead><tbody>
+<tr><td>FullCalendar</td><td>A foglalások naptáras megjelenítése az adminisztrációs oldalon.</td><td>A szobánkénti nézethez szükséges funkciókat és licencfeltételeket ellenőrizni kell.</td></tr>
+<tr><td>Stripe vagy Barion API</td><td>Bankkártyás fizetés indítása és a fizetés állapotának ellenőrzése.</td><td>A végleges szolgáltató kiválasztása az integráció előtt szükséges.</td></tr>
+<tr><td>SMTP vagy SendGrid</td><td>Foglalási visszaigazolások és ütközési értesítések küldése.</td><td>A küldési hibákat az alkalmazás kezeli és naplózza.</td></tr>
+<tr><td>IndexedDB</td><td>A takarítói felület elküldésre váró adatainak helyi tárolása.</td><td>A böngészőben elérhető technológia; nem helyettesíti a szerveroldali adatbázist.</td></tr></tbody></table></div>
+<p>A külső összetevőkhöz tartozó verziókat és a használat feltételeit a megvalósítás során kell rögzíteni. Frissítés esetén ellenőrizni kell az alkalmazással való kompatibilitást, különösen a fizetési felületet és a naptárkomponens működését. A külső komponensek nem veszik át az alkalmazás saját adatellenőrzési és jogosultságkezelési feladatait.</p>
     </section>
 
-    <!-- 11. INTERFÉSZEK -->
     <section class="card" id="srs-11">
         <h2>11. Interfészek</h2>
-
-        <h3 id="srs-11-1">11.1. Felhasználói interfészek</h3>
-        <p>
-            Egy szép, könnyen kezelhető weblap a vendégeknek, egy átlátható, sok funkciós „műszerfal” (vezérlőpult) a tulajdonosnak, és egy nagyon egyszerűsített, érintőképernyős nézet a takarítóknak.
-        </p>
-
-        <h3 id="srs-11-2">11.2. Hardware interfészek</h3>
-        <p>
-            A takarító okostelefonjának kamerája a kész, kitakarított szobák lefotózásához és az igazoló kép feltöltéséhez.
-        </p>
-
-        <h3 id="srs-11-3">11.3. Software interfészek</h3>
-        <p>
-            Kapcsolódás a Booking.com és az Airbnb rendszeréhez (iCal-linkeken keresztül), valamint később a NAV online számlázó rendszeréhez (pl. Számlázz.hu / Billingo API-n keresztül).
-        </p>
-
-        <h3 id="srs-11-4">11.4. Kommunikációs interfészek</h3>
-        <p>
-            Szabványos internetkapcsolat, de kötelezően titkosítva (<strong>HTTPS</strong>), hogy senki ne lophassa el a vendégek bankkártya- és személyes adatait.
-        </p>
+<p>Az interfészek határozzák meg, hogyan kapcsolódik az alkalmazás a felhasználókhoz, a használt eszközökhöz és a külső szolgáltatásokhoz. A következő pontok a H3 szintjén szükséges kapcsolatokat ismertetik; a konkrét végpontok és üzenetformátumok részletezése a tervezési és implementációs dokumentációban történik.</p>
+<h3 id="srs-11-1">11.1. Felhasználói interfészek</h3>
+<p>A nyilvános weboldal keresőmezőket, szobaleírásokat, foglalási űrlapot és fizetési állapotjelzést tartalmaz. A tulajdonosi felület a bejelentkezést követően naptárat, foglalási adatokat, ár- és kuponkezelést, valamint takarítási információkat biztosít. A takarítói felület napi listát, állapotmódosító gombokat, fényképkészítési és hibabejelentési lehetőséget tartalmaz. A felhasználók kizárólag a szerepkörükhöz szükséges műveleteket érhetik el.</p>
+<h3 id="srs-11-2">11.2. Hardverinterfészek</h3>
+<p>A rendszer használatához internetképes számítógép, tablet vagy okostelefon szükséges. A takarítói felület a telefon beépített kameráját használja a szobák állapotának dokumentálásához. A böngésző engedélyt kérhet a kamera használatára. Ha a felhasználó nem adja meg ezt az engedélyt, a felületnek tájékoztatnia kell arról, hogy a fényképes lezáráshoz milyen beállítást kell módosítania. A program nem igényel külön erre a célra készített fizikai eszközt.</p>
+<h3 id="srs-11-3">11.3. Szoftverinterfészek</h3>
+<div class="table-wrap"><table><thead><tr><th>Kapcsolódó rendszer</th><th>Átadott / fogadott adatok</th><th>Kapcsolódás célja</th></tr></thead><tbody>
+<tr><td>PostgreSQL</td><td>Foglalások, felhasználók, árak, státuszok, egyéb alkalmazásadatok.</td><td>A tartós nyilvántartás biztosítása.</td></tr>
+<tr><td>Booking.com és Airbnb</td><td>iCal (.ics) foglaltsági események, dátumok és azonosítók.</td><td>Külső és helyi foglaltsági adatok egyeztetése.</td></tr>
+<tr><td>Stripe / Barion</td><td>Foglalási azonosító, fizetendő összeg, tranzakcióazonosító és fizetési állapot.</td><td>Fizetés lebonyolítása és ellenőrzése.</td></tr>
+<tr><td>SMTP / SendGrid</td><td>Címzett, tárgy és az üzenet tartalma.</td><td>Visszaigazolások és riasztások továbbítása.</td></tr>
+<tr><td>Számlázz.hu / Billingo</td><td>Későbbi bővítésnél szükséges számlázási adatok.</td><td>Számlázási integráció lehetősége, nem jelenlegi kész funkció.</td></tr></tbody></table></div>
+<h3 id="srs-11-4">11.4. Kommunikációs interfészek</h3>
+<p>A böngésző és a backend HTTPS-kapcsolaton keresztül kommunikál. A webes műveletekhez HTTP-kérések használhatók; a strukturált adatokhoz JSON formátum, a fotókhoz fájlfeltöltés alkalmazható. A naptárak importja és exportja iCalendar formátumban történik. A fizetési szolgáltatótól érkező értesítéseket a szerver a szolgáltató dokumentált eljárása alapján ellenőrzi.</p>
+<p>Kapcsolati hiba esetén a kliensnek különbséget kell tennie a még el nem küldött kérés és a szerver által elutasított művelet között. A titkosított adatátvitel mellett a hitelesítés és a jogosultság-ellenőrzés is szükséges, mert a HTTPS önmagában nem akadályoz meg minden jogosulatlan hozzáférést.</p>
     </section>
 
-    <!-- 12. ALKALMAZOTT SZABVÁNYOK -->
     <section class="card" id="srs-12">
-        <h2>12. Alkalmazott szabványok</h2>
-
-        <h3 id="srs-12-1">12.1. Kötelező</h3>
-        <p>
-            Szigorúan be kell tartani a <strong>GDPR</strong> adatvédelmi szabályait (a vendégek adatait biztonságosan kell tárolni, és kérésre törölni). Emellett a magyar szálláshelyekre vonatkozó <strong>NTAK</strong> (Nemzeti Turisztikai Adatszolgáltató Központ) adatszolgáltatási szabályokat is figyelembe kell venni.
-        </p>
-
-        <h3 id="srs-12-2">12.2. Választott</h3>
-        <p>
-            A kódot átláthatóan, a szoftverfejlesztési <strong>„Clean Code”</strong> szabályok szerint írjuk, a szabványos UML 2.0 és iCal (RFC 5545) előírások betartásával.
-        </p>
+        <h2>12. Alkalmazott szabványok és előírások</h2>
+<h3>12.1. Kötelező előírások</h3>
+<p>A rendszer személyes adatokat kezel, így a tervezés és az esetleges éles üzemeltetés során figyelembe kell venni az általános adatvédelmi rendelet (GDPR) követelményeit. A foglaláshoz csak olyan adatokat szükséges bekérni, amelyek a szolgáltatás nyújtásához vagy a vonatkozó kötelezettségek teljesítéséhez indokoltak. A vendégek adatainak megtekintését korlátozni kell, a hozzáféréseket pedig az egyes szerepkörökhöz kell igazítani.</p>
+<p>Az adatkezelési tájékoztatónak ki kell térnie az adatkezelés céljára, az adatok megőrzésére és az érintettek jogaira. Törlési kérésnél a jogszabály szerinti megőrzési kötelezettségeket is figyelembe kell venni; ezért nem helyes minden adat feltétel nélküli és azonnali törlését ígérni. A vendégházra vonatkozó NTAK-adatszolgáltatási előírásokat az éles bevezetés előtt külön ellenőrizni kell. A jelen specifikáció nem igazolja, hogy a program már teljesíti az összes szálláshely-üzemeltetési vagy adatszolgáltatási kötelezettséget.</p>
+<h3>12.2. Választott szabványok és fejlesztési irányelvek</h3>
+<p>A használati esetek és a rendszertervezési ábrák elkészítéséhez az UML 2 jelölésrendszerét használjuk. A külső naptárak kezelésénél az iCalendar formátumot meghatározó RFC 5545 szolgál alapul. A böngészős felületek kialakításánál a szabványos HTML és CSS használatára, valamint az egyértelmű űrlapokra törekszünk.</p>
+<p>A Clean Code elveit fejlesztési irányelvként vesszük figyelembe: a jól megválasztott elnevezések, az egyértelmű felelősségi körök és a fölösleges kódismétlés elkerülése megkönnyítik a csapattagok együttműködését. Ez nem önálló kötelező műszaki szabvány, hanem a karbantartható forráskód kialakítását segítő szemlélet. A külső fizetési és e-mail-szolgáltatók integrációs követelményeit a kiválasztott szolgáltató dokumentációja szerint kell betartani.</p>
     </section>
 
-    <!-- 13. FELHASZNÁLÓI DOKUMENTÁCIÓ -->
     <section class="card" id="srs-13">
-        <h2>13. Felhasználói dokumentáció (Felhasználói kézikönyv v1.0)</h2>
-        <p>
-            A H3 specifikációs mérföldkő részeként elkészítettük a rendszer végfelhasználói kézikönyvének első verzióját mindhárom felhasználói szerepkör számára:
-        </p>
-
-        <h3>13.1. Vendégoldali foglalási útmutató</h3>
-        <div class="manual-step">
-            <ol style="margin-bottom: 0;">
-                <li><strong>Időpont és létszám kiválasztása:</strong> A nyitóoldalon válassza ki az érkezés és a távozás dátumát, valamint adja meg a vendégek számát, majd kattintson a <em>„Szabad szobák keresése”</em> gombra.</li>
-                <li><strong>Szoba kiválasztása:</strong> A megjelenő listából válassza ki a megfelelő szobát vagy apartmant.</li>
-                <li><strong>Adatok megadása és kuponbeváltás:</strong> Töltse ki a kapcsolattartási adatait (név, e-mail-cím, telefonszám, cím). Amennyiben rendelkezik kedvezménykuponnal, írja be a kuponmezőbe, és a rendszer újraszámolja a végösszeget.</li>
-                <li><strong>Online bankkártyás fizetés:</strong> Kattintson a fizetés gombra, és hajtsa végre a tranzakciót a bankkártyás fizetőoldalon. Sikeres fizetés után a rendszer azonnal lezárja az időpontot a naptárban, és elküldi a visszaigazoló e-mailt.</li>
-            </ol>
-        </div>
-
-        <h3>13.2. Tulajdonosi vezérlőpult kezelése</h3>
-        <div class="manual-step">
-            <ol style="margin-bottom: 0;">
-                <li><strong>Bejelentkezés:</strong> Lépjen be tulajdonosi fiókjával az adminisztrációs felületre.</li>
-                <li><strong>Napi áttekintés és bevételek:</strong> A vezérlőpulton (FullCalendar nézet) áttekintheti a foglalásokat, a bevételeket, a szobák tisztasági állapotát és a külső iCal-szinkronizáció státuszát.</li>
-                <li><strong>Foglalások és ütközések kezelése:</strong> Rögzíthet kézi foglalásokat, módosíthatja a meglévőket, vagy egyidejű foglalásból eredő <em>„Ütközés”</em> jelzés esetén manuálisan rendezheti a naptárat.</li>
-                <li><strong>Súgó használata:</strong> A beállítások melletti kérdőjel ikonokra mutatva megtekintheti az egyes funkciók rövid leírását.</li>
-            </ol>
-        </div>
-
-        <h3>13.3. Takarítói mobilfelület használata</h3>
-        <div class="manual-step">
-            <ol style="margin-bottom: 0;">
-                <li><strong>Bejelentkezés és napi lista:</strong> Nyissa meg a rendszert okostelefonja böngészőjében, és jelentkezzen be takarítói fiókjával. A kezdőképernyőn megjelenik a napi takarítási lista (pl. <em>„2-es szoba takarítása”</em>).</li>
-                <li><strong>Munka megkezdése:</strong> Nyomja meg a <em>„Takarítás megkezdése”</em> gombot.</li>
-                <li><strong>Befejezés fotóval:</strong> A takarítás végeztével készítsen egy fotót a telefon kamerájával a tiszta szobáról, majd nyomja meg a <em>„Kész vagyok”</em> gombot. A szoba állapota zöldre (<em>Tiszta</em>) vált a tulajdonos gépén.</li>
-                <li><strong>Offline működés és hibabejelentés:</strong> Internetkimaradás esetén a telefon elmenti az adatokat és Wi-Fi visszatérésekor feltölti őket; műszaki probléma esetén a <em>„Hiba bejelentése”</em> gombbal jelezheti a hibát.</li>
-            </ol>
-        </div>
+        <h2>13. Felhasználói dokumentáció (kézikönyv)</h2>
+<p>Ez a fejezet a rendszer tervezett kezelőfelületeinek használatát mutatja be. Három külön útmutatót tartalmaz: az első a szállást kereső vendégeknek, a második a tulajdonosnak, a harmadik a takarító személyzetnek szól. Az útmutatóban szereplő menüpontok és gombfeliratok a jelenlegi tervek szerinti elnevezések; a végleges program elkészültekor ezeket ellenőrizni kell.</p>
+<div class="info-box"><strong>A használat feltételei:</strong> A rendszer megnyitható egy korszerű webböngészőben, külön alkalmazás telepítése nélkül. A foglaláshoz internetkapcsolat szükséges. A tulajdonos és a takarító a saját felhasználói fiókjával jelentkezik be. A takarítás fényképes dokumentálásához kamerával rendelkező telefon és a kamera használatának engedélyezése szükséges.</div>
+<h3 id="srs-13-1">13.1. Vendégeknek – szobafoglalás</h3>
+<p>Vendégként a nyilvános weboldalt kell megnyitnod. Nem szükséges előzetesen fiókot létrehoznod. Érdemes a foglalás előtt előkészíteni az érkezés és a távozás tervezett dátumát, a vendégek számát, valamint a fizetéshez szükséges bankkártyát.</p>
+<h4>Szabad szobák keresése</h4>
+<ol>
+<li>A főoldalon keresd meg a foglalási űrlapot.</li>
+<li>Az „Érkezés” mezőben válaszd ki azt a napot, amikor a vendégházba szeretnél érkezni.</li>
+<li>A „Távozás” mezőben add meg az utolsó ott töltött éjszakát követő napot. A távozás dátuma nem lehet azonos vagy korábbi az érkezés dátumánál.</li>
+<li>Add meg az összes érkező vendég számát, majd válaszd a „Szabad szobák keresése” gombot.</li>
+<li>Nézd át a megjelenő szobákat. A fényképek mellett látható a férőhely, az éjszakánkénti ár és a megadott időszakhoz tartozó teljes díj.</li>
+</ol>
+<p>Ha nincs találat, próbálj meg másik érkezési vagy távozási napot választani. A keresés önmagában még nem jelent foglalást, így a megjelenő szobák elérhetősége a fizetés indításáig változhat.</p>
+<h4>Foglalási adatok megadása</h4>
+<p>A kiválasztott szobánál kattints a „Lefoglalom” gombra. A következő felületen add meg a nevedet, az e-mail-címedet, a telefonszámodat és a címedet. Az e-mail-címet különösen fontos ellenőrizni, mert a foglalás visszaigazolása erre a címre érkezik. Hibásan megadott adatnál a rendszer jelzi a javítandó mezőt.</p>
+<p>Ha rendelkezel kuponnal, írd be a kódot a „Kuponkód” mezőbe, majd válaszd az „Érvényesítés” gombot. Sikeres érvényesítés után a fizetendő összeg módosul. Ha a kód nem érvényes, ellenőrizd a beírt karaktereket, vagy folytasd a foglalást kupon nélkül. A fizetés indítása előtt ellenőrizd még egyszer az időszakot, a szobát, a létszámot és a végösszeget.</p>
+<h4>Fizetés és a foglalás ellenőrzése</h4>
+<ol>
+<li>Kattints a „Tovább a fizetéshez” gombra. Ha a szoba még foglalható, a rendszer 15 percre fenntartja számodra az időszakot a saját foglalási rendszerében.</li>
+<li>A megnyíló külső fizetési oldalon kövesd az ott megjelenő utasításokat. Szükség esetén a bankod külön jóváhagyást kérhet.</li>
+<li>A fizetést követően várd meg a visszajelzést. Ha a fizetési eredmény ellenőrzése folyamatban van, ne indíts el újabb foglalást ugyanarra az időszakra.</li>
+<li>Sikeres foglalás esetén a rendszer visszaigazolást küld a megadott e-mail-címre. Ellenőrizd, hogy a dátumok és a foglalás adatai megfelelnek-e annak, amit kiválasztottál.</li>
+</ol>
+<p>A 15 perces időkorlát lejárta után az ideiglenesen fenntartott időszak ismét elérhetővé válhat más vendégeknek. Ha közben nem fejezted be a fizetést, ellenőrizd újra a foglalás elérhetőségét. Ha az összeg levonásra került, de nem kaptál sikeres visszajelzést, újabb fizetés előtt kérj segítséget a vendégház elérhetőségén.</p>
+<h4>Gyakori problémák a foglalás során</h4>
+<div class="table-wrap"><table><thead><tr><th>Probléma</th><th>Mit érdemes tenni?</th></tr></thead><tbody>
+<tr><td>Nem jelenik meg szabad szoba.</td><td>Ellenőrizd a dátumokat és a létszámot, majd próbálj másik időszakot.</td></tr>
+<tr><td>A kuponkód nem működik.</td><td>Ellenőrizd a kódot. Ha nem érvényes, töröld a mezőből, és folytasd a foglalást kedvezmény nélkül.</td></tr>
+<tr><td>A fizetés sikertelen volt.</td><td>Olvasd el a fizetési oldalon megjelenő üzenetet. Csak akkor próbáld újra, ha az előző tranzakció biztosan nem sikerült.</td></tr>
+<tr><td>Nem érkezett meg a visszaigazoló e-mail.</td><td>Nézd meg a levélszemét mappát, ellenőrizd a megadott e-mail-címet, és szükség esetén keresd a vendégházat.</td></tr>
+<tr><td>Módosítani vagy lemondani szeretnéd a foglalást.</td><td>A visszaigazolás és a GYIK alapján vedd fel a kapcsolatot a vendégházzal. A módosítás és lemondás az érvényes feltételek szerint történik.</td></tr></tbody></table></div>
+<h3 id="srs-13-2">13.2. Tulajdonosnak – a vendégház kezelése</h3>
+<p>A tulajdonosi kezelőfelületen a foglalások, a szobák állapota és a takarítási feladatok egy helyen követhetők. A felület megnyitásához a tulajdonosi bejelentkezési oldalon add meg a fiókodhoz tartozó e-mail-címet és jelszót. A belépési adatokat ne oszd meg a takarító személyzettel, mert nekik saját fiókjuk van, eltérő hozzáféréssel.</p>
+<h4>A napi működés áttekintése</h4>
+<p>A bejelentkezés után megjelenő vezérlőpulton először a napi érkezéseket és távozásokat érdemes ellenőrizni. A szobák állapotjelzése mutatja, hogy melyik helyiség vár takarításra, hol kezdődött el a munka, és melyik szoba van kész. A takarítás befejezése nem jelenti automatikusan azt, hogy a szoba foglalható; a foglaltságot a központi naptárban külön kell ellenőrizni.</p>
+<p>Az utolsó sikeres külső naptárszinkronizáció idejét is nézd meg, különösen akkor, ha új foglalást akarsz kézzel felvenni. Ha egy naptár adatai elavultak vagy szinkronizációs hiba látható, a külső felületen is ellenőrizd a foglaltságot, mielőtt visszaigazolsz egy új időszakot.</p>
+<h4>Központi naptár és kézi foglalás</h4>
+<p>A naptárban a foglalások különböző jelöléssel jelennek meg attól függően, hogy saját weboldalon, Booking.com-on, Airbnb-n vagy kézi rögzítéssel kerültek a rendszerbe. Egy időszak kiválasztásakor megtekintheted a rendelkezésre álló foglalási adatokat. Külső naptárból érkező eseménynél előfordulhat, hogy csak a foglalt időszak ismert, a részletes vendégadatokat a közvetítő felületén kell ellenőrizni.</p>
+<p>Telefonon vagy személyesen egyeztetett foglalást az alábbi módon lehet felvenni:</p>
+<ol>
+<li>Nyisd meg a központi naptárat, és ellenőrizd a kívánt szoba elérhetőségét.</li>
+<li>Válaszd a „+ Új kézi foglalás” gombot.</li>
+<li>Add meg a szobát, az érkezés és távozás időpontját, valamint a vendég szükséges adatait.</li>
+<li>Mentés előtt ellenőrizd a megadott adatokat. Ha a rendszer ütközést jelez, ne ígérd oda ugyanazt a szobát, amíg az eltérés nem tisztázott.</li>
+<li>Mentés után ellenőrizd, hogy az új foglalás megjelent-e a saját naptárban.</li>
+</ol>
+<p>A rögzített foglalás bekerül a kimenő iCal-naptárba is. A külső szolgáltatások azonban a saját ütemezésük szerint olvassák be az adatot, ezért szükség esetén ott is ellenőrizni kell a lezárt időszakot.</p>
+<h4>Szobaárak és kuponok kezelése</h4>
+<p>Az árak módosításához nyisd meg a szobaárakhoz tartozó beállításokat, válaszd ki az érintett szobát, és add meg az új értéket. Mentés után érdemes egy próba szobakeresést végezni a vendégoldalon, hogy ellenőrizd a megjelenő összeget. A már rögzített foglalások korábbi adatait nem szabad egy általános árváltozással észrevétlenül átírni.</p>
+<p>A kuponok kezelőfelületén megadható a kedvezményhez tartozó kód és a beállított feltételek. Mielőtt egy kódot közzéteszel, ellenőrizd a foglalási oldalon, hogy a megfelelő kedvezményt számítja-e ki a rendszer. Ha a kedvezményt már nem szeretnéd biztosítani, módosítsd a kupon beállításait az adminisztrációs felületen.</p>
+<h4>Külső naptárak beállítása</h4>
+<ol>
+<li>Nyisd meg a „Külső naptárak” menüpontot, és válaszd ki az érintett szobát.</li>
+<li>A Booking.com vagy az Airbnb megfelelő szálláshelyéhez tartozó naptárexportból másold ki az iCal-linket.</li>
+<li>A saját adminisztrációs felületen illeszd be a linket a megfelelő szolgáltató mezőjébe, majd mentsd a beállítást.</li>
+<li>A kétirányú kapcsolat kialakításához a saját rendszer által megadott exportlinket a külső szolgáltató naptárimportjához is hozzá kell adni.</li>
+<li>A következő szinkronizáció után ellenőrizd, hogy az ismert foglaltsági időszakok megjelennek-e a saját naptárban, és nézd meg a szinkronizáció állapotát.</li>
+</ol>
+<p>A naptárhoz tartozó linket a megfelelő szobához kell megadni. Ha véletlenül másik szobához illeszted be, a foglaltsági adatok hibás helyen jelenhetnek meg. A szinkronizációra használt linkeket ne tedd közzé nyilvánosan.</p>
+<h4>Foglalási ütközés kezelése</h4>
+<p>Ha „Ütközés” figyelmeztetés jelenik meg, nyisd meg az érintett szoba foglalásait. Hasonlítsd össze az időszakokat, a foglalások forrását és a külső oldalon elérhető információkat. Ha valóban két vendég foglalta le ugyanazt a szobát, vedd fel velük vagy a közvetítővel a kapcsolatot, és egyeztesd a lehetséges megoldást. Csak a ténylegesen tisztázott változásokat rögzítsd a rendszerben. A figyelmeztetés eltűnése önmagában nem helyettesíti a vendéggel történő egyeztetést.</p>
+<h4>Takarítások és hibabejelentések</h4>
+<p>A „Takarítások” menüpontban a napi feladatokat, az aktuális állapotokat és a feltöltött fényképeket ellenőrizheted. A „Tiszta” jelzés azt jelenti, hogy a takarító lezárta a feladatot, és a szerver elmentette a műveletet. Ha egy feladat a vártnál tovább marad folyamatban, egyeztess a takarítóval, mert előfordulhat, hogy a telefonja nem tudott csatlakozni az internethez.</p>
+<p>A hibabejelentések között a szobához kapcsolódó problémák jelennek meg. A leírás alapján intézkedhetsz a javításról. A hibát akkor jelöld lezártnak, amikor a javítás valóban megtörtént. A takarítás állapota és a karbantartási probléma külön ellenőrizendő: egy tisztára takarított szobában is maradhat javítandó meghibásodás.</p>
+<h4>Bevételek és kijelentkezés</h4>
+<p>A vezérlőpult bevételi adatai a rendszerben rendelkezésre álló foglalási és fizetési információkból készülnek. Az összesítést a tényleges fizetési állapottal együtt érdemes értelmezni; a külső naptárból beolvasott foglalás nem feltétlenül tartalmazza a fizetett összeget. Ha eltérést látsz, ellenőrizd az érintett foglalást és a fizetési szolgáltató adatait. A napi adminisztráció végeztével, különösen közösen használt számítógépen, jelentkezz ki a fiókodból.</p>
+<div class="table-wrap"><table><thead><tr><th>Helyzet</th><th>Teendő</th></tr></thead><tbody>
+<tr><td>A naptár nem frissül.</td><td>Ellenőrizd az utolsó sikeres lekérdezést és a beállított linkeket; szükség esetén nézd meg a külső naptárakat.</td></tr>
+<tr><td>A vendég fizetett, de nem kapott e-mailt.</td><td>Keresd meg a foglalást és ellenőrizd a fizetés állapotát. Egyeztess a vendéggel, ha a visszaigazolás nem érkezett meg.</td></tr>
+<tr><td>A takarítás fotója nem látható.</td><td>Ellenőrizd a feladat állapotát, majd kérdezd meg a takarítót, hogy a feltöltést sikeresnek jelzi-e a mobilfelület.</td></tr>
+<tr><td>Nem egyértelmű egy beállítás.</td><td>Használd a beállítás mellett található súgót, vagy nézd meg az adott fejezetet az útmutatóban.</td></tr></tbody></table></div>
+<h3 id="srs-13-3">13.3. Takarítóknak – a mobilfelület használata</h3>
+<p>A takarítói oldalt a kapott webcímen nyithatod meg a telefonodon. Jelentkezz be a saját fiókoddal. Ha a böngésződ támogatja, az oldalt hozzáadhatod a telefon kezdőképernyőjéhez, így később nem kell minden alkalommal beírnod a címet. Az első belépéshez és a feladatlista betöltéséhez internetkapcsolatra van szükség.</p>
+<h4>A napi feladatok megtekintése</h4>
+<p>Belépés után a mai feladatok jelennek meg. Minden bejegyzéshez tartozik egy szoba és a vendég távozásával kapcsolatos időpont. A munka megkezdése előtt ellenőrizd, hogy a megfelelő szobához tartozó feladatot választottad-e ki. Ha a vendég még nem távozott, vagy a listán nem a várt szoba szerepel, egyeztess a tulajdonossal.</p>
+<h4>Takarítás megkezdése és lezárása</h4>
+<ol>
+<li>Válaszd ki a listában a takarítandó szobát.</li>
+<li>Nyomd meg a „Takarítás megkezdése” gombot. Sikeres mentés után a tulajdonos is látja, hogy a munka folyamatban van.</li>
+<li>A takarítás elvégzése után ellenőrizd a helyiséget, hogy készen áll-e a következő vendég fogadására.</li>
+<li>Nyomd meg a „Kész vagyok” gombot, és készíts egy fényképet a szoba állapotáról. Ha a telefon engedélyt kér a kamera használatához, add meg az engedélyt.</li>
+<li>Ellenőrizd a képet, majd hagyd jóvá a feltöltést. Ügyelj arra, hogy a képen ne szerepeljen személy, vendéghez tartozó irat vagy más szükségtelen személyes adat.</li>
+<li>Várd meg a mentés visszaigazolását. A sikeresen lezárt feladat után a szoba „Tiszta” állapotúként jelenik meg a tulajdonosnál.</li>
+</ol>
+<p>Ha véletlenül másik szobához jelented készre a takarítást, jelezd a tulajdonosnak, hogy az állapotot helyesbíteni tudja. Ne próbáld a téves bejegyzést újabb, másik feladathoz feltöltött képpel elfedni.</p>
+<h4>Hibabejelentés</h4>
+<p>Ha takarítás közben meghibásodást észlelsz, válaszd az adott szobánál a „Hiba bejelentése” lehetőséget. A leírásban nevezd meg pontosan az érintett helyet és a problémát. A „Nem működik a lámpa” helyett például hasznosabb az, hogy „A fürdőszobai tükör fölötti lámpa nem kapcsol be”. Küldd el a bejelentést, és ellenőrizd, hogy a művelet mentése sikerült-e.</p>
+<p>Ha olyan problémát tapasztalsz, amely miatt a helyiség nem használható biztonságosan, közvetlenül is szólj a tulajdonosnak. A hibabejelentés nem jelenti automatikusan, hogy a szoba foglalását a rendszer leállította.</p>
+<h4>Teendők internetkimaradás esetén</h4>
+<p>Ha a feladatlista már betöltődött, de a munkavégzés közben megszakad az internetkapcsolat, a felület helyben tárolhatja a még elküldésre váró adatokat és a fényképet. Ilyenkor ellenőrizd, hogy a módosítás függőben lévőként jelenik-e meg. A telefonon helyben mentett adat még nem biztos, hogy látható a tulajdonosnál.</p>
+<p>Amikor ismét van internetkapcsolat, nyisd meg a felületet, és ellenőrizd a függőben lévő műveleteket. A kliens megkísérli az adatok továbbítását. Ha a bejelentkezés lejárt, jelentkezz be újra. Ne töröld a böngésző helyi adatait, amíg az elküldésre váró fényképek és feladatok mentését a rendszer nem igazolta vissza.</p>
+<div class="table-wrap"><table><thead><tr><th>Jelzés vagy probléma</th><th>Teendő</th></tr></thead><tbody>
+<tr><td>Takarításra vár</td><td>A szoba még nincs készre jelentve. Ellenőrizd a feladatot és a távozás időpontját.</td></tr>
+<tr><td>Takarítás folyamatban</td><td>A munka elkezdődött; a befejezéskor fényképpel kell lezárni.</td></tr>
+<tr><td>Tiszta</td><td>A lezárást a szerver elmentette.</td></tr>
+<tr><td>Szinkronizálásra vár</td><td>A művelet még nincs igazolva a szerveren. Kapcsolódj az internethez, és ellenőrizd a mentést.</td></tr>
+<tr><td>A kamera nem nyílik meg.</td><td>Nézd meg a telefon böngészőjének kameraengedélyét. Ha továbbra sem működik, jelezd a tulajdonosnak.</td></tr>
+<tr><td>A feladat nem szerepel a listában.</td><td>Frissítsd a felületet internetkapcsolat mellett. Ha továbbra is hiányzik, egyeztess a tulajdonossal.</td></tr></tbody></table></div>
+<p>A munkanap végén ellenőrizd, hogy minden elvégzett feladat sikeresen lezárt állapotban van-e. A még szinkronizálásra váró műveleteket a kijelentkezés előtt érdemes továbbítani. Ha a feltöltés továbbra sem sikerül, tájékoztasd a tulajdonost, hogy a szoba valós állapotát ennek megfelelően tudja kezelni.</p>
     </section>
 
     <!-- Alsó navigáció -->
@@ -862,6 +783,7 @@
         <a href="Szoftech_h4.html" class="nav-btn">Következő: H4 – Tervezés &rarr;</a>
     </div>
 
+</div>
 
 </body>
 </html>
